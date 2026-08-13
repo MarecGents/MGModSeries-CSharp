@@ -439,7 +439,7 @@
                 "path": "",
                 "rcid": ""
             },
-            "Weight": 2,
+            "Weight": 0.5,
             "Width": 3,
             "armorClass": "0",
             "armorColliders": [],
