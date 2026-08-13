@@ -1,5 +1,7 @@
 {
-	"started": {},
-	"success": {},
-	"fail": {}
+    "started": {},
+    "success": {
+        "mgtrader_default_assort_item003": "8ef5b2ef4000000000000001"
+    },
+    "fail": {}
 }
