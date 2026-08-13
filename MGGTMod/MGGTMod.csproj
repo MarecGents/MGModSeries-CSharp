@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
-		<Version>0.4.0.040102</Version>
+		<Version>0.5.0.040102</Version>
 		<OutputPath>$(MGModModsOutputDir)MGGTMod\</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>

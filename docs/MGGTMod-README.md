@@ -8,7 +8,7 @@
 | 运行时 | .NET 10.0 |
 | 项目类型 | 类库 (Library, SDK.Web) |
 | 框架依赖 | SPTarkov.Common / DI / Server.Core 4.1.1 |
-| 版本 | v0.4.0.040102 |
+| 版本 | v0.5.0.040102 |
 
 > 原仓库：`MarecGents/MG-GT-Mod-CSharp`（已暂停维护，代码迁移至本整合仓 `MGGTMod/`）
 
@@ -22,7 +22,7 @@ MGGTMod（MG General Trader Mod）是一个独立发布的 SPT 自定义商人 M
 
 ## 📖 商人制作教程
 
-📄 [MG通用商人制作教程](https://github.com/MarecGents/MG-GT-Mod-CSharp/blob/main/docs/MG通用商人制作教程.md) —— 涵盖教程基础信息、文件与文件夹架构、各文件内部结构、撰写示例与自编译发布流程（含防冲突改名清单）。
+📄 [MG通用商人制作教程](./MG通用商人制作教程.md) —— 涵盖教程基础信息、文件与文件夹架构、各文件内部结构、撰写示例与自编译发布流程（含防冲突改名清单）。
 
 教程以内置示例商人 **FlanrecGents** 为模板，并参考 **MG-Mod 的 MarecGents** 展示任务系统等进阶用法。
 
