@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MGGTMod/MGGTMod.csproj" />
+  <Project Path="MGModEditor/MGModEditor.csproj" />
+  <Project Path="MGModServer/MGMod.csproj" />
+  <Project Path="MGModClient/MGModClient.csproj" />
+</Solution>

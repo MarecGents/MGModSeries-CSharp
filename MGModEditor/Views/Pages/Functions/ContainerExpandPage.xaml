@@ -1,0 +1,94 @@
+<Page 
+    x:Class="MGEditor.Views.Pages.Functions.ContainerExpandPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:MGEditor.Views.Pages.Functions"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:controls="clr-namespace:MGEditor.Controls"
+    Title="{DynamicResource Nav.Container}"
+    ui:NavigationView.HeaderContent="{DynamicResource Nav.Container}"
+    d:DataContext="{d:DesignInstance local:ContainerExpandPage,
+                                IsDesignTimeCreatable=False}"
+    d:DesignHeight="1200" 
+    d:DesignWidth="700"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d" >
+    <StackPanel>
+        <controls:ContainerFrameGroup
+            ContainerId="67600929bd0a0549d70993f6"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="62a09d3bcf4a99369e262447"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5c093db286f7740a1b2617e3"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5b6d9ce188a4501afc1b2b25"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5c0a840b86f7742ffa4f2482"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="60b0f6c058e0b0481a09ad11"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="66bc98a01a47be227a5e956e"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5aafbcd986f7745e590fff23"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5d235bb686f77443f4331278"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5b7c710788a4506dec015957"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5c127c4486f7745625356c13"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5aafbde786f774389d0cbc0f"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="567143bf4bdc2d1a0f8b4567"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5e2af55f86f7746d4159f07c"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="590c60fc86f77412b13fddcf"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="59fb023c86f7746d0d4b423c"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="619cbf7d23893217ec30b689"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="59fb042886f7746c5005a7b2"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5c093e3486f77430cb02e593"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="5783c43d2459774bbe137486"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="619cbf9e0a7c3a1a2731940a"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="59fafd4b86f7745ca07e1232"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+        <controls:ContainerFrameGroup
+            ContainerId="59fb016586f7746d0d4b423a"
+            ContainerExpand="{Binding ViewModel.ConfigJson.Templates.ContainerExpand}"/>
+    </StackPanel>
+</Page>
+
+

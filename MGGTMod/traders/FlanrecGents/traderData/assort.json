@@ -1,0 +1,187 @@
+{
+  "items": [
+    {
+      "_id": "FGTrader_default_assort_item_01",
+      "_tpl": "9cc236080000000000000000",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": true,
+        "StackObjectsCount": 9999999
+      }
+    },
+    {
+      "_id": "FGTrader_default_assort_item_02",
+      "_tpl": "9cc236080000000000000001",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": true,
+        "StackObjectsCount": 9999999
+      }
+    },
+    {
+      "_id": "FGTrader_default_assort_item_03",
+      "_tpl": "9cc236080000000000000002",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": true,
+        "StackObjectsCount": 9999999
+      }
+    },
+    {
+      "_id": "FGTrader_default_assort_item_04",
+      "_tpl": "9cc236080000000000000012",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": true,
+        "StackObjectsCount": 9999999
+      }
+    },
+    {
+      "_id": "FGTrader_default_assort_item_05",
+      "_tpl": "9cc236080000000000000013",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": true,
+        "StackObjectsCount": 9999999
+      }
+    },
+    {
+      "_id": "9cc236087000000000000001",
+      "_tpl": "9cc236080000000000000003",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Soft_armor_front"
+    },
+    {
+      "_id": "9cc236087000000000000002",
+      "_tpl": "9cc236080000000000000004",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Soft_armor_back"
+    },
+    {
+      "_id": "9cc236087000000000000003",
+      "_tpl": "9cc236080000000000000005",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Soft_armor_left"
+    },
+    {
+      "_id": "9cc236087000000000000004",
+      "_tpl": "9cc236080000000000000006",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "soft_armor_right"
+    },
+    {
+      "_id": "9cc236087000000000000005",
+      "_tpl": "9cc236080000000000000007",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Collar"
+    },
+    {
+      "_id": "9cc236087000000000000006",
+      "_tpl": "9cc236080000000000000008",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Shoulder_l"
+    },
+    {
+      "_id": "9cc236087000000000000007",
+      "_tpl": "9cc236080000000000000009",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Shoulder_r"
+    },
+    {
+      "_id": "9cc236087000000000000008",
+      "_tpl": "9cc236080000000000000010",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Groin"
+    },
+    {
+      "_id": "9cc236087000000000000009",
+      "_tpl": "9cc236080000000000000011",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Groin_back"
+    },
+    {
+      "_id": "9cc236087000000000000010",
+      "_tpl": "9cc236080000000000000003",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Soft_armor_front"
+    },
+    {
+      "_id": "9cc236087000000000000011",
+      "_tpl": "9cc236080000000000000004",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Soft_armor_back"
+    },
+    {
+      "_id": "9cc236087000000000000012",
+      "_tpl": "9cc236080000000000000005",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Soft_armor_left"
+    },
+    {
+      "_id": "9cc236087000000000000013",
+      "_tpl": "9cc236080000000000000006",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "soft_armor_right"
+    },
+    {
+      "_id": "9cc236087000000000000014",
+      "_tpl": "9cc236080000000000000010",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Groin"
+    }
+  ],
+  "barter_scheme": {
+    "FGTrader_default_assort_item_01": [
+      [
+        {
+          "count": 50000,
+          "_tpl": "5449016a4bdc2d6f028b456f"
+        }
+      ]
+    ],
+    "FGTrader_default_assort_item_02": [
+      [
+        {
+          "count": 50000,
+          "_tpl": "5449016a4bdc2d6f028b456f"
+        }
+      ]
+    ],
+    "FGTrader_default_assort_item_03": [
+      [
+        {
+          "count": 100000,
+          "_tpl": "5449016a4bdc2d6f028b456f"
+        }
+      ]
+    ],
+    "FGTrader_default_assort_item_04": [
+      [
+        {
+          "count": 100000,
+          "_tpl": "5449016a4bdc2d6f028b456f"
+        }
+      ]
+    ],
+    "FGTrader_default_assort_item_05": [
+      [
+        {
+          "count": 100000,
+          "_tpl": "5449016a4bdc2d6f028b456f"
+        }
+      ]
+    ]
+  },
+  "loyal_level_items": {
+    "FGTrader_default_assort_item_01": 1,
+    "FGTrader_default_assort_item_02": 1,
+    "FGTrader_default_assort_item_03": 1,
+    "FGTrader_default_assort_item_04": 1,
+    "FGTrader_default_assort_item_05": 1
+  }
+}

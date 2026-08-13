@@ -1,0 +1,18 @@
+<Project>
+
+  <!--
+    MGModSeries-CSharp 统一构建输出配置
+    MSBuild 自动导入：VS / Rider / dotnet CLI 的 Build 按钮均遵守本文件。
+    所有子项目共享的输出路径集中在这里，改路径只需改一处。
+    构建产物输出到仓库根 Build\（.gitignore 已忽略，不推送仓库）。
+  -->
+  <PropertyGroup>
+    <!-- 仓库根（含尾斜杠），以本文件所在目录为基准 -->
+    <MGModSeriesBuildRoot>$(MSBuildThisFileDirectory)Build\</MGModSeriesBuildRoot>
+    <!-- 服务端 Mod 输出：Build\SPT_Runtime\user\mods\（SPT_Runtime 即服务端运行时布局） -->
+    <MGModModsOutputDir>$(MGModSeriesBuildRoot)SPT_Runtime\user\mods\</MGModModsOutputDir>
+    <!-- 客户端插件输出：Build\BepInEx\plugins\（BepInEx 插件布局） -->
+    <MGModPluginsOutputDir>$(MGModSeriesBuildRoot)BepInEx\plugins\</MGModPluginsOutputDir>
+  </PropertyGroup>
+
+</Project>

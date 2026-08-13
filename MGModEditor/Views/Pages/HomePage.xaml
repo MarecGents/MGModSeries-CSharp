@@ -1,0 +1,82 @@
+<Page 
+    x:Class="MGEditor.Views.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:MGEditor.Views.Pages"
+    xmlns:controls="clr-namespace:MGEditor.Controls"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="{DynamicResource Nav.Home}"
+    ui:NavigationView.HeaderContent="{DynamicResource Nav.Home}"
+    d:DataContext="{d:DesignInstance local:HomePage,
+                                 IsDesignTimeCreatable=False}"
+    d:DesignHeight="600" 
+    d:DesignWidth="700"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d" >
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <!-- Hero banner（仿 wpfui DashboardPage：MG 图 + 渐变压暗 + i18n 文案） -->
+            <Border
+                Height="240"
+                CornerRadius="8"
+                Margin="0,0,0,24">
+                <Border.Background>
+                    <ImageBrush
+                        ImageSource="pack://application:,,,/Assets/MG-512x512.png"
+                        Stretch="UniformToFill"
+                        RenderOptions.BitmapScalingMode="HighQuality" />
+                </Border.Background>
+                <Border CornerRadius="8">
+                    <Border.Background>
+                        <RadialGradientBrush>
+                            <GradientStop Offset="0" Color="#1F000000" />
+                            <GradientStop Offset="1" Color="#4F000000" />
+                        </RadialGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <StackPanel
+                            Margin="48,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="Transparent">
+                            <ui:TextBlock
+                                FontTypography="Title"
+                                Foreground="#FFFFFF"
+                                Text="{DynamicResource Home.Hero.Title}"
+                                TextWrapping="Wrap" />
+                            <ui:TextBlock
+                                FontTypography="Subtitle"
+                                Foreground="#B7FFFFFF"
+                                Text="{DynamicResource Home.Hero.Subtitle}"
+                                TextWrapping="Wrap" />
+                            <ui:TextBlock
+                                FontTypography="BodyStrong"
+                                Foreground="#B7FFFFFF"
+                                Text="{DynamicResource Home.Hero.Description}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ui:TextBlock
+                            Margin="12"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            FontTypography="Caption"
+                            Foreground="#57FFFFFF"
+                            Text="{DynamicResource Home.Hero.Credit}" />
+                    </Grid>
+                </Border>
+            </Border>
+
+            <controls:GalleryNavigationPresenter
+                Margin="0, 10"
+                ItemsSource="{Binding ViewModel.NavigationCards, Mode=OneWay}" />
+        </StackPanel>
+    </ScrollViewer>
+    
+</Page>

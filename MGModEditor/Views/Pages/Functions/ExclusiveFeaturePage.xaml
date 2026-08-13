@@ -1,0 +1,60 @@
+<Page 
+    x:Class="MGEditor.Views.Pages.Functions.ExclusiveFeaturePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:MGEditor.Views.Pages.Functions"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:controls="clr-namespace:MGEditor.Controls"
+    Title="{DynamicResource Nav.Feature}"
+    ui:NavigationView.HeaderContent="{DynamicResource Nav.Feature}"
+    d:DataContext="{d:DesignInstance local:ExclusiveFeaturePage,
+                                IsDesignTimeCreatable=False}"
+    d:DesignHeight="1200" 
+    d:DesignWidth="700"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d" >
+
+    <StackPanel>
+        
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Feature.Header.Independent}">
+            <StackPanel>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.IndependentTrader}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomTrader}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.IndependentItem}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomItem}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.IndependentPreset}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomAssort}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.IndependentSave}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomProfile}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+        
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Feature.Header.Other}">
+            <StackPanel>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.BulletData}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.AmmoInfo}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.KeyCategory}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.KeyClassfy}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Feature.Button.RealTimeFlea}"
+                    IsChecked="{Binding ViewModel.ConfigJson.MGCustom.SyncFlea}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+        
+    </StackPanel>
+</Page>
+
+

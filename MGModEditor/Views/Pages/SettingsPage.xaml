@@ -1,0 +1,610 @@
+<Page
+    x:Class="MGEditor.Views.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:MGEditor.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:MGEditor.Views.Pages"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:controls="clr-namespace:MGEditor.Controls"
+    Title="{DynamicResource Nav.Settings}"
+    ui:NavigationView.HeaderContent="{DynamicResource Nav.Settings}"
+    d:DataContext="{d:DesignInstance local:SettingsPage,
+                                IsDesignTimeCreatable=False}"
+    d:DesignHeight="1200"
+    d:DesignWidth="700"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d">
+
+    <StackPanel>
+
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Settings.HeaderPersonal}">
+            <StackPanel>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Settings.ButtonTheme}"
+                    ItemsSource="{Binding ViewModel.ThemeValueList}"
+                    SelectedValue="{Binding ViewModel.ThemeTypeValue}"
+                    IsEnabled="True" />
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Settings.Language}"
+                    ItemsSource="{Binding ViewModel.LanguageValueList}"
+                    SelectedValue="{Binding ViewModel.LanguageValue}"
+                    IsEnabled="True" />
+            </StackPanel>
+        </controls:FrameGroup>
+
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Settings.HeaderAbout}">
+            <StackPanel>
+                <ui:CardExpander ContentPadding="0"
+                                 Icon="{ui:ImageIcon 'pack://application:,,,/Assets/MG-512x512.png', Width=38, Height=38}">
+                    <ui:CardExpander.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ui:TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontTypography="Body"
+                                Text="MGEditor" />
+                            <ui:TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                                Text="© 2025 marecgents.cn | MarecGents &amp; MG Studio" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"
+                                Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                                Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+                        </Grid>
+                    </ui:CardExpander.Header>
+                    <StackPanel>
+                        <!-- <Grid Margin="16"> -->
+                        <!--     <Grid.ColumnDefinitions> -->
+                        <!--         <ColumnDefinition Width="*" /> -->
+                        <!--         <ColumnDefinition Width="Auto" /> -->
+                        <!--     </Grid.ColumnDefinitions> -->
+                        <!--     <TextBlock Grid.Column="0" Text="To clone this repository" /> -->
+                        <!--     <TextBlock -->
+                        <!--         Grid.Column="1" -->
+                        <!--         Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}" -->
+                        <!--         Text="git clone https://github.com/lepoco/wpfui.git" /> -->
+                        <!-- </Grid> -->
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,1"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/92586">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{DynamicResource Settings.LinkOddba}" />
+                                <ui:SymbolIcon Grid.Column="1" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://ifdian.net/a/MarecGents">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{DynamicResource Settings.LinkAifadian}" />
+                                <ui:SymbolIcon Grid.Column="1" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,1"
+                            CornerRadius="0"
+                            NavigateUri="https://github.com/MarecGents">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{DynamicResource Settings.LinkGithub}" />
+                                <ui:SymbolIcon Grid.Column="1" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <TextBlock Margin="16" Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+                    </StackPanel>
+                </ui:CardExpander>
+
+                <ui:CardExpander ContentPadding="0"
+                                 Icon="{ui:ImageIcon 'pack://application:,,,/Assets/MG-512x512.png', Width=38, Height=38}">
+                    <ui:CardExpander.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ui:TextBlock
+                                Grid.Column="0"
+                                FontTypography="Body"
+                                Text="{DynamicResource Settings.HeaderCredits}" />
+                        </Grid>
+                    </ui:CardExpander.Header>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="360">
+                        <StackPanel>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/73531">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/YGDFW.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="远古大废物" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/60139">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/AT.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="AT" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/62787">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/ShuiYue.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="水月" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/25102">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/Kmy.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="kmyuhkyuk" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/4074">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/XingXi.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="星稀" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/74063">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/Sepi.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="ღ sepi酱" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/40234">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/WuShiRenFei.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="_物是人非" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/62866">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/QYLH.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="千叶玲花" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/60602">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/XueJie.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="Yuzuriha_Inori" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/47080">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/XiYangYuHua.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="夕阳与花" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/Silent.YH.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="Silent.YH" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/24954">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/iDkGK.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="iDkGK" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/2308">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/HsMikuKu.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="HsMikuKu" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/90063">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/Wind_L.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="Wind_L" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/author/53151">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/techml.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="techml" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+
+                        <TextBlock
+                            Margin="16"
+                            TextWrapping="Wrap"
+                            Text="{DynamicResource Settings.CreditsText}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </ui:CardExpander>
+
+            </StackPanel>
+        </controls:FrameGroup>
+
+    </StackPanel>
+</Page>

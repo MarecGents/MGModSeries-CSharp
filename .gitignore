@@ -55,3 +55,15 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# MGModSeries-CSharp 特定项
+# Reference：游戏/SDK DLL 外部依赖（73MB），不入库，克隆后需自行补齐
+Reference/
+# MGModClient 构建输出（BepInEx 插件目录）
+Build/
+# WPF 编译临时工程
+*_wpftmp.csproj
+# Rider/VS 用户级
+.idea/
+.vs/
+*.DotSettings.user

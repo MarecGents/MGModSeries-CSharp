@@ -1,0 +1,232 @@
+<Page 
+    x:Class="MGEditor.Views.Pages.Functions.RaidSystemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:MGEditor.Views.Pages.Functions"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:controls="clr-namespace:MGEditor.Controls"
+    Title="{DynamicResource Nav.Raid}"
+    ui:NavigationView.HeaderContent="{DynamicResource Nav.Raid}"
+    d:DataContext="{d:DesignInstance local:RaidSystemPage,
+                                IsDesignTimeCreatable=False}"
+    d:DesignHeight="1200" 
+    d:DesignWidth="700"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d" >
+
+    <StackPanel>
+        
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.AI}">
+            <StackPanel>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Raid.Button.AiHealth}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.AIHealth}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Bot.AIHealth}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Raid.Button.AiSpawnNumber}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.AISpawnNumber}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.AISpawnNumber}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Raid.Button.USECRatio}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.USECRate}"
+                    SelectedValue="{Binding ViewModel.UsecRateValue}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.AiNamePool}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Bot.BotSystem.BotNameAdd}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.PmcTacticalSquad}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Locations.BotSystem.PmcTacticalSquad}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.PmcRoar}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.PMCRoar}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+        
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.DefaultOptions}">
+            <StackPanel>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.DefaultOptions}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Raid.Button.AiAmount}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.aiAmount}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.RaidDefault.aiAmount}"
+                    IsEnabled="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Raid.Button.AiDifficulty}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.aiDifficulty}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.RaidDefault.aiDifficulty}"
+                    IsEnabled="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.EnableBoss}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.RaidDefault.bossEnabled}"
+                    IsEnabled="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.ScavCivilWar}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.RaidDefault.scavWars}"
+                    IsEnabled="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.MarkedCursed}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.RaidDefault.taggedAndCursed}"
+                    IsEnabled="{Binding ViewModel.ConfigJson.Config.RaidDefault.enable}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.Raid}">
+            <StackPanel>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.RaidTime}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.RaidTime}"
+                    SelectedValue="{Binding ViewModel.RaidTimeValue}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.BossSpawnRate}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.BOSSSpwanChance}"
+                    SelectedValue="{Binding ViewModel.BossSpwanChanceValue}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.AirdropType}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.AirdropType}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.AirdropType}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.AlwaysExtractSwitch}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Locations.Pass100}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.AlwaysExtractable}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Locations.Escape100}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.UnlimitedExtractTime}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Globals.EscapeNoTimeLimit}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.ScavNoCooldown}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Globals.ScavOptimize}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.ScavGearBoost}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.ScavEquipmentOptimize}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.NoLootLoss}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.NoLostonDeath}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.MapRefreshConfig}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Locations.BotSystem.MapRefershConfig}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.MapBotDifficulty}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.MapBotDifficulty}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Locations.BotSystem.MapBotDifficulty}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+        
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.Weather}">
+            <StackPanel>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.GlobalWeather}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.WeatherMode}"
+                    SelectedValue="{Binding ViewModel.WeatherMode}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.Cloud}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.CloudMode}"
+                    SelectedValue="{Binding ViewModel.CloudsMode}"
+                    IsEnabled="{Binding ViewModel.WeatherSettingEnable}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.Wind}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.WindMode}"
+                    SelectedValue="{Binding ViewModel.WindMode}"
+                    IsEnabled="{Binding ViewModel.WeatherSettingEnable}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.Rain}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.RainMode}"
+                    SelectedValue="{Binding ViewModel.RainMode}"
+                    IsEnabled="{Binding ViewModel.WeatherSettingEnable}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.Fog}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.FogMode}"
+                    SelectedValue="{Binding ViewModel.FogMode}"
+                    IsEnabled="{Binding ViewModel.WeatherSettingEnable}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.Resources}">
+            <StackPanel>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.GlobalLoot}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.LootMultiple}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Globals.LootMultiplier.Global}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.ContainerLoot}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.LootMultiple}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.LootMultiple.Container}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.GroundLoot}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.LootMultiple}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Config.LootMultiple.Ground}"/>
+                <controls:ComboxFrame
+                    ButtonContent="{DynamicResource Raid.Button.ValuableLoot}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.LootMultiple}"
+                    SelectedValue="{Binding ViewModel.ConfigJson.Globals.LootMultiplier.Value}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Button.DisableRandomContainers}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Config.RandomContainer}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Raid.Header.MapInsurance}">
+            <StackPanel>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Customs}"
+                    IsChecked="{Binding ViewModel.IsBigmapEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Factory}"
+                    IsChecked="{Binding ViewModel.IsFactoryEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Interchange}"
+                    IsChecked="{Binding ViewModel.IsInterchangeEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Labs}"
+                    IsChecked="{Binding ViewModel.IsLaboratoryEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Lighthouse}"
+                    IsChecked="{Binding ViewModel.IsLighthouseEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Reserve}"
+                    IsChecked="{Binding ViewModel.IsRezervBaseEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.GroundZero}"
+                    IsChecked="{Binding ViewModel.IsSandboxEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Shoreline}"
+                    IsChecked="{Binding ViewModel.IsShorelineEnable}"/>
+
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Streets}"
+                    IsChecked="{Binding ViewModel.IsTarkovStreetsEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Woods}"
+                    IsChecked="{Binding ViewModel.IsWoodsEnable}"/>
+                
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Raid.Map.Labyrinth}"
+                    IsChecked="{Binding ViewModel.IsLabyrinthEnable}"/>
+            </StackPanel>
+        </controls:FrameGroup>
+    </StackPanel>
+</Page>
+
+

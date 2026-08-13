@@ -1,0 +1,5 @@
+不打包.net
+Remove-Item ./MGEditor/bin/Release/net10.0-windows/ -Recurse;dotnet publish -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true;Invoke-Item ./MGEditor/bin/Release/net10.0-windows/win-x64/publish;
+
+git pull --rebase
+git commit -a -m "update $(Get-Date -Format 'yyyy.MM.dd')";git push;

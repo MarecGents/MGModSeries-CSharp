@@ -1,0 +1,248 @@
+{
+  "Buffs": {
+    "Buffs_FG-Endurance1": [
+      {
+        "AbsoluteValue": true,
+        "BuffType": "MaxStamina",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "",
+        "Value": 50
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "StaminaRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "",
+        "Value": 6
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Strength",
+        "Value": 10
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Strength",
+        "Value": 10
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "EnergyRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 30,
+        "SkillName": "",
+        "Value": 2.5
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HydrationRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 30,
+        "SkillName": "",
+        "Value": 2.5
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HealthRate",
+        "Chance": 0.1,
+        "Delay": 300,
+        "Duration": 60,
+        "SkillName": "",
+        "Value": -1
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "EnergyRate",
+        "Chance": 0.1,
+        "Delay": 300,
+        "Duration": 60,
+        "SkillName": "",
+        "Value": -1
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HydrationRate",
+        "Chance": 0.1,
+        "Delay": 300,
+        "Duration": 60,
+        "SkillName": "",
+        "Value": -1
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "StomachBloodloss",
+        "Chance": 0.1,
+        "Delay": 300,
+        "Duration": 60,
+        "SkillName": "",
+        "Value": -1
+      }
+    ],
+    "Buffs_FGZagustin": [
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Vitality",
+        "Value": 50
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Health",
+        "Value": 50
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Metabolism",
+        "Value": 50
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "RemoveAllBloodLosses",
+        "Chance": 1,
+        "Delay": 0,
+        "Duration": 300,
+        "SkillName": "",
+        "Value": 0
+      }
+    ]
+  },
+  "ItemPresets": {
+    "9cc236089000000000000000": {
+      "_changeWeaponName": false,
+      "_encyclopedia": "9cc236080000000000000012",
+      "_id": "9cc236089000000000000000",
+      "_items": [
+        {
+          "_id": "9cc236089000000000000100",
+          "_tpl": "9cc236080000000000000012"
+        },
+        {
+          "_id": "9cc236089000000000000101",
+          "_tpl": "9cc236080000000000000003",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Soft_armor_front"
+        },
+        {
+          "_id": "9cc236089000000000000102",
+          "_tpl": "9cc236080000000000000004",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Soft_armor_back"
+        },
+        {
+          "_id": "9cc236089000000000000103",
+          "_tpl": "9cc236080000000000000005",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Soft_armor_left"
+        },
+        {
+          "_id": "9cc236089000000000000104",
+          "_tpl": "9cc236080000000000000006",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "soft_armor_right"
+        },
+        {
+          "_id": "9cc236089000000000000105",
+          "_tpl": "9cc236080000000000000007",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Collar"
+        },
+        {
+          "_id": "9cc236089000000000000106",
+          "_tpl": "9cc236080000000000000008",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Shoulder_l"
+        },
+        {
+          "_id": "9cc236089000000000000107",
+          "_tpl": "9cc236080000000000000009",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Shoulder_r"
+        },
+        {
+          "_id": "9cc236089000000000000108",
+          "_tpl": "9cc236080000000000000010",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Groin"
+        },
+        {
+          "_id": "9cc236089000000000000109",
+          "_tpl": "9cc236080000000000000011",
+          "parentId": "9cc236089000000000000100",
+          "slotId": "Groin_back"
+        }
+      ],
+      "_name": "FG-ArmorIOTV-Enhance",
+      "_parent": "9cc236080000000000000012",
+      "_type": "Preset"
+    },
+    "9cc236089000000000000001": {
+      "_changeWeaponName": false,
+      "_encyclopedia": "9cc236080000000000000013",
+      "_id": "9cc236089000000000000001",
+      "_items": [
+        {
+          "_id": "9cc236089000000000000200",
+          "_tpl": "9cc236080000000000000013"
+        },
+        {
+          "_id": "9cc236089000000000000201",
+          "_tpl": "9cc236080000000000000003",
+          "parentId": "9cc236089000000000000200",
+          "slotId": "Soft_armor_front"
+        },
+        {
+          "_id": "9cc236089000000000000202",
+          "_tpl": "9cc236080000000000000004",
+          "parentId": "9cc236089000000000000200",
+          "slotId": "Soft_armor_back"
+        },
+        {
+          "_id": "9cc236089000000000000203",
+          "_tpl": "9cc236080000000000000005",
+          "parentId": "9cc236089000000000000200",
+          "slotId": "Soft_armor_left"
+        },
+        {
+          "_id": "9cc236089000000000000204",
+          "_tpl": "9cc236080000000000000006",
+          "parentId": "9cc236089000000000000200",
+          "slotId": "soft_armor_right"
+        },
+        {
+          "_id": "9cc236089000000000000205",
+          "_tpl": "9cc236080000000000000010",
+          "parentId": "9cc236089000000000000200",
+          "slotId": "Groin"
+        }
+      ],
+      "_name": "FG-RigRBAV-Enhance",
+      "_parent": "9cc236080000000000000013",
+      "_type": "Preset"
+    }
+  }
+}
