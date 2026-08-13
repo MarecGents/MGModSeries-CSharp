@@ -138,7 +138,39 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 
 ## ⚠️ 注意事项
 
-- `Reference/` 目录不入库：克隆后需从原 `SPTClientMods/Reference/`（BepInEx + Managed 游戏 DLL）复制补齐，否则 MGModClient 无法构建。
+- `Reference/` 目录不入库（73MB 游戏/SDK DLL），克隆后需自行补齐，否则 **MGModClient 无法构建**。结构如下，DLL 来源均为通用/本地 SPT 安装目录：
+
+```
+Reference/
+├── BepInEx/
+│   ├── core/        ← BepInEx 5 核心 + 0Harmony（来源：SPT 发布版的 BepInEx\core\，见下方说明）
+│   ├── patchers/    ← spt-prepatch.dll（来源：SPT 发布版的 BepInEx\patchers\）
+│   └── plugins/spt/ ← SPT 插件：spt-common/core/custom/debugging/reflection/singleplayer.dll + ConfigurationManager（来源：SPT 发布版的 BepInEx\plugins\spt\）
+└── Managed/         ← 游戏托管 DLL：Assembly-CSharp、UnityEngine.*、Newtonsoft.Json、Sirenix.* 等（来源：游戏本体目录\EscapeFromTarkov_Data\Managed\）
+```
+
+  **DLL 来源（通用说明）**：
+
+  - **BepInEx 部分**：来自 **SPT 发布版**（`sp-tarkov/build` 的 Releases 下载的 SPT 客户端压缩包，解压即得完整 SPT 客户端）。取 SPT 客户端根目录下 `BepInEx\` 的对应子目录 DLL：`core\`（BepInEx 5 核心、0Harmony）、`patchers\`（spt-prepatch）、`plugins\spt\`（spt-common/core/custom/debugging/reflection/singleplayer、ConfigurationManager）。
+  - **Managed 部分**：来自 **游戏本体目录**（`<游戏安装目录>\EscapeFromTarkov_Data\Managed\`，如 `D:\Games\SPT\EscapeFromTarkov_Data\Managed\`）——复制 `Assembly-CSharp.dll`、`UnityEngine.*.dll`、`Newtonsoft.Json.dll`、`Sirenix.*.dll` 等托管 DLL。
+
+  **补齐方法**（在仓库根执行；把 `<SPT客户端目录>` / `<游戏本体目录>` 换成你的实际路径）：
+
+  ```powershell
+  # 1) BepInEx 部分（core 全量 + patchers + plugins/spt 全量）
+  $spt = "<SPT客户端目录>"   # 例如 D:\Games\SPT
+  New-Item -ItemType Directory -Force Reference\BepInEx\core, Reference\BepInEx\patchers, Reference\BepInEx\plugins\spt | Out-Null
+  Copy-Item "$spt\BepInEx\core\*.dll"          Reference\BepInEx\core\
+  Copy-Item "$spt\BepInEx\patchers\*.dll"      Reference\BepInEx\patchers\
+  Copy-Item "$spt\BepInEx\plugins\spt\*.dll"   Reference\BepInEx\plugins\spt\
+  Copy-Item "$spt\BepInEx\plugins\spt\ConfigurationManager" Reference\BepInEx\plugins\spt\ -Recurse
+
+  # 2) Managed 部分（游戏本体托管 DLL，可全量复制或按需）
+  $game = "<游戏本体目录>"   # 例如 D:\Games\SPT\EscapeFromTarkov_Data
+  Copy-Item "$game\Managed\*.dll"  Reference\Managed\
+  ```
+
+  MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
 - 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
 - MGGTMod 引用 SPTarkov 4.1.1、MGModServer 引用 4.1.2，暂保持各自版本（详见调研报告遗留项）。
 

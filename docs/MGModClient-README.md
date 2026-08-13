@@ -65,7 +65,12 @@ Build/BepInEx/plugins/MGModClient/MGModClient.dll
 
 ## ⚠️ 前置依赖
 
-构建需要仓库根 `Reference/` 目录（BepInEx/Managed 游戏 DLL）。该目录已加入 `.gitignore` 不入库，克隆仓库后需从原 `SPTClientMods/Reference/` 复制补齐。
+构建需要仓库根 `Reference/` 目录（BepInEx/Managed 游戏 DLL）。该目录已加入 `.gitignore` 不入库，克隆仓库后需从本地 SPT 安装目录复制补齐：
+
+- `Reference/BepInEx/core|patchers|plugins/spt` ← **SPT 发布版**（`sp-tarkov/build` Releases 下载的 SPT 客户端压缩包，解压即得完整 SPT 客户端）根目录下 `BepInEx\` 对应子目录（BepInEx 5 核心、spt-prepatch、spt-common/core/custom/debugging/reflection/singleplayer + ConfigurationManager）
+- `Reference/Managed` ← **游戏本体目录**`\<游戏安装目录>\EscapeFromTarkov_Data\Managed\`（Assembly-CSharp、UnityEngine.*、Newtonsoft.Json、Sirenix.* 等）
+
+复制命令与变量说明见根 README「⚠️ 注意事项 → Reference/ 目录不入库」一节。
 
 ## 开发路径（里程碑）
 
