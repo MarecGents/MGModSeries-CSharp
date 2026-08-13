@@ -177,7 +177,7 @@
         "note": "8ef5b2ef4000000000000001 note",
         "traderId": "8ef5b2eff000000000000000",
         "image": "/files/quest/icon/MGQuest1.jpg",
-        "location": "56f40101d2720b2a4d8b45d6",
+        "location": "5b0fc42d86f7744a585f9105",
         "description": "8ef5b2ef4000000000000001 description",
         "startedMessageText": "8ef5b2ef4000000000000001 startedMessageText",
         "successMessageText": "8ef5b2ef4000000000000001 successMessageText",
@@ -228,6 +228,14 @@
                                 "weaponCaliber": [],
                                 "weaponModsExclusive": [],
                                 "weaponModsInclusive": []
+                            },
+                            {
+                                "conditionType": "Location",
+                                "dynamicLocale": false,
+                                "id": "8ef5b2ef500000000000002b",
+                                "target": [
+                                    "laboratory"
+                                ]
                             }
                         ]
                     },
@@ -273,6 +281,14 @@
                                 "weaponCaliber": [],
                                 "weaponModsExclusive": [],
                                 "weaponModsInclusive": []
+                            },
+                            {
+                                "conditionType": "Location",
+                                "dynamicLocale": false,
+                                "id": "8ef5b2ef500000000000002c",
+                                "target": [
+                                    "laboratory"
+                                ]
                             }
                         ]
                     },
