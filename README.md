@@ -105,7 +105,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
 - **依赖**：SPTarkov.Common / DI / Server.Core 4.1.1
 
-📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ 商人制作教程见原 MGGTMod-CSharp 仓库
+📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
 
 ### 3. MGModEditor — 图形化配置编辑器（桌面 GUI）
 
