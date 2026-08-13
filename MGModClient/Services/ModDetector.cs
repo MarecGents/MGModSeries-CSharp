@@ -46,6 +46,16 @@ public static class ModDetector
     /// <summary>MGGTMod 是否安装（任一候选名）。</summary>
     public static bool IsMGGTModPresent() => IsModPresent(MGGTModDirNames);
 
+    /// <summary>解析已安装的 MGMod 目录名（用于拼 bundle 路径）。</summary>
+    public static string GetInstalledMGModDir()
+    {
+        var modsDir = GetModsDir();
+        if (!Directory.Exists(modsDir)) return null;
+        foreach (var name in MGModDirNames)
+            if (Directory.Exists(Path.Combine(modsDir, name))) return name;
+        return null;
+    }
+
     /// <summary>解析已安装的 MGGTMod 目录名（用于拼 bundle 路径）。</summary>
     public static string GetInstalledMGGTModDir()
     {
@@ -73,5 +83,15 @@ public static class ModDetector
         var dir = GetInstalledMGGTModDir();
         if (dir == null) return null;
         return Path.Combine(GetModsDir(), dir, "bundles", bundleSubDir);
+    }
+
+    /// <summary>
+    /// 获取指定已安装 mod 的客户端资源目录（{modDir}/bundles/{ResourcesDirName}，如 bundles/resources）。
+    /// 返回 null 表示该 mod 未安装；目录存在与否由调用方判断。
+    /// </summary>
+    public static string GetModClientResourcesDir(string installedModDirName)
+    {
+        if (string.IsNullOrWhiteSpace(installedModDirName)) return null;
+        return Path.Combine(GetModsDir(), installedModDirName, "bundles", ClientResourceLoader.ResourcesDirName);
     }
 }

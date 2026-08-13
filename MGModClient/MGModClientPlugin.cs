@@ -58,16 +58,9 @@ public class MGModClientPlugin : BaseUnityPlugin
             Logger.LogWarning("[MGModClient] 未检测到 MGMod，配置编辑功能跳过（仅保留布局注入）");
         }
 
-        // ③ 独立检测 MGGTMod：存在才注入布局（无前置）
-        if (ModDetector.IsMGGTModPresent())
-        {
-            Logger.LogInfo("[MGModClient] 检测到 MGGTMod，尝试注入 FG Rig Layouts");
-            RigLayoutInjector.TryInject(Logger);
-        }
-        else
-        {
-            Logger.LogWarning("[MGModClient] 未检测到 MGGTMod，跳过布局注入");
-        }
+        // ③ 客户端资源加载：检索 MGMod/MGGTMod 的 bundles/resources/ 下全部 .bundle，
+        //    按资源类型分发（rig 布局等；MGMod 与 MGGTMod 各自独立存在检测）
+        ClientResourceLoader.LoadAll(Logger);
 
         Logger.LogInfo($"{PluginInfo.NAME} v{PluginInfo.VERSION} 初始化完成");
     }
