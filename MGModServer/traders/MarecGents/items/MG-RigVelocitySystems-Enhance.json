@@ -1,0 +1,426 @@
+{
+    "item": {
+        "_id": "8ef5b2ef0000000000000021",
+        "_name": "MG-RigVelocitySystems-Enhance",
+        "_parent": "5448e5284bdc2dcb718b4567",
+        "_props": {
+            "AnimationVariantsNumber": 0,
+            "ArmorMaterial": "UHMWPE",
+            "ArmorType": "None",
+            "BackgroundColor": "orange",
+            "BlocksArmorVest": false,
+            "BluntThroughput": 0,
+            "CanPutIntoDuringTheRaid": true,
+            "CanRequireOnRagfair": false,
+            "CanSellOnRagfair": true,
+            "CantRemoveFromSlotsDuringRaid": [],
+            "ConflictingItems": [],
+            "Description": "MG出品，必属精品。",
+            "DiscardLimit": -1,
+            "DiscardingBlock": false,
+            "DropSoundType": "None",
+            "ExamineExperience": 10,
+            "ExamineTime": 1,
+            "ExaminedByDefault": true,
+            "ExtraSizeDown": 0,
+            "ExtraSizeForceAdd": false,
+            "ExtraSizeLeft": 0,
+            "ExtraSizeRight": 0,
+            "ExtraSizeUp": 0,
+            "ForbidMissingVitalParts": false,
+            "ForbidNonEmptyContainers": false,
+            "Grids": [
+                {
+                    "_id": "8ef5b2ef1000000000000018",
+                    "_name": "GridView (1)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000019",
+                    "_name": "GridView (2)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001a",
+                    "_name": "GridView (3)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001b",
+                    "_name": "GridView (4)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001c",
+                    "_name": "GridView (5)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001d",
+                    "_name": "GridView (6)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001e",
+                    "_name": "GridView (7)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef100000000000001f",
+                    "_name": "GridView (8)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000020",
+                    "_name": "GridView (9)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000021",
+                    "_name": "GridView (10)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 1,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000022",
+                    "_name": "GridView (11)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 3,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000023",
+                    "_name": "GridView (12)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 2,
+                        "cellsV": 1,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000024",
+                    "_name": "GridView (13)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 3,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                },
+                {
+                    "_id": "8ef5b2ef1000000000000025",
+                    "_name": "GridView (14)",
+                    "_parent": "8ef5b2ef0000000000000021",
+                    "_props": {
+                        "cellsH": 2,
+                        "cellsV": 2,
+                        "filters": [
+                            {
+                                "ExcludedFilter": [
+                                    "5448bf274bdc2dfc2f8b456a"
+                                ],
+                                "Filter": [
+                                    "54009119af1c881c07000029"
+                                ]
+                            }
+                        ],
+                        "isSortingTable": false,
+                        "maxCount": 0,
+                        "maxWeight": 0,
+                        "minCount": 0
+                    },
+                    "_proto": "55d329c24bdc2d892f8b4567"
+                }
+            ],
+            "Height": 3,
+            "HideEntrails": true,
+            "InsuranceDisabled": false,
+            "IsAlwaysAvailableForInsurance": false,
+            "IsLockedafterEquip": false,
+            "IsSecretExitRequirement": false,
+            "IsSpecialSlotOnly": false,
+            "IsUnbuyable": false,
+            "IsUndiscardable": false,
+            "IsUngivable": false,
+            "IsUnremovable": false,
+            "IsUnsaleable": false,
+            "ItemSound": "gear_generic",
+            "LeftHandItem": false,
+            "LootExperience": 60,
+            "MergesWithChildren": false,
+            "MetascoreGroup": "Utility",
+            "Name": "MG-RigVelocitySystems-Enhance",
+            "NotShownInSlot": false,
+            "Prefab": {
+                "path": "assets/content/items/equipment/rig_patrol/item_equipment_rig_patrol.bundle",
+                "rcid": ""
+            },
+            "QuestItem": false,
+            "QuestStashMaxCount": 0,
+            "RagFairCommissionModifier": 1,
+            "RarityPvE": "Superrare",
+            "RepairCost": 0,
+            "RepairSpeed": 0,
+            "RigLayoutName": "MG_Velocity_Systems",
+            "SearchSound": "looting_body_extended",
+            "ShortName": "MG Rig",
+            "Slots": [],
+            "StackMaxSize": 1,
+            "StackObjectsCount": 1,
+            "Unlootable": false,
+            "UnlootableFromSide": [],
+            "UnlootableFromSlot": "FirstPrimaryWeapon",
+            "UsePrefab": {
+                "path": "",
+                "rcid": ""
+            },
+            "Weight": 1.6,
+            "Width": 4,
+            "armorClass": 0,
+            "armorZone": [],
+            "mousePenalty": 0,
+            "speedPenaltyPercent": 0,
+            "weaponErgonomicPenalty": 0,
+            "GridLayoutName": null
+        },
+        "_proto": "544a5caa4bdc2d1a388b4568",
+        "_type": "Item"
+    },
+    "origin": "5df8a42886f77412640e2e75",
+    "type": []
+}

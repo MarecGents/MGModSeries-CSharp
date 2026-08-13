@@ -1,12 +1,62 @@
 {
-  "8ef5b2ef0000000000000000": {
-    "Name": "MG止痛针",
-    "ShortName": "止痛针",
-    "Description": "MG出品，必属精品。"
-  },
-  "8ef5b2ef0000000000000017": {
-    "Name": "任务箱",
-    "ShortName": "特殊任务物品箱",
-    "Description": "MG出品，必属精品。"
-  }
+    "8ef5b2ef0000000000000000": {
+        "Name": "MG止痛针",
+        "ShortName": "止痛针",
+        "Description": "MG出品，必属精品。"
+    },
+    "8ef5b2ef0000000000000017": {
+        "Name": "任务箱",
+        "ShortName": "特殊任务物品箱",
+        "Description": "MG出品，必属精品。"
+    },
+    "8ef5b2ef0000000000000018": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef0000000000000019": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001a": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001b": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001c": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001d": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001e": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef000000000000001f": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef0000000000000020": {
+        "Name": "芳纶内衬",
+        "ShortName": "",
+        "Description": ""
+    },
+    "8ef5b2ef0000000000000021": {
+        "Name": "MG 战术弹挂",
+        "ShortName": "MG Rig",
+        "Description": "MG出品，必属精品。"
+    }
 }
