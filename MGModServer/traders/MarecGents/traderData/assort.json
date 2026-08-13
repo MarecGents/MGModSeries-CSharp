@@ -839,7 +839,78 @@
                 "UnlimitedCount": true,
                 "StackObjectsCount": 9999999
             }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate001",
+            "_tpl": "64afd81707e2cf40e903a316",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate002",
+            "_tpl": "64afdb577bb3bfe8fe03fd1d",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate003",
+            "_tpl": "654a4f8bc721968a4404ef18",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate004",
+            "_tpl": "6557458f83942d705f0c4962",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate005",
+            "_tpl": "656faf0ca0dce000a2020f77",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate006",
+            "_tpl": "656fafe3498d1b7e3e071da4",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_plate007",
+            "_tpl": "656fae5f7c2d57afe200c0d7",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
         }
+        
     ],
     "barter_scheme": {
         "mgtrader_default_assort_bullet001": [
@@ -1513,7 +1584,64 @@
                     "_tpl": "5449016a4bdc2d6f028b456f"
                 }
             ]
+        ],
+        "mgtrader_default_assort_plate001": [
+            [
+                {
+                    "count": 25000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate002": [
+            [
+                {
+                    "count": 25000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate003": [
+            [
+                {
+                    "count": 15000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate004": [
+            [
+                {
+                    "count": 15000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate005": [
+            [
+                {
+                    "count": 50000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate006": [
+            [
+                {
+                    "count": 50000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_plate007": [
+            [
+                {
+                    "count": 30000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
         ]
+        
     },
     "loyal_level_items": {
         "mgtrader_default_assort_bullet001": 1,
@@ -1599,6 +1727,13 @@
         "mgtrader_default_assort_item002": 1,
         "mgtrader_default_assort_cardkey001": 1,
         "mgtrader_default_assort_weapon001": 2,
-        "mgtrader_default_assort_item003": 1
+        "mgtrader_default_assort_item003": 1,
+        "mgtrader_default_assort_plate001": 4,
+        "mgtrader_default_assort_plate002": 4,
+        "mgtrader_default_assort_plate003": 2,
+        "mgtrader_default_assort_plate004": 2,
+        "mgtrader_default_assort_plate005": 4,
+        "mgtrader_default_assort_plate006": 4,
+        "mgtrader_default_assort_plate007": 2
     }
 }

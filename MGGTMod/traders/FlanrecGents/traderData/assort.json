@@ -51,85 +51,133 @@
       }
     },
     {
-      "_id": "9cc236087000000000000001",
+      "_id": "FGTrader_default_assort_armorplate_10_item_04",
+      "_tpl": "656faf0ca0dce000a2020f77",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Front_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_11_item_04",
+      "_tpl": "656faf0ca0dce000a2020f77",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Back_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_12_item_04",
+      "_tpl": "64afdb577bb3bfe8fe03fd1d",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Left_side_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_13_item_04",
+      "_tpl": "64afdb577bb3bfe8fe03fd1d",
+      "parentId": "FGTrader_default_assort_item_04",
+      "slotId": "Right_side_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_01_item_04",
       "_tpl": "9cc236080000000000000003",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Soft_armor_front"
     },
     {
-      "_id": "9cc236087000000000000002",
+      "_id": "FGTrader_default_assort_armorplate_02_item_04",
       "_tpl": "9cc236080000000000000004",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Soft_armor_back"
     },
     {
-      "_id": "9cc236087000000000000003",
+      "_id": "FGTrader_default_assort_armorplate_03_item_04",
       "_tpl": "9cc236080000000000000005",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Soft_armor_left"
     },
     {
-      "_id": "9cc236087000000000000004",
+      "_id": "FGTrader_default_assort_armorplate_04_item_04",
       "_tpl": "9cc236080000000000000006",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "soft_armor_right"
     },
     {
-      "_id": "9cc236087000000000000005",
+      "_id": "FGTrader_default_assort_armorplate_05_item_04",
       "_tpl": "9cc236080000000000000007",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Collar"
     },
     {
-      "_id": "9cc236087000000000000006",
+      "_id": "FGTrader_default_assort_armorplate_06_item_04",
       "_tpl": "9cc236080000000000000008",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Shoulder_l"
     },
     {
-      "_id": "9cc236087000000000000007",
+      "_id": "FGTrader_default_assort_armorplate_07_item_04",
       "_tpl": "9cc236080000000000000009",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Shoulder_r"
     },
     {
-      "_id": "9cc236087000000000000008",
+      "_id": "FGTrader_default_assort_armorplate_08_item_04",
       "_tpl": "9cc236080000000000000010",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Groin"
     },
     {
-      "_id": "9cc236087000000000000009",
+      "_id": "FGTrader_default_assort_armorplate_09_item_04",
       "_tpl": "9cc236080000000000000011",
       "parentId": "FGTrader_default_assort_item_04",
       "slotId": "Groin_back"
     },
     {
-      "_id": "9cc236087000000000000010",
+      "_id": "FGTrader_default_assort_armorplate_01_item_05",
+      "_tpl": "656faf0ca0dce000a2020f77",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Front_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_02_item_05",
+      "_tpl": "656faf0ca0dce000a2020f77",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Back_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_03_item_05",
+      "_tpl": "64afdb577bb3bfe8fe03fd1d",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Left_side_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_04_item_05",
+      "_tpl": "64afdb577bb3bfe8fe03fd1d",
+      "parentId": "FGTrader_default_assort_item_05",
+      "slotId": "Right_side_plate"
+    },
+    {
+      "_id": "FGTrader_default_assort_armorplate_05_item_05",
       "_tpl": "9cc236080000000000000003",
       "parentId": "FGTrader_default_assort_item_05",
       "slotId": "Soft_armor_front"
     },
     {
-      "_id": "9cc236087000000000000011",
+      "_id": "FGTrader_default_assort_armorplate_06_item_05",
       "_tpl": "9cc236080000000000000004",
       "parentId": "FGTrader_default_assort_item_05",
       "slotId": "Soft_armor_back"
     },
     {
-      "_id": "9cc236087000000000000012",
+      "_id": "FGTrader_default_assort_armorplate_07_item_05",
       "_tpl": "9cc236080000000000000005",
       "parentId": "FGTrader_default_assort_item_05",
       "slotId": "Soft_armor_left"
     },
     {
-      "_id": "9cc236087000000000000013",
+      "_id": "FGTrader_default_assort_armorplate_08_item_05",
       "_tpl": "9cc236080000000000000006",
       "parentId": "FGTrader_default_assort_item_05",
       "slotId": "soft_armor_right"
     },
     {
-      "_id": "9cc236087000000000000014",
+      "_id": "FGTrader_default_assort_armorplate_09_item_05",
       "_tpl": "9cc236080000000000000010",
       "parentId": "FGTrader_default_assort_item_05",
       "slotId": "Groin"

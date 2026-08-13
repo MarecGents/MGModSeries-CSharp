@@ -82,7 +82,7 @@
                     "_id": "6575ca9eefc786cd9101a5f1",
                     "_mergeSlotWithChildren": true,
                     "_name": "Front_plate",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -123,7 +123,7 @@
                     "_id": "6575ca9eefc786cd9101a5f2",
                     "_mergeSlotWithChildren": true,
                     "_name": "Back_plate",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -164,7 +164,7 @@
                     "_id": "6575ca9eefc786cd9101a5f3",
                     "_mergeSlotWithChildren": true,
                     "_name": "Left_side_plate",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -189,7 +189,7 @@
                     "_id": "6575ca9eefc786cd9101a5f4",
                     "_mergeSlotWithChildren": true,
                     "_name": "Right_side_plate",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -214,7 +214,7 @@
                     "_id": "6575ca9eefc786cd9101a5f5",
                     "_mergeSlotWithChildren": true,
                     "_name": "Soft_armor_front",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -239,7 +239,7 @@
                     "_id": "6575ca9eefc786cd9101a5f6",
                     "_mergeSlotWithChildren": true,
                     "_name": "Soft_armor_back",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -264,7 +264,7 @@
                     "_id": "6575ca9eefc786cd9101a5f7",
                     "_mergeSlotWithChildren": true,
                     "_name": "Soft_armor_left",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -288,7 +288,7 @@
                     "_id": "6575ca9eefc786cd9101a5f8",
                     "_mergeSlotWithChildren": true,
                     "_name": "soft_armor_right",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -312,7 +312,7 @@
                     "_id": "6575ca9eefc786cd9101a5f9",
                     "_mergeSlotWithChildren": true,
                     "_name": "Collar",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -337,7 +337,7 @@
                     "_id": "6575ca9eefc786cd9101a5fa",
                     "_mergeSlotWithChildren": true,
                     "_name": "Shoulder_l",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -361,7 +361,7 @@
                     "_id": "6575ca9eefc786cd9101a5fb",
                     "_mergeSlotWithChildren": true,
                     "_name": "Shoulder_r",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -385,7 +385,7 @@
                     "_id": "6575ca9eefc786cd9101a5fc",
                     "_mergeSlotWithChildren": true,
                     "_name": "Groin",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {
@@ -409,7 +409,7 @@
                     "_id": "6575ca9eefc786cd9101a5fd",
                     "_mergeSlotWithChildren": true,
                     "_name": "Groin_back",
-                    "_parent": "5b44cd8b86f774503d30cba2",
+                    "_parent": "9cc236080000000000000012",
                     "_props": {
                         "filters": [
                             {

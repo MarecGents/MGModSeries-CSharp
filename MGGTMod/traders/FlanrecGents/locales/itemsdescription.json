@@ -11,7 +11,7 @@
     },
     "9cc236080000000000000002": {
         "Name": "FG Alpha 胸挂",
-        "ShortName": "Flpha V1",
+        "ShortName": "FGlpha V1",
         "Description": "FG不知道从哪里捡来的弹挂，看上去对它并不满意，于是爆改了一番。凑合着用吧。"
     },
     "9cc236080000000000000003": {
@@ -60,13 +60,13 @@
         "Description": ""
     },
     "9cc236080000000000000012": {
-        "Name": "FG 护甲",
-        "ShortName": "",
+        "Name": "FG IOTV护甲",
+        "ShortName": "FGIOTV V1",
         "Description": "FG不知从哪里翻出一件旧IOTV护甲，嫌弃它的软甲太薄，于是把实验室里的芳纶内衬全塞了进去。现在它能挡住的东西，比MG的脸皮还厚。"
     },
     "9cc236080000000000000013": {
-        "Name": "FG 弹挂甲",
-        "ShortName": "",
+        "Name": "FG RBAV弹挂甲",
+        "ShortName": "FGRBAV V1",
         "Description": "一件被FG拆了重缝的RBAV弹挂甲。原本的软甲换成了自家芳纶内衬，口袋也重新排过——装得下更多东西，还扛得住更多子弹。"
     }
 }
