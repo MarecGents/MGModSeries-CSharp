@@ -60,6 +60,19 @@ public class FileUtils
         return File.ReadAllText(path);
     }
 
+    /// <summary>安全读取：文件不存在或读取失败返回 null（供配置回退场景使用）。</summary>
+    public string? TryReadFile(string path)
+    {
+        try
+        {
+            return FileExists(path) ? File.ReadAllText(path) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public async Task<string> ReadFileAsync(string path)
     {
         return await File.ReadAllTextAsync(path);
@@ -77,12 +90,18 @@ public class FileUtils
             CreateDirectory(Path.GetDirectoryName(filePath));
         }
 
-        if (!FileExists(filePath))
+        // 原子写：先写 .tmp 再 File.Replace，避免覆盖中途进程退出/中断留下半写文件
+        // （修复：编辑器保存 config.json 非原子写导致服务端二次启动读损坏文件）
+        var tmpPath = filePath + ".tmp";
+        File.WriteAllText(tmpPath, fileContent);
+        if (FileExists(filePath))
         {
-            CreateFile(filePath);
+            File.Replace(tmpPath, filePath, null);
         }
-
-        File.WriteAllText(filePath, fileContent);
+        else
+        {
+            File.Move(tmpPath, filePath);
+        }
     }
 
     public void WriteFile(string filePath, byte[] fileContent)
