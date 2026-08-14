@@ -59,6 +59,8 @@
                         ]
                     },
                     "index": 0,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "8ef5b2ef5000000000000000",
                     "visibilityConditions": []
@@ -196,7 +198,7 @@
                     "dynamicLocale": false,
                     "globalQuestCounterId": "",
                     "oneSessionOnly": false,
-                    "value": "10",
+                    "value": 10,
                     "type": "Elimination",
                     "counter": {
                         "id": "8ef5b2ef5000000000000021",
@@ -223,7 +225,7 @@
                                     "pmcBot"
                                 ],
                                 "target": "Savage",
-                                "value": 10,
+                                "value": 1,
                                 "weapon": [],
                                 "weaponCaliber": [],
                                 "weaponModsExclusive": [],
@@ -240,6 +242,8 @@
                         ]
                     },
                     "index": 0,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "8ef5b2ef5000000000000020",
                     "visibilityConditions": []
@@ -251,7 +255,7 @@
                     "dynamicLocale": false,
                     "globalQuestCounterId": "",
                     "oneSessionOnly": false,
-                    "value": "5",
+                    "value": 5,
                     "type": "Elimination",
                     "counter": {
                         "id": "8ef5b2ef5000000000000024",
@@ -276,7 +280,7 @@
                                 "resetOnSessionEnd": false,
                                 "savageRole": [],
                                 "target": "AnyPmc",
-                                "value": 5,
+                                "value": 1,
                                 "weapon": [],
                                 "weaponCaliber": [],
                                 "weaponModsExclusive": [],
@@ -293,6 +297,8 @@
                         ]
                     },
                     "index": 1,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "8ef5b2ef5000000000000023",
                     "visibilityConditions": []

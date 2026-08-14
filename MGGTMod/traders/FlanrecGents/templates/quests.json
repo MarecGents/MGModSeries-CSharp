@@ -72,7 +72,7 @@
                     "dynamicLocale": false,
                     "globalQuestCounterId": "",
                     "oneSessionOnly": false,
-                    "value": 5,
+                    "value": "5",
                     "type": "Elimination",
                     "counter": {
                         "id": "9cc236085000000000000005",
@@ -106,6 +106,8 @@
                         ]
                     },
                     "index": 2,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "9cc236085000000000000004",
                     "visibilityConditions": []
@@ -310,6 +312,8 @@
                         ]
                     },
                     "index": 2,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "9cc236085000000000000029",
                     "visibilityConditions": []
@@ -380,6 +384,60 @@
                             "_tpl": "64afdb577bb3bfe8fe03fd1d",
                             "parentId": "9cc236085000000000000028",
                             "slotId": "Right_side_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000004f",
+                            "_tpl": "9cc236080000000000000003",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Soft_armor_front"
+                        },
+                        {
+                            "_id": "9cc236085000000000000050",
+                            "_tpl": "9cc236080000000000000004",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Soft_armor_back"
+                        },
+                        {
+                            "_id": "9cc236085000000000000051",
+                            "_tpl": "9cc236080000000000000005",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Soft_armor_left"
+                        },
+                        {
+                            "_id": "9cc236085000000000000052",
+                            "_tpl": "9cc236080000000000000006",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "soft_armor_right"
+                        },
+                        {
+                            "_id": "9cc236085000000000000053",
+                            "_tpl": "9cc236080000000000000007",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Collar"
+                        },
+                        {
+                            "_id": "9cc236085000000000000054",
+                            "_tpl": "9cc236080000000000000008",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Shoulder_l"
+                        },
+                        {
+                            "_id": "9cc236085000000000000055",
+                            "_tpl": "9cc236080000000000000009",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Shoulder_r"
+                        },
+                        {
+                            "_id": "9cc236085000000000000056",
+                            "_tpl": "9cc236080000000000000010",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Groin"
+                        },
+                        {
+                            "_id": "9cc236085000000000000057",
+                            "_tpl": "9cc236080000000000000011",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Groin_back"
                         }
                     ],
                     "target": "9cc236085000000000000028",
@@ -532,6 +590,8 @@
                         ]
                     },
                     "index": 2,
+                    "isNecessary": false,
+                    "isResetOnConditionFailed": false,
                     "parentId": "",
                     "id": "9cc236085000000000000039",
                     "visibilityConditions": []
@@ -602,6 +662,36 @@
                             "_tpl": "64afdb577bb3bfe8fe03fd1d",
                             "parentId": "9cc236085000000000000038",
                             "slotId": "Right_side_plate"
+                        },
+                        {
+                            "_id": "9cc236085000000000000058",
+                            "_tpl": "9cc236080000000000000003",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Soft_armor_front"
+                        },
+                        {
+                            "_id": "9cc236085000000000000059",
+                            "_tpl": "9cc236080000000000000004",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Soft_armor_back"
+                        },
+                        {
+                            "_id": "9cc23608500000000000005a",
+                            "_tpl": "9cc236080000000000000005",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Soft_armor_left"
+                        },
+                        {
+                            "_id": "9cc23608500000000000005b",
+                            "_tpl": "9cc236080000000000000006",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "soft_armor_right"
+                        },
+                        {
+                            "_id": "9cc23608500000000000005c",
+                            "_tpl": "9cc236080000000000000010",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Groin"
                         }
                     ],
                     "target": "9cc236085000000000000038",
