@@ -29,7 +29,7 @@ public class CustomTraderServices(
     TradersServer tradersServer
 )
 {
-    
+
     public void Start()
     {
         var Bundles = AddTraders();
