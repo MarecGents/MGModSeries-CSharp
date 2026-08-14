@@ -103,5 +103,17 @@
     "min": 600,
     "max": 600
   },
-  "unlockedDefault": true
+  "unlockedDefault": true,
+  "items_buy": {
+    "category": [
+      "5448e5284bdc2dcb718b4567",
+      "5448e54d4bdc2dcc718b4568",
+      "5448f3a64bdc2d60728b456a",
+      "65649eb40bf0ed77b8044453",
+      "5447b5cf4bdc2d27728b4568",
+      "5485a8684bdc2da71d8b4567",
+      "5448bf274bdc2dfc2f8b456a"
+    ],
+    "id_list": []
+  }
 }

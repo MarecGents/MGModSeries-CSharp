@@ -48,6 +48,7 @@ public class CustomTraderInfo
     public bool? medic { get; set; }
     public MinMax<int>? updateTime { get; set; }
     public bool? unlockedDefault { get; set; }
+    public ItemBuyData? items_buy { get; set; }
     
 }
 

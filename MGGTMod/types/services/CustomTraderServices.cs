@@ -129,6 +129,20 @@ public class CustomTraderServices(
         traderBase.Discount = traderInfo.discount;
         traderBase.UnlockedByDefault = traderInfo.unlockedDefault;
         
+        // 收购配置（玩家出售物品给商人）：traderInfo.json 的 items_buy 未配置时给默认值
+        // （覆盖商人物品类别 Vest/Armor/Stimulator/BuiltInInserts，保证护甲/弹挂甲等可出售给商人）
+        traderBase.ItemsBuy = traderInfo.items_buy ?? new ItemBuyData
+        {
+            Category = new HashSet<MongoId>
+            {
+                new("5448e5284bdc2dcb718b4567"), // Vest 弹挂/胸挂
+                new("5448e54d4bdc2dcc718b4568"), // Armor 护甲
+                new("5448f3a64bdc2d60728b456a"), // Stimulator 针剂
+                new("65649eb40bf0ed77b8044453"), // BuiltInInserts 内置插板
+            },
+            IdList = new HashSet<MongoId>(),
+        };
+        
         Trader newTrader = new Trader
         {
             Assort = new TraderAssort
