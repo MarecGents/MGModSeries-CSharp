@@ -64,6 +64,51 @@
                             "target": "9cc236085000000000000001"
                         }
                     ]
+                },
+                {
+                    "completeInSeconds": 0,
+                    "conditionType": "CounterCreator",
+                    "doNotResetIfCounterCompleted": false,
+                    "dynamicLocale": false,
+                    "globalQuestCounterId": "",
+                    "oneSessionOnly": false,
+                    "value": 5,
+                    "type": "Elimination",
+                    "counter": {
+                        "id": "9cc236085000000000000005",
+                        "conditions": [
+                            {
+                                "bodyPart": [],
+                                "compareMethod": ">=",
+                                "conditionType": "Kills",
+                                "daytime": {
+                                    "from": 0,
+                                    "to": 0
+                                },
+                                "distance": {
+                                    "compareMethod": ">=",
+                                    "value": 0
+                                },
+                                "dynamicLocale": false,
+                                "enemyEquipmentExclusive": [],
+                                "enemyEquipmentInclusive": [],
+                                "enemyHealthEffects": [],
+                                "id": "9cc236085000000000000006",
+                                "resetOnSessionEnd": false,
+                                "savageRole": [],
+                                "target": "Savage",
+                                "value": 1,
+                                "weapon": [],
+                                "weaponCaliber": [],
+                                "weaponModsExclusive": [],
+                                "weaponModsInclusive": []
+                            }
+                        ]
+                    },
+                    "index": 2,
+                    "parentId": "",
+                    "id": "9cc236085000000000000004",
+                    "visibilityConditions": []
                 }
             ],
             "Fail": []
@@ -213,6 +258,61 @@
                             "target": "9cc236085000000000000021"
                         }
                     ]
+                },
+                {
+                    "completeInSeconds": 0,
+                    "conditionType": "CounterCreator",
+                    "doNotResetIfCounterCompleted": false,
+                    "dynamicLocale": false,
+                    "globalQuestCounterId": "",
+                    "oneSessionOnly": false,
+                    "value": 10,
+                    "type": "Elimination",
+                    "counter": {
+                        "id": "9cc23608500000000000002a",
+                        "conditions": [
+                            {
+                                "bodyPart": [],
+                                "compareMethod": ">=",
+                                "conditionType": "Kills",
+                                "daytime": {
+                                    "from": 0,
+                                    "to": 0
+                                },
+                                "distance": {
+                                    "compareMethod": ">=",
+                                    "value": 0
+                                },
+                                "dynamicLocale": false,
+                                "enemyEquipmentExclusive": [],
+                                "enemyEquipmentInclusive": [],
+                                "enemyHealthEffects": [],
+                                "id": "9cc23608500000000000002b",
+                                "resetOnSessionEnd": false,
+                                "savageRole": [
+                                    "exUsec"
+                                ],
+                                "target": "Savage",
+                                "value": 1,
+                                "weapon": [],
+                                "weaponCaliber": [],
+                                "weaponModsExclusive": [],
+                                "weaponModsInclusive": []
+                            },
+                            {
+                                "conditionType": "Location",
+                                "dynamicLocale": false,
+                                "id": "9cc23608500000000000002c",
+                                "target": [
+                                    "Lighthouse"
+                                ]
+                            }
+                        ]
+                    },
+                    "index": 2,
+                    "parentId": "",
+                    "id": "9cc236085000000000000029",
+                    "visibilityConditions": []
                 }
             ],
             "Fail": []
@@ -256,6 +356,30 @@
                             "upd": {
                                 "StackObjectsCount": 1
                             }
+                        },
+                        {
+                            "_id": "9cc23608500000000000002d",
+                            "_tpl": "656faf0ca0dce000a2020f77",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Front_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000002e",
+                            "_tpl": "656faf0ca0dce000a2020f77",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Back_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000002f",
+                            "_tpl": "64afdb577bb3bfe8fe03fd1d",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Left_side_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000003d",
+                            "_tpl": "64afdb577bb3bfe8fe03fd1d",
+                            "parentId": "9cc236085000000000000028",
+                            "slotId": "Right_side_plate"
                         }
                     ],
                     "target": "9cc236085000000000000028",
@@ -358,6 +482,59 @@
                             "target": "9cc236085000000000000031"
                         }
                     ]
+                },
+                {
+                    "completeInSeconds": 0,
+                    "conditionType": "CounterCreator",
+                    "doNotResetIfCounterCompleted": false,
+                    "dynamicLocale": false,
+                    "globalQuestCounterId": "",
+                    "oneSessionOnly": false,
+                    "value": "10",
+                    "type": "Elimination",
+                    "counter": {
+                        "id": "9cc23608500000000000003a",
+                        "conditions": [
+                            {
+                                "bodyPart": [],
+                                "compareMethod": ">=",
+                                "conditionType": "Kills",
+                                "daytime": {
+                                    "from": 0,
+                                    "to": 0
+                                },
+                                "distance": {
+                                    "compareMethod": ">=",
+                                    "value": 0
+                                },
+                                "dynamicLocale": false,
+                                "enemyEquipmentExclusive": [],
+                                "enemyEquipmentInclusive": [],
+                                "enemyHealthEffects": [],
+                                "id": "9cc23608500000000000003b",
+                                "resetOnSessionEnd": false,
+                                "savageRole": [],
+                                "target": "AnyPmc",
+                                "value": 1,
+                                "weapon": [],
+                                "weaponCaliber": [],
+                                "weaponModsExclusive": [],
+                                "weaponModsInclusive": []
+                            },
+                            {
+                                "conditionType": "Location",
+                                "dynamicLocale": false,
+                                "id": "9cc23608500000000000003c",
+                                "target": [
+                                    "laboratory"
+                                ]
+                            }
+                        ]
+                    },
+                    "index": 2,
+                    "parentId": "",
+                    "id": "9cc236085000000000000039",
+                    "visibilityConditions": []
                 }
             ],
             "Fail": []
@@ -401,6 +578,30 @@
                             "upd": {
                                 "StackObjectsCount": 1
                             }
+                        },
+                        {
+                            "_id": "9cc23608500000000000003e",
+                            "_tpl": "656faf0ca0dce000a2020f77",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Front_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000003f",
+                            "_tpl": "656faf0ca0dce000a2020f77",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Back_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000004d",
+                            "_tpl": "64afdb577bb3bfe8fe03fd1d",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Left_side_plate"
+                        },
+                        {
+                            "_id": "9cc23608500000000000004e",
+                            "_tpl": "64afdb577bb3bfe8fe03fd1d",
+                            "parentId": "9cc236085000000000000038",
+                            "slotId": "Right_side_plate"
                         }
                     ],
                     "target": "9cc236085000000000000038",
