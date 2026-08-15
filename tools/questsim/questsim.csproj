@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>questsim</AssemblyName>
+    <RootNamespace>questsim</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- 引用真实游戏 Managed DLL（只加载类型，不运行 Unity 逻辑） -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>E:\Game\EFT4.1.2\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>E:\Game\EFT4.1.2\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>E:\Game\EFT4.1.2\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>E:\Game\EFT4.1.2\EscapeFromTarkov_Data\Managed\Sirenix.Serialization.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <Target Name="CopyAllManaged" AfterTargets="Build">
+    <ItemGroup>
+      <ManagedFiles Include="E:\Game\EFT4.1.2\EscapeFromTarkov_Data\Managed\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ManagedFiles)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="SPTarkov.Server.Core">
+      <HintPath>E:\Game\EFT4.1.2\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="SPTarkov.Common.Models">
+      <HintPath>E:\Game\EFT4.1.2\SPT_Runtime\SPTarkov.Common.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="SPTarkov.Common.Logging">
+      <HintPath>E:\Game\EFT4.1.2\SPT_Runtime\SPTarkov.Common.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="SPTarkov.DI">
+      <HintPath>E:\Game\EFT4.1.2\SPT_Runtime\SPTarkov.DI.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
