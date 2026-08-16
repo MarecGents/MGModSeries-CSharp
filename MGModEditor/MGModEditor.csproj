@@ -7,7 +7,7 @@
     <ApplicationIcon>MG-512x512.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
-    <Version>1.3.1.1</Version>
+    <Version>1.3.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
