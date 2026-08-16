@@ -6,6 +6,21 @@
 
 ---
 
+## 🎯 难度标识（先看这里）
+
+本教程各章节按难度分级，你可以按需跳读：
+
+| 标识 | 难度 | 内容 | 适合 |
+|:---:|:---:|------|------|
+| ⭐ | **基础** | 文件架构、商人核心信息、商品、物品、本地化、跳蚤分类 | 所有人都要掌握，是"添加商人"的全部所需 |
+| ⭐⭐ | **进阶** | 任务系统（击杀/收集/上交条件、奖励、文本注册、任务解锁商品） | 想给商人加任务链、剧情、任务奖励时再看 |
+| ⭐⭐⭐ | **高级** | 自编译发布、改名防冲突、把 MGGTMod 变成"你自己的 Mod" | 想打包发布给别人时才需要 |
+
+> **新手建议路径**：⭐ 全部 → 先用「4.1 复制模板」做出第一个商人 → 玩熟后再学 ⭐⭐ 任务系统；
+> ⭐⭐⭐ 只在发布前需要。**绝大多数"做一个自己的商人"只需要 ⭐ 部分，不需要编译。**
+
+---
+
 ## 一、教程基础信息
 
 ### 1.1 本教程讲什么
@@ -62,7 +77,7 @@ MGGTMod 项目（独立版，仅保留自定义商人框架）
 
 ---
 
-## 二、文件和文件夹架构和用途
+## 二、文件和文件夹架构和用途 ⭐
 
 ### 2.1 整体目录结构
 
@@ -156,7 +171,7 @@ MGModSeries-CSharp/                   ← 整合仓根目录（四个 C# 项目 
 
 ---
 
-## 三、各个文件夹下的特定文件的内部结构
+## 三、各个文件夹下的特定文件的内部结构 ⭐
 
 ### 3.1 商人文件夹标准结构（以 FlanrecGents 为例）
 
@@ -257,13 +272,37 @@ traders/FlanrecGents/
   "discount": 0,                     // 出售物品的价格折扣：不为 0 时价格降低，为 0 时价格最高、获利最多
   "medic": false,                    // 是否为医疗商人
   "updateTime": { "min": 600, "max": 600 }, // 商品刷新间隔（秒），min/max 之间随机
-  "unlockedDefault": true            // 是否默认解锁（false 则需先完成任务解锁）
+  "unlockedDefault": true,           // 是否默认解锁（false 则需先完成任务解锁）
+  "items_buy": {                     // ★ 收购配置（玩家可以把物品**卖给你这个商人**）
+    "category": [                    //   可收购的「物品大类」（物品的 _parent 分类 id）
+      "5448e5284bdc2dcb718b4567",    //     Vest 弹挂/胸挂
+      "5448e54d4bdc2dcc718b4568",    //     Armor 护甲
+      "5448f3a64bdc2d60728b456a",    //     Stimulator 医疗/针剂
+      "65649eb40bf0ed77b8044453",    //     BuiltInInserts 内置插板
+      "5447b5cf4bdc2d27728b4568",    //     Weapon 武器
+      "5485a8684bdc2da71d8b4567",    //     Ammo 弹药
+      "5448bf274bdc2dfc2f8b456a"     //     Medical 医疗用品
+    ],
+    "id_list": []                    //   额外指定可收购的「单个物品 id」（留空 = 不额外指定）
+  }
 }
 ```
+
+> ⚠️ **没有 `items_buy` 会怎样**：SPT 的出售校验要求物品大类必须在该商人的 `items_buy.category` 里，
+> 否则**玩家无法把任何东西卖给你这个商人**（出售界面不显示/交易失败）。
+> 想"玩家能把护甲/弹挂甲/武器等卖给我"，就把对应大类 id 加进 `category`。
+> 大类 id（`_parent`）可在 SPT 数据库 `templates/items.json` 或原版同类物品的 `_parent` 字段查到。
+> 不配置时框架会自动给一个覆盖上述 7 类的默认值（见 `CustomTraderServices.cs`），所以漏写也不会完全失效——但显式配置更清晰可控。
 
 > ⚠️ **`_id` 是重中之重**：不能与游戏已有商人、也不能与其他 Mod 商人重复。
 > 重复时加载会提示：`商人【X】的Id:xxx已存在于游戏中,请修改.` 并跳过该商人。
 > 建议用随机生成的 24 位十六进制（如在线 MongoId 生成器）。
+>
+> 💡 **强烈建议：用「你自己的独特前缀」做 ID 开头**。24 位 MongoId = 24 个十六进制字符（0-9a-f），
+> 你可以用**前几位做你的专属标签**，后几位做编号（如 `你的前缀` + 递增编号），
+> 这样你的商人/物品 ID 天然全局唯一、不会与任何人撞车、也便于管理。
+> 例如作者本人用 QQ 号转 16 进制作为前缀（`9cc23608...` 是 `9xxx` 的 QQ 号转换而来）。
+> **你的商人 `_id`、物品 `_id`、任务 `_id`、Buff 组名，全部都要用你自己的前缀**，不要照抄示例里的任何 ID！
 
 ---
 
@@ -469,9 +508,15 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 - 自定义物品若要**能在跳蚤出售/有参考价**，应添加跳蚤分类条目；
 - `ParentId` 决定物品在跳蚤分类中的归属（医疗/弹药/枪械等），可参考原版同类物品的跳蚤分类 ID（MarecGents 中任务箱用的分类是 `5b47574386f77428ca22b345`）。
 
+> ⚠️ **「跳蚤上架」与 handbook 的因果关系（重要）**：物品能否在跳蚤市场挂单出售，
+> **由是否注册了 handbook 条目决定**（客户端图鉴/上架检查依赖它）——只把物品加进 `assort.json` 出售、
+> 却忘了 handbook 条目，玩家**无法在跳蚤上架**这件物品（甚至图鉴里也不显示）。
+> 所以：**凡是你打算让玩家能在跳蚤买卖的自定义物品，都要在 `templates/handbook.json` 里加一条**。
+> 注意这里说的"出售"指**给玩家的购买渠道**（assort 决定"商人卖不卖"，handbook 决定"跳蚤能不能上架/图鉴有没有"），两者都要配齐。
+
 ---
 
-### 3.11 `templates/quests.json` —— 任务定义
+### 3.11 `templates/quests.json` —— 任务定义 ⭐⭐
 
 键 = 任务 `_id`，值 = 完整任务对象（结构与原版 `quests.json` 一致）：
 
@@ -506,6 +551,8 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 > 完整可抄的示例见 MarecGents 的 `MGModServer/traders/MarecGents/templates/quests.json`
 > （`TestQuest1`：击杀 1 人 + 上交 3 个 `6275303a9f372d6ea97f9ec7` + 10 个 `5c0e874186f7745dc7616606`，奖励物品/好感/技能）。
 > 任务文本放 `locales/mail.json`，任务图标放 `images/quests/`（会被注册为 `/files/quest/icon/文件名`）。
+>
+> 📖 **任务系统完整写法（击杀/收集/上交条件、奖励带子物品、文本注册、任务解锁商品、任务链）见 4.3 节（⭐⭐ 进阶）**。
 
 ---
 
@@ -545,7 +592,7 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 
 ---
 
-## 四、撰写示例
+## 四、撰写示例 ⭐
 
 ### 4.1 方案一：复制 FlanrecGents 模板改造（新手推荐）
 
@@ -558,12 +605,19 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 （不要复制 items/ 和 locales/ 中 FG 的物品，除非你要保留它们）
 ```
 
+> ⚠️⚠️ **三遍强调：不要"复制 FG 商人然后只改个名字"就完事！**
+> 1. **商人 `_id`、物品 `_id`、任务 `_id`、Buff 组名必须全部换成你自己的**（用你的独特前缀，见 3.2 的 💡 提示）。
+>    示例里所有 ID（`9cc23608...`、`8ef5b2ef...`）都是作者（FG/MG）的专属前缀，
+>    直接复制会与作者发布的 Mod **ID 冲突**，加载时直接报错跳过（`已存在于游戏中` / `已存在，不执行添加`）。
+> 2. **头像文件名**必须改成「你的 `_id`.jpg」（见步骤 3），否则显示旧商人头像。
+> 3. 复制时**只保留你要的文件**：不要的 FG 物品、任务、图片一并删掉，避免残留无用数据。
+
 **步骤 2：改 `traderInfo.json`**
 
-- 生成一个新的 24 位 MongoId（网上搜 "mongo id generator" 即可），填入 `_id`；
+- 生成你自己的 24 位 MongoId（建议用你的独特前缀开头，见 3.2 的 💡 提示），填入 `_id`；
 - `name` 改为 `MyTrader`；
 - `locales` 改为你自己的名字/描述/位置；
-- 按需调整保险、修理、忠诚度。
+- 按需调整保险、修理、忠诚度、`items_buy` 收购。
 
 **步骤 3：换头像**
 
@@ -644,7 +698,19 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
   "discount": 0,
   "medic": false,
   "updateTime": { "min": 600, "max": 600 },
-  "unlockedDefault": true
+  "unlockedDefault": true,
+  "items_buy": {
+    "category": [
+      "5448e5284bdc2dcb718b4567",
+      "5448e54d4bdc2dcc718b4568",
+      "5448f3a64bdc2d60728b456a",
+      "65649eb40bf0ed77b8044453",
+      "5447b5cf4bdc2d27728b4568",
+      "5485a8684bdc2da71d8b4567",
+      "5448bf274bdc2dfc2f8b456a"
+    ],
+    "id_list": []
+  }
 }
 ```
 
@@ -678,25 +744,256 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 
 重启服务端 → 日志出现 `商人【MyTrader】已添加。` 即成功。
 
-### 4.3 进阶：任务系统（参考 MarecGents）
+### 4.3 进阶：任务系统（完整教程）⭐⭐
 
-MarecGents 商人展示了比 FlanrecGents 更完整的用法，含 **任务系统**：
+> 本节教你在商人上加**任务链**：玩家接任务 → 完成（击杀/收集/上交）→ 领奖励 → 解锁商品。
+> 涉及文件：`templates/quests.json`（任务定义）+ `locales/mail.json`（任务文本）+ `traderData/questassort.json`（任务解锁商品）+ `images/quests/`（任务图标）。
+> 完整可抄示例：`MGModServer/traders/MarecGents/`（任务 + 奖励 + 解锁全套）。
+
+#### 4.3.1 任务系统全景
 
 | 能力 | 文件 | 说明 |
 |------|------|------|
 | 任务定义 | `templates/quests.json` | 完整任务对象（条件 `conditions` / 奖励 `rewards`） |
-| 任务文本 | `locales/mail.json` | 任务各状态消息 |
+| 任务文本 | `locales/mail.json` | 任务名、描述、各状态消息 |
 | 任务图标 | `images/quests/*.jpg` | 自动注册为 `/files/quest/icon/文件名` |
-| 任务关联商品 | `traderData/questassort.json` | `started/success/fail` 三个阶段解锁商品 |
+| 任务解锁商品 | `traderData/questassort.json` | `started/success/fail` 三阶段解锁商品 |
 | 商人加入重复任务池 | 代码自动 | 加载商人时自动把 `Nickname` 加入重复任务白名单 |
-| 多物品 | `items/` + `locales/` | 可同时定义多个物品（如止痛针 + 特殊任务物品箱） |
+| 多任务串行 | `quests.json` 的 `AvailableForStart` | 前置任务完成后才解锁下一任务 |
 
-想要"任务解锁商人/解锁商品"的完整链路，直接对照 MarecGents 的
-`MGModServer/traders/MarecGents/`（`traderInfo.json` + `templates/quests.json` + `locales/mail.json` + `images/quests/`）抄结构即可。
+一个任务的生命周期：
+
+```
+接取（AcceptQuest）→ 状态 Started → 完成条件达成 → 领取奖励（CompleteQuest）→ 任务结束
+     │                        │                          │
+     └─ questassort.started   └─ questassort.success     └─ rewards.Success
+        （接取即解锁的商品）      （完成后解锁的商品）        （完成任务发放的奖励）
+```
+
+#### 4.3.2 任务定义 `templates/quests.json`
+
+键 = 任务 `_id`（**必须用你自己的前缀**，全局唯一），值 = 完整任务对象。最小结构：
+
+```jsonc
+{
+  "你的前缀0000000000000001": {        // ★ 任务 _id（MongoId，全局唯一）
+    "QuestName": "MyFirstQuest",       // 任务逻辑名（自定义）
+    "_id": "你的前缀0000000000000001",  // 与键一致
+    "traderId": "你的商人_id",          // ★ 所属商人（必须 = traderInfo.json 的 _id）
+    "image": "/files/quest/icon/MyQuest1.jpg",  // 任务图标（对应 images/quests/ 下文件名）
+    "location": "Any",                // 任务展示用地图（地图 id，可 "Any"）
+    "description": "任务描述",
+    "conditions": {                   // ★ 任务条件（见 4.3.3）
+      "AvailableForStart": [],        //   接取前置条件（空 = 可直接接）
+      "AvailableForFinish": [ /* 完成条件 */ ],
+      "Fail": []
+    },
+    "rewards": {                      // ★ 奖励（见 4.3.5）
+      "Started": [],                  //   接取即发（如送道具）
+      "Success": [ /* 完成奖励 */ ],
+      "Fail": []
+    },
+    "side": "Pmc",
+    "type": "PickUp",                 // 任务类型（PickUp=收集类 / Elimination=击杀类）
+    // ……其余字段参照原版任务结构（isKey/restartable/secretQuest 等，可抄 MarecGents）
+  }
+}
+```
+
+> ⚠️ 任务对象**必须严格参照原版 `quests.json` 格式**，缺失字段会导致加载报错。最稳妥：复制 MarecGents 的完整任务对象再改。
+
+#### 4.3.3 完成条件：击杀 / 收集 / 上交
+
+`AvailableForFinish` 是**条件数组**，可混用多种条件（任务要求同时满足全部）：
+
+**① 收集/上交物品（简单，⭐）**
+
+```jsonc
+{
+  "conditionType": "FindItem",          // 找到并持有（在战局里找到）
+  "target": ["原版或自定义物品_id"],      // 可多个（满足其一）
+  "value": 5,                            // 数量
+  "id": "你的前缀...0001"                // 条件 id（唯一）
+},
+{
+  "conditionType": "HandoverItem",       // 上交（交给商人）
+  "target": ["物品_id"],
+  "value": 5,
+  "id": "你的前缀...0002"
+}
+```
+
+**② 击杀（⭐⭐，最容易写错！）**
+
+击杀条件由**外层 `Elimination` + `counter` 子条件**组成，结构固定：
+
+```jsonc
+{
+  "completeInSeconds": 0,
+  "conditionType": "CounterCreator",     // 固定
+  "type": "Elimination",                 // 固定
+  "value": 5,                            // ★ 击杀总数（5 个）
+  "counter": {
+    "id": "你的前缀...0003",             // counter id（唯一）
+    "conditions": [
+      {
+        "conditionType": "Kills",
+        "target": "Savage",              // ★ 击杀目标（见下方 target 表）
+        "savageRole": [],                //   精确到 bot 类型（可选，见下方）
+        "value": 1,                      // ★★ 必须 = 1！！（见下方红色警告）
+        "id": "你的前缀...0004"
+      },
+      {
+        "conditionType": "Location",     // 可选：限制击杀地图
+        "target": ["laboratory"],        //   地图名（laboratory/Lighthouse/woods…）
+        "id": "你的前缀...0005"
+      }
+    ]
+  },
+  "id": "你的前缀...0006"                // 外层条件 id（唯一）
+}
+```
+
+> 🔴🔴 **`Kills` 子条件的 `value` 必须 = 1，千万不能填成击杀总数！**
+> 客户端判定是 `1 >= Kills.value`（每次击杀按 1 计数），写成 5/10 会**永远不命中、任务永远无法完成**。
+> **击杀总数只写在外层 `Elimination` 的 `value`**（上面的例子：外层 5 + Kills 1 = 杀 5 个）。
+> 这是本项目踩过的最深的坑（MG 商人《初次见面》曾因此击杀无效）。
+
+**`target` 填什么（击杀对象）**：
+
+| target | 击杀对象 | 说明 |
+|--------|----------|------|
+| `"Savage"` | scav 阵营全体 | 普通 scav、掠夺者（pmcBot）、游荡者（exUsec）都算 |
+| `"AnyPmc"` | 任意 PMC | usec + bear 都算，最常用 |
+| `"Usec"` / `"Bear"` | 指定阵营 PMC | 只算对应阵营 |
+| `"Any"` | 任意目标 | 什么都能算 |
+
+**精确到某类 bot（可选）**：在 `savageRole` 里填 bot 的**内部类型名**（大小写敏感），
+如 `["pmcBot"]`（实验室掠夺者）、`["exUsec"]`（灯塔游荡者 Rogue）、`["bossKilla"]`（Killa）——
+与 `target:"Savage"` 搭配使用，只统计该类型的 Savage 阵营 bot。
+> ⚠️ 游荡者（exUsec）和掠夺者（pmcBot）**不是 PMC**，击杀标签是 `"Savage"` 不是 `"Usec"`，
+> 想"杀游荡者"必须 `target:"Savage" + savageRole:["exUsec"]`（+ `Location:["Lighthouse"]`），
+> 写成 `target:"Usec"` 只会算 AI PMC，杀游荡者不计。
+
+**限制地图**：在 `counter.conditions` 里加一个 `conditionType:"Location"` 子条件，
+`target` 填**地图名**（`laboratory`/`Lighthouse`/`woods`/`interchange`…）。
+> ⚠️ 任务级 `location` 字段只是**展示用**（填地图 id），**不限制击杀计数**；限制击杀地点必须靠 `Location` 子条件。
+
+#### 4.3.4 任务文本注册 `locales/mail.json`
+
+任务的显示文本（任务名、描述、消息）**必须注册**，否则游戏里显示空/英文占位。键 = 任务 `_id`：
+
+```jsonc
+{
+  "你的前缀0000000000000001": {
+    "name": "《我的第一个任务》",
+    "description": "任务描述……（可含 <color=#ff0000><b>红字高亮</b></color>）",
+    "startedMessageText": "接取时弹出的消息",
+    "successMessageText": "完成时弹出的消息",
+    "failMessageText": "失败消息",
+    "changeQuestMessageText": "",
+    "acceptPlayerMessage": "",
+    "completePlayerMessage": "",
+    "declinePlayerMessage": "",
+    "other": {
+      "你的前缀...0001": "<color=#ff0000><b>在战局中找到5件xxx</b></color>",
+      "你的前缀...0002": "<color=#ff0000><b>上交5件xxx</b></color>",
+      "你的前缀...0006": "<color=#ff0000><b>在任意地点击杀5名scav</b></color>"
+    }
+  }
+}
+```
+
+> ⚠️ **条件文本 key 填什么**：`other` 里的键 = **`quests.json` 里每个条件的 `id`**！
+> 客户端显示条件时按 `条件id.Localized()` 查文本——**新加的条件（尤其击杀条件）必须同步在这里注册**，
+> 否则任务详情里该条件显示空白。收集/上交/击杀条件都要注册（击杀注册**外层** Elimination 条件的 id，不是 Kills 子条件 id）。
+
+#### 4.3.5 奖励：物品 / 好感 / 经验 + 带子物品
+
+`rewards.Success`（完成奖励）可放多种奖励：
+
+```jsonc
+"Success": [
+  {
+    "id": "你的前缀...0010",
+    "type": "Experience",            // 经验
+    "value": 10000
+  },
+  {
+    "id": "你的前缀...0011",
+    "type": "TraderStanding",        // 好感
+    "value": "0.2",
+    "target": "你的商人_id"
+  },
+  {
+    "id": "你的前缀...0012",
+    "type": "Item",                  // 物品
+    "items": [
+      { "_id": "你的前缀...0013", "_tpl": "你的物品_id", "upd": { "StackObjectsCount": 1 } }
+    ],
+    "target": "你的前缀...0013",
+    "value": 1
+  }
+]
+```
+
+**奖励物品带子物品（进阶）**：想给一件护甲/弹挂甲"出厂自带插板、软甲"，
+在 `items` 数组里给主物品挂子物品（`parentId` = 主物品 `_id`，`slotId` = 槽位名）：
+
+```jsonc
+"items": [
+  { "_id": "主物品_id", "_tpl": "护甲_id", "upd": { "StackObjectsCount": 1 } },
+  { "_id": "子物品1_id", "_tpl": "插板_id",  "parentId": "主物品_id", "slotId": "Front_plate" },
+  { "_id": "子物品2_id", "_tpl": "软甲_id",  "parentId": "主物品_id", "slotId": "Soft_armor_front" }
+  // ……一个槽位一条；槽位名必须是该物品 Slots 里真实存在的（Front_plate/Back_plate/Soft_armor_front 等）
+]
+```
+
+> ⚠️ 子物品的 `slotId` 必须匹配物品**真实槽位名**、`_tpl` 必须能装进该槽（槽位过滤器），
+> 否则装备不完整/装不上。参考 MarecGents 的护甲奖励（插板 SAPI/SSAPI + 芳纶软甲全套）。
+
+**接取即送**：把物品放 `rewards.Started`（接取任务立刻发放，界面显示橙色背景），如 MarecGents 的《初次见面》送弹挂。
+
+#### 4.3.6 任务解锁商品 `traderData/questassort.json`
+
+任务完成后（或接取时）解锁某商品购买权。键值方向：**商品条目 id → 任务 id**：
+
+```jsonc
+{
+  "started": {},                      // 接取任务后解锁的商品
+  "success": {
+    "MyTrader_assort_02": "你的前缀0000000000000001"  // ★ 商品条目id → 任务id
+  },
+  "fail": {}
+}
+```
+
+> ⚠️ 键值方向别写反：**左边 = `assort.json` 里的商品条目 `_id`，右边 = `quests.json` 的任务 `_id`**。
+> 写反会报 `KeyNotFoundException` 导致服务端启动崩溃。
+> 商品条目 id 用普通字符串即可（加载时自动重写为 MongoId 并同步替换此处引用，见 3.4）。
+
+#### 4.3.7 任务图标与前置任务链
+
+- **图标**：`images/quests/你的图.jpg` → `quests.json` 的 `image` 写 `/files/quest/icon/你的图.jpg`；
+- **前置任务链**：后一个任务的 `AvailableForStart` 加：
+
+```jsonc
+"AvailableForStart": [
+  {
+    "conditionType": "Quest",
+    "target": "前置任务_id",
+    "status": [4, 5],                // 4=已完成 5=失败可重接（照抄即可）
+    "id": "你的前缀...0020"
+  }
+]
+```
+
+这样玩家必须完成前置任务才能接后一个——三任务串行任务链就是这么做的（FlanrecGents 三任务互锁 + 任务解锁装备购买）。
 
 ---
 
-## 五、自编译发布流程
+
+## 五、自编译发布流程 ⭐⭐⭐
 
 ### 5.1 什么时候需要自编译
 
@@ -709,7 +1006,7 @@ MarecGents 商人展示了比 FlanrecGents 更完整的用法，含 **任务系�
 
 - **.NET 10 SDK**（`dotnet --list-sdks` 确认）；
 - IDE（Visual Studio 2022 / JetBrains Rider）或直接用命令行；
-- 首次构建需联网还原 NuGet 包：`SPTarkov.Common`、`SPTarkov.DI`、`SPTarkov.Server.Core`（版本 4.1.1）。
+- 首次构建需联网还原 NuGet 包：`SPTarkov.Common`、`SPTarkov.DI`、`SPTarkov.Server.Core`（版本 4.1.2）。
 
 ### 5.3 改名清单（防止与原版冲突）
 
@@ -794,6 +1091,9 @@ Build\SPT_Runtime\user\mods\MGGTMod\
 | 商品在商人界面不显示 | `assort.json` 的 `_tpl` 物品 ID 不存在 | 确认 `_tpl` 是原版物品 ID 或自定义物品 `_id` |
 | 针剂没效果 | `StimulatorBuffs` 与 `globals.json` Buff 组名不一致 | 对齐名字 |
 | 任务图标 404 | `images/quests/` 文件名与 `quests.json` 的 `image` 不一致 | 对齐文件名 |
+| 击杀条件不计数（任务无法完成） | `Kills` 子条件 `value` 填成了击杀总数（应恒为 1） | 把 Kills 子条件 `value` 改回 1，总数只写外层 Elimination 的 `value`（见 4.3.3） |
+| 玩家无法把物品卖给你商人 | `traderInfo.json` 缺 `items_buy` 或大类不在 `category` | 配 `items_buy.category`（见 3.2） |
+| 自定义物品无法在跳蚤上架 | 缺 `templates/handbook.json` 条目 | 补 handbook 条目（见 3.10） |
 | 启动报 dll/程序集相关错误 | 与其它 Mod 同名 dll / 同名类型冲突（未实测） | 按 5.3 改名清单全部替换后重新编译 |
 
 ---

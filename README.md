@@ -103,7 +103,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **核心服务**：`CustomTraderServices`（商人加载）、`ConfigSettingServices`（配置）
 - **可热加载**：`traders/` 目录下的商人配置（内置 FlanrecGents 示例 + MarecGents 任务系统参考）
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
-- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.1
+- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.2
 
 📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
 
@@ -172,7 +172,7 @@ Reference/
 
   MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
 - 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
-- MGGTMod 引用 SPTarkov 4.1.1、MGModServer 引用 4.1.2，暂保持各自版本（详见调研报告遗留项）。
+- MGGTMod 与 MGModServer 均引用 SPTarkov 4.1.2（已对齐）。
 
 ## 📜 许可
 

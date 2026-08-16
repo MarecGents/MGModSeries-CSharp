@@ -7,7 +7,7 @@
 | 语言 | C# 14 |
 | 运行时 | .NET 10.0 |
 | 项目类型 | 类库 (Library, SDK.Web) |
-| 框架依赖 | SPTarkov.Common / DI / Server.Core 4.1.1 |
+| 框架依赖 | SPTarkov.Common / DI / Server.Core 4.1.2 |
 | 版本 | v0.5.0.040102 |
 
 > 原仓库：`MarecGents/MG-GT-Mod-CSharp`（已暂停维护，代码迁移至本整合仓 `MGGTMod/`）
@@ -19,6 +19,13 @@
 MGGTMod（MG General Trader Mod）是一个独立发布的 SPT 自定义商人 Mod。它提供了完整的商人框架，允许用户通过简单的 JSON 配置快速创建自定义商人，而无需编写任何代码。
 
 核心商人加载逻辑与 **MGModServer** 中的独立商人功能完全一致，是将其从 MG-Mod 主项目中剥离后的独立版本，专为只需要自定义商人功能的用户设计。
+
+**能力一览**：
+- **纯 JSON 创建商人**：在 `traders/` 下放一个文件夹 + 若干 JSON 即可，无需写代码（教程见下）；
+- **出售自定义/原版物品**（assort + barter 价格 + 忠诚度等级）；
+- **收购玩家物品**（`traderInfo.json` 的 `items_buy`，可自定义收购大类；护甲/弹挂/武器等可卖回给商人）；
+- **跳蚤上架**（`templates/handbook.json` 注册后自定义物品可跳蚤买卖）；
+- **任务系统**（击杀/收集/上交条件、奖励、任务解锁商品、任务链）；
 
 ## 📖 商人制作教程
 
