@@ -12,26 +12,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ContainerFrameGroup}">
                     <controls:FrameGroup
-                            HeaderText="{Binding HeaderText, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}">
+                            HeaderText="{Binding HeaderText, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"
+                            HeaderDescription="{Binding Description, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}">
                         <StackPanel>
                             <controls:CheckButtonFrame
                                 ButtonContent="{DynamicResource Container.Button.Enable}"
+                                Description="{DynamicResource Container.Desc.Enable}"
                                 IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"/>      
                             <controls:ComboxFrame
                                 ButtonContent="{DynamicResource Container.Button.Width}"
+                                Description="{DynamicResource Container.Desc.Width}"
                                 IsEnabled="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"
                                 ItemsSource="{Binding ExpandWidthList, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"
                                 SelectedValue="{Binding ExpandWidth, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"/>
                             <controls:ComboxFrame
                                 ButtonContent="{DynamicResource Container.Button.Height}"
+                                Description="{DynamicResource Container.Desc.Height}"
                                 IsEnabled="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"
                                 ItemsSource="{Binding ExpandHeightList, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"
                                 SelectedValue="{Binding ExpandHeight, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"/>
                             <controls:CheckButtonFrame
                                 ButtonContent="{DynamicResource Container.Button.Compatible}"
+                                Description="{DynamicResource Container.Desc.Compatible}"
                                 IsChecked="{Binding IsFilter, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"/>
                             <controls:CheckButtonFrame
                                 ButtonContent="{DynamicResource Container.Button.NoWeight}"
+                                Description="{DynamicResource Container.Desc.NoWeight}"
                                 IsChecked="{Binding IsNoWeight, RelativeSource={RelativeSource AncestorType={x:Type controls:ContainerFrameGroup}}}"/>
                         </StackPanel>
                     </controls:FrameGroup>

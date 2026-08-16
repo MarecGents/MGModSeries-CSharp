@@ -17,6 +17,13 @@ public class FrameGroup: Control
         typeof(FrameGroup),
         new PropertyMetadata(null)
     );
+    /// <summary>Identifies the <see cref="HeaderDescription"/> dependency property.</summary>
+    public static readonly DependencyProperty HeaderDescriptionProperty = DependencyProperty.Register(
+        nameof(HeaderDescription),
+        typeof(string),
+        typeof(FrameGroup),
+        new PropertyMetadata(null)
+    );
     public string? HeaderText
     {
         get => (string?)GetValue(HeaderTextProperty);
@@ -26,5 +33,10 @@ public class FrameGroup: Control
     {
         get => GetValue(ExampleContentProperty);
         set => SetValue(ExampleContentProperty, value);
+    }
+    public string? HeaderDescription
+    {
+        get => (string?)GetValue(HeaderDescriptionProperty);
+        set => SetValue(HeaderDescriptionProperty, value);
     }
 }

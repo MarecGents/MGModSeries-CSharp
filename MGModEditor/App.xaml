@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Controls/FrameGroup.xaml" />
                 <ResourceDictionary Source="Controls/ComboxFrame.xaml" />
                 <ResourceDictionary Source="Controls/ContainerFrameGroup.xaml"/>
+                <ResourceDictionary Source="Controls/InfoTip.xaml"/>
                 <ResourceDictionary Source="Controls/GalleryNavigationPresenter.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>

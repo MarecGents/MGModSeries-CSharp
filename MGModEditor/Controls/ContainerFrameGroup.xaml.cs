@@ -43,6 +43,14 @@ public class ContainerFrameGroup: Control
             typeof(ContainerFrameGroup),
             new PropertyMetadata("Default HeaderText")
             );
+    /// <summary>Identifies the <see cref="Description"/> dependency property（容器说明，随语言切换刷新）。</summary>
+    public static readonly DependencyProperty DescriptionProperty =
+        DependencyProperty.Register(
+            nameof(Description),
+            typeof(string),
+            typeof(ContainerFrameGroup),
+            new PropertyMetadata(null)
+            );
     public static readonly DependencyProperty ContainerIdProperty =
         DependencyProperty.Register(
             nameof(ContainerId),
@@ -99,6 +107,11 @@ public class ContainerFrameGroup: Control
     {
         get => (string?)GetValue(HeaderTextProperty);
         set => SetValue(HeaderTextProperty, value);
+    }
+    public string? Description
+    {
+        get => (string?)GetValue(DescriptionProperty);
+        set => SetValue(DescriptionProperty, value);
     }
     public string? ContainerId
     {
@@ -160,10 +173,13 @@ public class ContainerFrameGroup: Control
         if (ContainerItemKeyById.TryGetValue(ContainerId, out var key))
         {
             HeaderText = translation[key];
+            // 容器说明键：ContainerItem.X → ContainerItem.Desc.X
+            Description = translation["ContainerItem.Desc." + key["ContainerItem.".Length..]];
         }
         else if (ContainerExpand.TryGetValue(ContainerId, out var expand))
         {
             HeaderText = expand.Name;   // 未收录容器 fallback 原文
+            Description = null;
         }
     }
 

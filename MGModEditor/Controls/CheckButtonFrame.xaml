@@ -43,6 +43,12 @@
                                         </DataTemplate>
                                     </ui:Button.ContentTemplate>
                                 </ui:Button>
+                                <controls:InfoTip
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0"
+                                    Description="{TemplateBinding Description}" />
                                 <ui:ToggleSwitch 
                                     Grid.Column="1"
                                     HorizontalAlignment="Right"

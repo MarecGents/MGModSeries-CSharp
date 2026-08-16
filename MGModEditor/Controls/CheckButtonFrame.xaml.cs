@@ -18,6 +18,13 @@ public class CheckButtonFrame : Control
             typeof(CheckButtonFrame),
             new PropertyMetadata("Default Content")
         );
+    public static readonly DependencyProperty DescriptionProperty =
+        DependencyProperty.Register(
+            nameof(Description),
+            typeof(string),
+            typeof(CheckButtonFrame),
+            new PropertyMetadata(null)
+        );
 
     public bool? IsChecked
     {
@@ -29,6 +36,12 @@ public class CheckButtonFrame : Control
     {
         get => (string?)GetValue(ButtonContentProperty);
         set => SetValue(ButtonContentProperty, value);
+    }
+
+    public string? Description
+    {
+        get => (string?)GetValue(DescriptionProperty);
+        set => SetValue(DescriptionProperty, value);
     }
 
 

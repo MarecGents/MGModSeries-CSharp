@@ -20,221 +20,278 @@
     mc:Ignorable="d" >
     <StackPanel>
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.BaseAttributes}">
+            HeaderText="{DynamicResource Develop.Header.BaseAttributes}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.BaseAttributes}">
             <StackPanel>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.UnloadSpeed}"
+                    Description="{DynamicResource Develop.Desc.UnloadSpeed}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.LoadSpeed}"
                     SelectedValue="{Binding ViewModel.LoadSpeedValue}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.SkillExpBoost}"
+                    Description="{DynamicResource Develop.Desc.SkillExpBoost}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.ExpOptimize}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.SupermanMode}"
+                    Description="{DynamicResource Develop.Desc.SupermanMode}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.SuperHero}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.NoCarryLimit}"
+                    Description="{DynamicResource Develop.Desc.NoCarryLimit}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.TakeLimit}"/>
             </StackPanel>
         </controls:FrameGroup>
 
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.WeaponOpt}">
+            HeaderText="{DynamicResource Develop.Header.WeaponOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.WeaponOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.WeaponSlotCompat}"
+                    Description="{DynamicResource Develop.Desc.WeaponSlotCompat}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.WeaponFilter}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.WeaponNoJam}"
+                    Description="{DynamicResource Develop.Desc.WeaponNoJam}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.WeaponNoLost}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.WeaponNoDurabilityLoss}"
+                    Description="{DynamicResource Develop.Desc.WeaponNoDurabilityLoss}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.WeaponRepairPerfect}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.MagazineCapacity}"
+                    Description="{DynamicResource Develop.Desc.MagazineCapacity}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.MagazineCapacity}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Templates.MagazineCapacity}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.HelmetOpt}">
+            HeaderText="{DynamicResource Develop.Header.HelmetOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.HelmetOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.HelmetHeadsetCompat}"
+                    Description="{DynamicResource Develop.Desc.HelmetHeadsetCompat}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Helmet.Filter}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.HelmetNoDebuff}"
+                    Description="{DynamicResource Develop.Desc.HelmetNoDebuff}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Helmet.NoBuff}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.HelmetNoWeight}"
+                    Description="{DynamicResource Develop.Desc.HelmetNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Helmet.NoWeight}"/>
 
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.RigArmorOpt}">
+            HeaderText="{DynamicResource Develop.Header.RigArmorOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.RigArmorOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.RigArmorCompat}"
+                    Description="{DynamicResource Develop.Desc.RigArmorCompat}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Armor.Filter}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.RigArmorNoDebuff}"
+                    Description="{DynamicResource Develop.Desc.RigArmorNoDebuff}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Armor.NoBuff}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.RigArmorNoWeight}"
+                    Description="{DynamicResource Develop.Desc.RigArmorNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Armor.NoWeight}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.RigArmorNoDurabilityLoss}"
+                    Description="{DynamicResource Develop.Desc.RigArmorNoDurabilityLoss}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.ArmorRepairPerfect}"/>
 
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.PlateCarrierOpt}">
+            HeaderText="{DynamicResource Develop.Header.PlateCarrierOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.PlateCarrierOpt}">
             <StackPanel>
                 <controls:ComboxFrame
                     ButtonContent="{DynamicResource Develop.Button.PlateCarrierDurability}"
+                    Description="{DynamicResource Develop.Desc.PlateCarrierDurability}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.ItemsDurability}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Templates.EquipmentPlate.Durability}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.PlateCarrierNoDebuff}"
+                    Description="{DynamicResource Develop.Desc.PlateCarrierNoDebuff}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.EquipmentPlate.NoBuff}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.PlateCarrierNoWeight}"
+                    Description="{DynamicResource Develop.Desc.PlateCarrierNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.EquipmentPlate.NoWeight}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.BackpackOpt}">
+            HeaderText="{DynamicResource Develop.Header.BackpackOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.BackpackOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.BackpackCompat}"
+                    Description="{DynamicResource Develop.Desc.BackpackCompat}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Backpack.Filter}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.BackpackCompact}"
+                    Description="{DynamicResource Develop.Desc.BackpackCompact}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Backpack.SmallSize}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.BackpackNoDebuff}"
+                    Description="{DynamicResource Develop.Desc.BackpackNoDebuff}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Backpack.NoBuff}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.BackpackNoWeight}"
+                    Description="{DynamicResource Develop.Desc.BackpackNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Backpack.NoWeight}"/>
                 
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.EnchantOpt}">
+            HeaderText="{DynamicResource Develop.Header.EnchantOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.EnchantOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.WeaponEnchant100}"
+                    Description="{DynamicResource Develop.Desc.WeaponEnchant100}"
                     IsChecked="{Binding ViewModel.BuffsWeaponValue}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.ArmorEnchant100}"
+                    Description="{DynamicResource Develop.Desc.ArmorEnchant100}"
                     IsChecked="{Binding ViewModel.BuffsArmorValue}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.InsuranceOpt}">
+            HeaderText="{DynamicResource Develop.Header.InsuranceOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.InsuranceOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.InsuranceExpand}"
+                    Description="{DynamicResource Develop.Desc.InsuranceExpand}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Safes.SizeExpand}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.InsuranceCompat}"
+                    Description="{DynamicResource Develop.Desc.InsuranceCompat}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Safes.Filter}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.InsuranceNoWeight}"
+                    Description="{DynamicResource Develop.Desc.InsuranceNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Safes.NoWeight}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.ItemAttrOpt}">
+            HeaderText="{DynamicResource Develop.Header.ItemAttrOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.ItemAttrOpt}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.T7ThermalBoost}"
+                    Description="{DynamicResource Develop.Desc.T7ThermalBoost}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.T7ThermalImaging}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.KeyUnlimitedDurability}"
+                    Description="{DynamicResource Develop.Desc.KeyUnlimitedDurability}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.KeysDurability}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.MedicalItemDurability}"
+                    Description="{DynamicResource Develop.Desc.MedicalItemDurability}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.ItemsDurability}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Templates.MedcDurability}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.WarehouseOpt}">
+            HeaderText="{DynamicResource Develop.Header.WarehouseOpt}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.WarehouseOpt}">
             <StackPanel>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.AmmoStack}"
+                    Description="{DynamicResource Develop.Desc.AmmoStack}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.AmmoStack}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Templates.AmmoStack}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.MoneyStack}"
+                    Description="{DynamicResource Develop.Desc.MoneyStack}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.MoneyStack}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Templates.MoneyStack}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.FullInspect}"
+                    Description="{DynamicResource Develop.Desc.FullInspect}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Examined}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.QuestSystem}">
+            HeaderText="{DynamicResource Develop.Header.QuestSystem}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.QuestSystem}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.QuestFreeReset}"
+                    Description="{DynamicResource Develop.Desc.QuestFreeReset}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.ResetFree}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.QuestOptimize}"
+                    Description="{DynamicResource Develop.Desc.QuestOptimize}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.QuestOptimize}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.Quest3X4Marker}"
+                    Description="{DynamicResource Develop.Desc.Quest3X4Marker}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.Quest3X4Marker}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Develop.Header.Hideout}">
+            HeaderText="{DynamicResource Develop.Header.Hideout}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.Hideout}">
             <StackPanel>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.HideoutUpgradeTime}"
+                    Description="{DynamicResource Develop.Desc.HideoutUpgradeTime}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.HideoutTime}"
                     SelectedValue="{Binding ViewModel.BuildTimeValue}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.HideoutProductionTime}"
+                    Description="{DynamicResource Develop.Desc.HideoutProductionTime}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.HideoutTime}"
                     SelectedValue="{Binding ViewModel.ProductTimeValue}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.ScavCaseTime}"
+                    Description="{DynamicResource Develop.Desc.ScavCaseTime}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.HideoutTime}"
                     SelectedValue="{Binding ViewModel.ScavCaseTimeValue}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.HideoutUpgradeUnlimited}"
+                    Description="{DynamicResource Develop.Desc.HideoutUpgradeUnlimited}"
                     IsChecked="{Binding ViewModel.ConfigJson.Hideout.UpgradeNoLimit}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.HideoutAreaBonusLevel}"
+                    Description="{DynamicResource Develop.Desc.HideoutAreaBonusLevel}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.BonusesLevel}"
                     SelectedValue="{Binding ViewModel.BonusesLevelValue}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.HideoutNoPower}"
+                    Description="{DynamicResource Develop.Desc.HideoutNoPower}"
                     IsChecked="{Binding ViewModel.ConfigJson.Hideout.NoNeedsFuel}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.GymAlwaysSucceed}"
+                    Description="{DynamicResource Develop.Desc.GymAlwaysSucceed}"
                     IsChecked="{Binding ViewModel.ConfigJson.Hideout.Qte.Sucess100}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.GymNoPenalty}"
+                    Description="{DynamicResource Develop.Desc.GymNoPenalty}"
                     IsChecked="{Binding ViewModel.ConfigJson.Hideout.Qte.NoPunish}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Develop.Button.GymRewardMultiplier}"
+                    Description="{DynamicResource Develop.Desc.GymRewardMultiplier}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.RewardMultiple}"
                     SelectedValue="{Binding ViewModel.RewardMultipleValue}"/>
             </StackPanel>

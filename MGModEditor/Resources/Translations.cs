@@ -88,6 +88,60 @@ public static class Translations
     public const string RaidMapWoods = "Raid.Map.Woods";
     public const string RaidMapLabyrinth = "Raid.Map.Labyrinth";
 
+    // ---- Raid Desc ----
+    public const string RaidDescAiHealth = "Raid.Desc.AiHealth";
+    public const string RaidDescAiSpawnNumber = "Raid.Desc.AiSpawnNumber";
+    public const string RaidDescUSECRatio = "Raid.Desc.USECRatio";
+    public const string RaidDescAiNamePool = "Raid.Desc.AiNamePool";
+    public const string RaidDescPmcTacticalSquad = "Raid.Desc.PmcTacticalSquad";
+    public const string RaidDescPmcRoar = "Raid.Desc.PmcRoar";
+    public const string RaidDescDefaultOptions = "Raid.Desc.DefaultOptions";
+    public const string RaidDescAiAmount = "Raid.Desc.AiAmount";
+    public const string RaidDescAiDifficulty = "Raid.Desc.AiDifficulty";
+    public const string RaidDescEnableBoss = "Raid.Desc.EnableBoss";
+    public const string RaidDescScavCivilWar = "Raid.Desc.ScavCivilWar";
+    public const string RaidDescMarkedCursed = "Raid.Desc.MarkedCursed";
+    public const string RaidDescRaidTime = "Raid.Desc.RaidTime";
+    public const string RaidDescBossSpawnRate = "Raid.Desc.BossSpawnRate";
+    public const string RaidDescAirdropType = "Raid.Desc.AirdropType";
+    public const string RaidDescAlwaysExtractSwitch = "Raid.Desc.AlwaysExtractSwitch";
+    public const string RaidDescAlwaysExtractable = "Raid.Desc.AlwaysExtractable";
+    public const string RaidDescUnlimitedExtractTime = "Raid.Desc.UnlimitedExtractTime";
+    public const string RaidDescScavNoCooldown = "Raid.Desc.ScavNoCooldown";
+    public const string RaidDescScavGearBoost = "Raid.Desc.ScavGearBoost";
+    public const string RaidDescNoLootLoss = "Raid.Desc.NoLootLoss";
+    public const string RaidDescMapRefreshConfig = "Raid.Desc.MapRefreshConfig";
+    public const string RaidDescMapBotDifficulty = "Raid.Desc.MapBotDifficulty";
+    public const string RaidDescGlobalWeather = "Raid.Desc.GlobalWeather";
+    public const string RaidDescCloud = "Raid.Desc.Cloud";
+    public const string RaidDescWind = "Raid.Desc.Wind";
+    public const string RaidDescRain = "Raid.Desc.Rain";
+    public const string RaidDescFog = "Raid.Desc.Fog";
+    public const string RaidDescGlobalLoot = "Raid.Desc.GlobalLoot";
+    public const string RaidDescContainerLoot = "Raid.Desc.ContainerLoot";
+    public const string RaidDescGroundLoot = "Raid.Desc.GroundLoot";
+    public const string RaidDescValuableLoot = "Raid.Desc.ValuableLoot";
+    public const string RaidDescDisableRandomContainers = "Raid.Desc.DisableRandomContainers";
+    public const string RaidDescMapCustoms = "Raid.Desc.Map.Customs";
+    public const string RaidDescMapFactory = "Raid.Desc.Map.Factory";
+    public const string RaidDescMapInterchange = "Raid.Desc.Map.Interchange";
+    public const string RaidDescMapLabs = "Raid.Desc.Map.Labs";
+    public const string RaidDescMapLighthouse = "Raid.Desc.Map.Lighthouse";
+    public const string RaidDescMapReserve = "Raid.Desc.Map.Reserve";
+    public const string RaidDescMapGroundZero = "Raid.Desc.Map.GroundZero";
+    public const string RaidDescMapShoreline = "Raid.Desc.Map.Shoreline";
+    public const string RaidDescMapStreets = "Raid.Desc.Map.Streets";
+    public const string RaidDescMapWoods = "Raid.Desc.Map.Woods";
+    public const string RaidDescMapLabyrinth = "Raid.Desc.Map.Labyrinth";
+
+    // ---- Raid HeaderDesc ----
+    public const string RaidHeaderDescAI = "Raid.HeaderDesc.AI";
+    public const string RaidHeaderDescDefaultOptions = "Raid.HeaderDesc.DefaultOptions";
+    public const string RaidHeaderDescRaid = "Raid.HeaderDesc.Raid";
+    public const string RaidHeaderDescWeather = "Raid.HeaderDesc.Weather";
+    public const string RaidHeaderDescResources = "Raid.HeaderDesc.Resources";
+    public const string RaidHeaderDescMapInsurance = "Raid.HeaderDesc.MapInsurance";
+
     // ---- Develop ----
     public const string DevelopHeaderBaseAttributes = "Develop.Header.BaseAttributes";
     public const string DevelopHeaderWeaponOpt = "Develop.Header.WeaponOpt";
@@ -147,6 +201,67 @@ public static class Translations
     public const string DevelopButtonGymNoPenalty = "Develop.Button.GymNoPenalty";
     public const string DevelopButtonGymRewardMultiplier = "Develop.Button.GymRewardMultiplier";
 
+    // ---- Develop Desc ----
+    public const string DevelopDescUnloadSpeed = "Develop.Desc.UnloadSpeed";
+    public const string DevelopDescSkillExpBoost = "Develop.Desc.SkillExpBoost";
+    public const string DevelopDescSupermanMode = "Develop.Desc.SupermanMode";
+    public const string DevelopDescNoCarryLimit = "Develop.Desc.NoCarryLimit";
+    public const string DevelopDescWeaponSlotCompat = "Develop.Desc.WeaponSlotCompat";
+    public const string DevelopDescWeaponNoJam = "Develop.Desc.WeaponNoJam";
+    public const string DevelopDescWeaponNoDurabilityLoss = "Develop.Desc.WeaponNoDurabilityLoss";
+    public const string DevelopDescMagazineCapacity = "Develop.Desc.MagazineCapacity";
+    public const string DevelopDescHelmetHeadsetCompat = "Develop.Desc.HelmetHeadsetCompat";
+    public const string DevelopDescHelmetNoDebuff = "Develop.Desc.HelmetNoDebuff";
+    public const string DevelopDescHelmetNoWeight = "Develop.Desc.HelmetNoWeight";
+    public const string DevelopDescRigArmorCompat = "Develop.Desc.RigArmorCompat";
+    public const string DevelopDescRigArmorNoDebuff = "Develop.Desc.RigArmorNoDebuff";
+    public const string DevelopDescRigArmorNoWeight = "Develop.Desc.RigArmorNoWeight";
+    public const string DevelopDescRigArmorNoDurabilityLoss = "Develop.Desc.RigArmorNoDurabilityLoss";
+    public const string DevelopDescPlateCarrierDurability = "Develop.Desc.PlateCarrierDurability";
+    public const string DevelopDescPlateCarrierNoDebuff = "Develop.Desc.PlateCarrierNoDebuff";
+    public const string DevelopDescPlateCarrierNoWeight = "Develop.Desc.PlateCarrierNoWeight";
+    public const string DevelopDescBackpackCompat = "Develop.Desc.BackpackCompat";
+    public const string DevelopDescBackpackCompact = "Develop.Desc.BackpackCompact";
+    public const string DevelopDescBackpackNoDebuff = "Develop.Desc.BackpackNoDebuff";
+    public const string DevelopDescBackpackNoWeight = "Develop.Desc.BackpackNoWeight";
+    public const string DevelopDescWeaponEnchant100 = "Develop.Desc.WeaponEnchant100";
+    public const string DevelopDescArmorEnchant100 = "Develop.Desc.ArmorEnchant100";
+    public const string DevelopDescInsuranceExpand = "Develop.Desc.InsuranceExpand";
+    public const string DevelopDescInsuranceCompat = "Develop.Desc.InsuranceCompat";
+    public const string DevelopDescInsuranceNoWeight = "Develop.Desc.InsuranceNoWeight";
+    public const string DevelopDescT7ThermalBoost = "Develop.Desc.T7ThermalBoost";
+    public const string DevelopDescKeyUnlimitedDurability = "Develop.Desc.KeyUnlimitedDurability";
+    public const string DevelopDescMedicalItemDurability = "Develop.Desc.MedicalItemDurability";
+    public const string DevelopDescAmmoStack = "Develop.Desc.AmmoStack";
+    public const string DevelopDescMoneyStack = "Develop.Desc.MoneyStack";
+    public const string DevelopDescFullInspect = "Develop.Desc.FullInspect";
+    public const string DevelopDescQuestFreeReset = "Develop.Desc.QuestFreeReset";
+    public const string DevelopDescQuestOptimize = "Develop.Desc.QuestOptimize";
+    public const string DevelopDescQuest3X4Marker = "Develop.Desc.Quest3X4Marker";
+    public const string DevelopDescHideoutUpgradeTime = "Develop.Desc.HideoutUpgradeTime";
+    public const string DevelopDescHideoutProductionTime = "Develop.Desc.HideoutProductionTime";
+    public const string DevelopDescScavCaseTime = "Develop.Desc.ScavCaseTime";
+    public const string DevelopDescHideoutUpgradeUnlimited = "Develop.Desc.HideoutUpgradeUnlimited";
+    public const string DevelopDescHideoutAreaBonusLevel = "Develop.Desc.HideoutAreaBonusLevel";
+    public const string DevelopDescHideoutNoPower = "Develop.Desc.HideoutNoPower";
+    public const string DevelopDescGymAlwaysSucceed = "Develop.Desc.GymAlwaysSucceed";
+    public const string DevelopDescGymNoPenalty = "Develop.Desc.GymNoPenalty";
+    public const string DevelopDescGymRewardMultiplier = "Develop.Desc.GymRewardMultiplier";
+
+    // ---- Develop HeaderDesc ----
+    public const string DevelopHeaderDescBaseAttributes = "Develop.HeaderDesc.BaseAttributes";
+    public const string DevelopHeaderDescWeaponOpt = "Develop.HeaderDesc.WeaponOpt";
+    public const string DevelopHeaderDescHelmetOpt = "Develop.HeaderDesc.HelmetOpt";
+    public const string DevelopHeaderDescRigArmorOpt = "Develop.HeaderDesc.RigArmorOpt";
+    public const string DevelopHeaderDescPlateCarrierOpt = "Develop.HeaderDesc.PlateCarrierOpt";
+    public const string DevelopHeaderDescBackpackOpt = "Develop.HeaderDesc.BackpackOpt";
+    public const string DevelopHeaderDescEnchantOpt = "Develop.HeaderDesc.EnchantOpt";
+    public const string DevelopHeaderDescInsuranceOpt = "Develop.HeaderDesc.InsuranceOpt";
+    public const string DevelopHeaderDescItemAttrOpt = "Develop.HeaderDesc.ItemAttrOpt";
+    public const string DevelopHeaderDescWarehouseOpt = "Develop.HeaderDesc.WarehouseOpt";
+    public const string DevelopHeaderDescQuestSystem = "Develop.HeaderDesc.QuestSystem";
+    public const string DevelopHeaderDescHideout = "Develop.HeaderDesc.Hideout";
+
     // ---- Economy ----
     public const string EconomyHeaderFlea = "Economy.Header.Flea";
     public const string EconomyHeaderTrader = "Economy.Header.Trader";
@@ -164,6 +279,25 @@ public static class Translations
     public const string EconomyButtonInsuranceReturnChance = "Economy.Button.InsuranceReturnChance";
     public const string EconomyButtonBuyWithHook = "Economy.Button.BuyWithHook";
 
+    // ---- Economy Desc ----
+    public const string EconomyDescFleaTradeMultiplier = "Economy.Desc.FleaTradeMultiplier";
+    public const string EconomyDescFleaSell100 = "Economy.Desc.FleaSell100";
+    public const string EconomyDescFleaInstantSell = "Economy.Desc.FleaInstantSell";
+    public const string EconomyDescFleaBuyBoost = "Economy.Desc.FleaBuyBoost";
+    public const string EconomyDescFleaBrandNew = "Economy.Desc.FleaBrandNew";
+    public const string EconomyDescFleaDisableBlacklist = "Economy.Desc.FleaDisableBlacklist";
+    public const string EconomyDescFleaOpenLevel = "Economy.Desc.FleaOpenLevel";
+    public const string EconomyDescLowTax = "Economy.Desc.LowTax";
+    public const string EconomyDescTraderSupplyTime = "Economy.Desc.TraderSupplyTime";
+    public const string EconomyDescInsuranceReturnSpeed = "Economy.Desc.InsuranceReturnSpeed";
+    public const string EconomyDescInsuranceCost = "Economy.Desc.InsuranceCost";
+    public const string EconomyDescInsuranceReturnChance = "Economy.Desc.InsuranceReturnChance";
+    public const string EconomyDescBuyWithHook = "Economy.Desc.BuyWithHook";
+
+    // ---- Economy HeaderDesc ----
+    public const string EconomyHeaderDescFlea = "Economy.HeaderDesc.Flea";
+    public const string EconomyHeaderDescTrader = "Economy.HeaderDesc.Trader";
+
     // ---- Feature ----
     public const string FeatureHeaderIndependent = "Feature.Header.Independent";
     public const string FeatureHeaderOther = "Feature.Header.Other";
@@ -175,12 +309,32 @@ public static class Translations
     public const string FeatureButtonKeyCategory = "Feature.Button.KeyCategory";
     public const string FeatureButtonRealTimeFlea = "Feature.Button.RealTimeFlea";
 
+    // ---- Feature Desc ----
+    public const string FeatureDescIndependentTrader = "Feature.Desc.IndependentTrader";
+    public const string FeatureDescIndependentItem = "Feature.Desc.IndependentItem";
+    public const string FeatureDescIndependentPreset = "Feature.Desc.IndependentPreset";
+    public const string FeatureDescIndependentSave = "Feature.Desc.IndependentSave";
+    public const string FeatureDescBulletData = "Feature.Desc.BulletData";
+    public const string FeatureDescKeyCategory = "Feature.Desc.KeyCategory";
+    public const string FeatureDescRealTimeFlea = "Feature.Desc.RealTimeFlea";
+
+    // ---- Feature HeaderDesc ----
+    public const string FeatureHeaderDescIndependent = "Feature.HeaderDesc.Independent";
+    public const string FeatureHeaderDescOther = "Feature.HeaderDesc.Other";
+
     // ---- Container ----
     public const string ContainerButtonEnable = "Container.Button.Enable";
     public const string ContainerButtonWidth = "Container.Button.Width";
     public const string ContainerButtonHeight = "Container.Button.Height";
     public const string ContainerButtonCompatible = "Container.Button.Compatible";
     public const string ContainerButtonNoWeight = "Container.Button.NoWeight";
+
+    // ---- Container Desc ----
+    public const string ContainerDescEnable = "Container.Desc.Enable";
+    public const string ContainerDescWidth = "Container.Desc.Width";
+    public const string ContainerDescHeight = "Container.Desc.Height";
+    public const string ContainerDescCompatible = "Container.Desc.Compatible";
+    public const string ContainerDescNoWeight = "Container.Desc.NoWeight";
 
     // ---- ConfigItem ----
     public const string ConfigItemDefaultRatio = "ConfigItem.DefaultRatio";
@@ -336,6 +490,31 @@ public static class Translations
     public const string ContainerItemKeycardHolderCase = "ContainerItem.KeycardHolderCase";
     public const string ContainerItemKeyTool = "ContainerItem.KeyTool";
     public const string ContainerItemMoneyCase = "ContainerItem.MoneyCase";
+
+    // ---- ContainerItem Desc ----
+    public const string ContainerItemDescBallisticPlateCase = "ContainerItem.Desc.BallisticPlateCase";
+    public const string ContainerItemDescGingyKeychain = "ContainerItem.Desc.GingyKeychain";
+    public const string ContainerItemDescHolodilnickThermalBag = "ContainerItem.Desc.HolodilnickThermalBag";
+    public const string ContainerItemDescTHICCWeaponCase = "ContainerItem.Desc.THICCWeaponCase";
+    public const string ContainerItemDescTHICCItemCase = "ContainerItem.Desc.THICCItemCase";
+    public const string ContainerItemDescWZWallet = "ContainerItem.Desc.WZWallet";
+    public const string ContainerItemDescStreamerItemCase = "ContainerItem.Desc.StreamerItemCase";
+    public const string ContainerItemDescMedicineCase = "ContainerItem.Desc.MedicineCase";
+    public const string ContainerItemDescSICCPouch = "ContainerItem.Desc.SICCPouch";
+    public const string ContainerItemDescLuckyScavJunkBox = "ContainerItem.Desc.LuckyScavJunkBox";
+    public const string ContainerItemDescMagazineCase = "ContainerItem.Desc.MagazineCase";
+    public const string ContainerItemDescAmmunitionCase = "ContainerItem.Desc.AmmunitionCase";
+    public const string ContainerItemDescPistolCase = "ContainerItem.Desc.PistolCase";
+    public const string ContainerItemDescGrenadeCase = "ContainerItem.Desc.GrenadeCase";
+    public const string ContainerItemDescDocumentsCase = "ContainerItem.Desc.DocumentsCase";
+    public const string ContainerItemDescWeaponCase = "ContainerItem.Desc.WeaponCase";
+    public const string ContainerItemDescInjectorCase = "ContainerItem.Desc.InjectorCase";
+    public const string ContainerItemDescItemCase = "ContainerItem.Desc.ItemCase";
+    public const string ContainerItemDescDogtagCase = "ContainerItem.Desc.DogtagCase";
+    public const string ContainerItemDescSimpleWallet = "ContainerItem.Desc.SimpleWallet";
+    public const string ContainerItemDescKeycardHolderCase = "ContainerItem.Desc.KeycardHolderCase";
+    public const string ContainerItemDescKeyTool = "ContainerItem.Desc.KeyTool";
+    public const string ContainerItemDescMoneyCase = "ContainerItem.Desc.MoneyCase";
 
     // ---- Home ----
     public const string HomeHeroTitle = "Home.Hero.Title";

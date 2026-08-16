@@ -22,34 +22,43 @@
     <StackPanel>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Feature.Header.Independent}">
+            HeaderText="{DynamicResource Feature.Header.Independent}"
+            HeaderDescription="{DynamicResource Feature.HeaderDesc.Independent}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.IndependentTrader}"
+                    Description="{DynamicResource Feature.Desc.IndependentTrader}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomTrader}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.IndependentItem}"
+                    Description="{DynamicResource Feature.Desc.IndependentItem}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomItem}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.IndependentPreset}"
+                    Description="{DynamicResource Feature.Desc.IndependentPreset}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomAssort}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.IndependentSave}"
+                    Description="{DynamicResource Feature.Desc.IndependentSave}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.CustomProfile}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Feature.Header.Other}">
+            HeaderText="{DynamicResource Feature.Header.Other}"
+            HeaderDescription="{DynamicResource Feature.HeaderDesc.Other}">
             <StackPanel>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.BulletData}"
+                    Description="{DynamicResource Feature.Desc.BulletData}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.AmmoInfo}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.KeyCategory}"
+                    Description="{DynamicResource Feature.Desc.KeyCategory}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.KeyClassfy}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Feature.Button.RealTimeFlea}"
+                    Description="{DynamicResource Feature.Desc.RealTimeFlea}"
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.SyncFlea}"/>
             </StackPanel>
         </controls:FrameGroup>

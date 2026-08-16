@@ -27,6 +27,14 @@ public class ComboxFrame : Control
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault)
         );
 
+    public static readonly DependencyProperty DescriptionProperty =
+        DependencyProperty.Register(
+            nameof(Description),
+            typeof(string),
+            typeof(ComboxFrame),
+            new PropertyMetadata(null)
+        );
+
     public string? ButtonContent
     {
         get => (string?)GetValue(ButtonContentProperty);
@@ -42,6 +50,12 @@ public class ComboxFrame : Control
     {
         get => (object?)GetValue(SelectedValueProperty);
         set => SetValue(SelectedValueProperty, value);
+    }
+
+    public string? Description
+    {
+        get => (string?)GetValue(DescriptionProperty);
+        set => SetValue(DescriptionProperty, value);
     }
 
 

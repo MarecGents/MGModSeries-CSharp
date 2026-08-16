@@ -20,58 +20,73 @@
     mc:Ignorable="d" >
     <StackPanel>
         <controls:FrameGroup
-            HeaderText="{DynamicResource Economy.Header.Flea}">
+            HeaderText="{DynamicResource Economy.Header.Flea}"
+            HeaderDescription="{DynamicResource Economy.HeaderDesc.Flea}">
             <StackPanel>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Economy.Button.FleaTradeMultiplier}"
+                    Description="{DynamicResource Economy.Desc.FleaTradeMultiplier}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.SellNumber}"
                     SelectedValue="{Binding ViewModel.ConfigJson.Globals.SellNumber}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaSell100}"
+                    Description="{DynamicResource Economy.Desc.FleaSell100}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.Sell100}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaInstantSell}"
+                    Description="{DynamicResource Economy.Desc.FleaInstantSell}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.SellFast}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaBuyBoost}"
+                    Description="{DynamicResource Economy.Desc.FleaBuyBoost}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.SellOptimize}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaBrandNew}"
+                    Description="{DynamicResource Economy.Desc.FleaBrandNew}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.SellNew}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaDisableBlacklist}"
+                    Description="{DynamicResource Economy.Desc.FleaDisableBlacklist}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.NoBlackList}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.FleaOpenLevel}"
+                    Description="{DynamicResource Economy.Desc.FleaOpenLevel}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.FleaMarketOpenLevel}"/>
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.LowTax}"
+                    Description="{DynamicResource Economy.Desc.LowTax}"
                     IsChecked="{Binding ViewModel.ConfigJson.Globals.LowTaxRate}"/>
             </StackPanel>
         </controls:FrameGroup>
         
         <controls:FrameGroup
-            HeaderText="{DynamicResource Economy.Header.Trader}">
+            HeaderText="{DynamicResource Economy.Header.Trader}"
+            HeaderDescription="{DynamicResource Economy.HeaderDesc.Trader}">
             <StackPanel>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Economy.Button.TraderSupplyTime}"
+                    Description="{DynamicResource Economy.Desc.TraderSupplyTime}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.UpdateTime}"
                     SelectedValue="{Binding ViewModel.UpdateTimeValue}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Economy.Button.InsuranceReturnSpeed}"
+                    Description="{DynamicResource Economy.Desc.InsuranceReturnSpeed}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.InsuranceTime}"
                     SelectedValue="{Binding ViewModel.InsuranceTimeValue}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Economy.Button.InsuranceCost}"
+                    Description="{DynamicResource Economy.Desc.InsuranceCost}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.InsuranceCost}"
                     SelectedValue="{Binding ViewModel.InsuranceCostValue}"/>
                 <controls:ComboxFrame 
                     ButtonContent="{DynamicResource Economy.Button.InsuranceReturnChance}"
+                    Description="{DynamicResource Economy.Desc.InsuranceReturnChance}"
                     ItemsSource="{Binding ViewModel.ConfigItemList.ReturnChance}"
                     SelectedValue="{Binding ViewModel.ReturnChanceValue}"/>
 
                 <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Economy.Button.BuyWithHook}"
+                    Description="{DynamicResource Economy.Desc.BuyWithHook}"
                     IsChecked="{Binding ViewModel.ConfigJson.Config.BuyFoundInRaid}"/>
             </StackPanel>
         </controls:FrameGroup>
