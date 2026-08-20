@@ -20,7 +20,6 @@ public partial class EconomySystemViewModel: ViewModel
     public EconomySystemViewModel(MGConfigService mGConfigService)
     {
         MGConfigService1 = mGConfigService;
-        MGConfigService1.SaveConfig();
     }
 
     public override void OnNavigatedTo()

@@ -76,7 +76,15 @@ public class MGModClientPlugin : BaseUnityPlugin
         if (_pathLocator != null && _pathLocator.ConfigPath != null)
         {
             var onDisk = JsonUtils.Read<MGConfig>(_pathLocator.ConfigPath);
-            if (onDisk != null) cfg.CopyFrom(onDisk);
+            if (onDisk != null)
+            {
+                cfg.CopyFrom(onDisk);
+            }
+            else
+            {
+                // 文件存在但解析失败 → 损坏；打日志警告，而非静默回退默认
+                Logger.LogWarning($"[MGModClient] config.json 读取失败或损坏，已使用默认配置：{_pathLocator.ConfigPath}");
+            }
         }
         return cfg;
     }

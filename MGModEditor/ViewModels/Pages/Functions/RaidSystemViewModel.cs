@@ -21,7 +21,6 @@ public partial class RaidSystemViewModel: ViewModel
     public RaidSystemViewModel(MGConfigService mGConfigService)
     {
         MGConfigService1 = mGConfigService;
-        MGConfigService1.SaveConfig();
     }
 
     public override void OnNavigatedTo()

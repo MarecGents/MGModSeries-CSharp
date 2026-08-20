@@ -29,6 +29,9 @@ public static class JsonUtils
     {
         var tmp = path + ".tmp";
         File.WriteAllText(tmp, JsonConvert.SerializeObject(value, Settings));
-        File.Replace(tmp, path, null);
+        if (File.Exists(path))
+            File.Replace(tmp, path, null);
+        else
+            File.Move(tmp, path);
     }
 }

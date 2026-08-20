@@ -20,6 +20,12 @@ public static class Paths
         Path = "./res/config"
     };
 
+    public static readonly PathType DefaultConfigJson = new()
+    {
+        FileName = "defaultConfig.json",
+        Path = "./res/config"
+    };
+
     public static readonly PathType MapChNameJson = new()
     {
         FileName = "MapChName.json",

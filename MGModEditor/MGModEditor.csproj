@@ -48,9 +48,9 @@
     <None Update="res\config\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="res\config\defaultConfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="..\MGModServer\res\config\defaultConfig.json"
+          Link="res\config\defaultConfig.json"
+          CopyToOutputDirectory="PreserveNewest" />
     <None Update="res\config\EditorSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

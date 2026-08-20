@@ -20,7 +20,6 @@ public partial class ContainerExpandViewModel : ViewModel
     public ContainerExpandViewModel(MGConfigService mGConfigService)
     {
         MGConfigService1 = mGConfigService;
-        MGConfigService1.SaveConfig();
     }
 
     public override void OnNavigatedTo()

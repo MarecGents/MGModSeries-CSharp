@@ -73,27 +73,67 @@ public class ConfigSettingServices
         
         testServices = _testServices;
         
-        configJson = mGUtils.GetJsonDataFromFile<ConfigSettingType>(Paths.ConfigJson);
+        configJson = LoadConfig();
+    }
+
+    private ConfigSettingType? LoadConfig()
+    {
+        // 主配置：损坏/缺失容错（SPT JsonUtil 在 JSON 损坏时抛 JsonException）
+        try
+        {
+            var config = mGUtils.GetJsonDataFromFile<ConfigSettingType>(Paths.ConfigJson);
+            if (config != null) return config;
+        }
+        catch (Exception ex)
+        {
+            mGUtils.Log("常规设置", $"config.json 解析失败：{ex.Message}", Color.Red);
+        }
+
+        // 回退默认配置（与编辑器同源 defaultConfig.json，保证服务端可自愈启动）
+        try
+        {
+            var defaultConfig = mGUtils.GetJsonDataFromFile<ConfigSettingType>(Paths.DefaultConfigJson);
+            if (defaultConfig != null)
+            {
+                mGUtils.Log("常规设置", "config.json 缺失或损坏，已回退 defaultConfig.json。", Color.Red);
+                return defaultConfig;
+            }
+        }
+        catch (Exception ex)
+        {
+            mGUtils.Log("常规设置", $"defaultConfig.json 解析失败：{ex.Message}", Color.Red);
+        }
+
+        return null;
     }
 
     public async Task ModSetting()
     {
+        if (configJson == null)
+        {
+            mGUtils.Log("常规设置", "config.json 与 defaultConfig.json 均缺失/损坏，配置未加载。", Color.Red);
+            return;
+        }
+
         var CustomSetting = GetMGCustomSetting();
         // testServices.Initialize();
-        if (CustomSetting.SyncFlea) await syncFleaMarketServices.Start();
-        if (CustomSetting.CustomTrader) customTraderServices.Start();
-        if (CustomSetting.CustomItem) customItemServices.Start();
-        if (CustomSetting.KeyClassfy) keyClassfyServices.Start();
-        if (CustomSetting.CustomProfile) customProfileServices.Start();
-        if (CustomSetting.CustomAssort) customAssortServices.Start();
-         botsServer.MGmodBots(GetBotSetting());
-         configsServer.MGmodConfigs(GetConfigSetting());
-         globalsServer.MGmodGlobals(GetGlobalsSetting());
-         hideoutServer.MGmodHideout(GetHideoutSetting());
-         locationsServer.MGmodLocations(GetLocationsSetting());
-         templatesServer.MGmodTemplates(GetTemplatesSetting());
-         tradersServer.MGmodTraders(GetTradersSetting());
-         mGUtils.Log("常规设置", "已开启。", Color.Yellow);
+        if (CustomSetting != null)
+        {
+            if (CustomSetting.SyncFlea) await syncFleaMarketServices.Start();
+            if (CustomSetting.CustomTrader) customTraderServices.Start();
+            if (CustomSetting.CustomItem) customItemServices.Start();
+            if (CustomSetting.KeyClassfy) keyClassfyServices.Start();
+            if (CustomSetting.CustomProfile) customProfileServices.Start();
+            if (CustomSetting.CustomAssort) customAssortServices.Start();
+        }
+        if (configJson.Bot != null) botsServer.MGmodBots(GetBotSetting());
+        if (configJson.Config != null) configsServer.MGmodConfigs(GetConfigSetting());
+        if (configJson.Globals != null) globalsServer.MGmodGlobals(GetGlobalsSetting());
+        if (configJson.Hideout != null) hideoutServer.MGmodHideout(GetHideoutSetting());
+        if (configJson.Locations != null) locationsServer.MGmodLocations(GetLocationsSetting());
+        if (configJson.Templates != null) templatesServer.MGmodTemplates(GetTemplatesSetting());
+        if (configJson.Traders != null) tradersServer.MGmodTraders(GetTradersSetting());
+        mGUtils.Log("常规设置", "已开启。", Color.Yellow);
     }
 
     private MGModConfig_Bot? GetBotSetting()

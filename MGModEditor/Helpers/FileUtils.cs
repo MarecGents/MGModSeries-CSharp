@@ -83,24 +83,34 @@ public class FileUtils
         return await File.ReadAllBytesAsync(path);
     }
 
-    public void WriteFile(string filePath, string fileContent)
+    public bool WriteFile(string filePath, string fileContent)
     {
         if (!DirectoryExists(Path.GetDirectoryName(filePath)))
         {
             CreateDirectory(Path.GetDirectoryName(filePath));
         }
 
-        // 原子写：先写 .tmp 再 File.Replace，避免覆盖中途进程退出/中断留下半写文件
+        // 原子写：先写 .tmp 再 File.Replace/Move，避免覆盖中途进程退出/中断留下半写文件
         // （修复：编辑器保存 config.json 非原子写导致服务端二次启动读损坏文件）
         var tmpPath = filePath + ".tmp";
-        File.WriteAllText(tmpPath, fileContent);
-        if (FileExists(filePath))
+        try
         {
-            File.Replace(tmpPath, filePath, null);
+            File.WriteAllText(tmpPath, fileContent);
+            if (FileExists(filePath))
+            {
+                File.Replace(tmpPath, filePath, null);
+            }
+            else
+            {
+                File.Move(tmpPath, filePath);
+            }
+            return true;
         }
-        else
+        catch
         {
-            File.Move(tmpPath, filePath);
+            // 失败：清理残留 .tmp，返回 false 供调用方提示
+            try { if (FileExists(tmpPath)) File.Delete(tmpPath); } catch { }
+            return false;
         }
     }
 

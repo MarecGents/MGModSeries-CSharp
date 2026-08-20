@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
     <AssemblyName>MGModClient</AssemblyName>
     <RootNamespace>MGModClient</RootNamespace>
-    <Version>0.2.0.040102</Version>
+    <Version>0.2.1.040102</Version>
     <PluginGuid>com.mgmod.client</PluginGuid>
     <PluginName>MGModClient</PluginName>
     <ReleaseOutputDir>$(MGModPluginsOutputDir)MGModClient\</ReleaseOutputDir>

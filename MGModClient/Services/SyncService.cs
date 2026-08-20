@@ -39,7 +39,13 @@ public class SyncService
 
             // ① 重读磁盘现有文件（防覆盖桌面版/其他进程的修改）
             var onDisk = JsonUtils.Read<MGConfig>(_pathLocator.ConfigPath);
-            if (onDisk != null && onDisk.saveTime != _lastSavedTime)
+            if (onDisk == null)
+            {
+                // 文件缺失或损坏：不写回，避免用默认空模型覆盖 config.json
+                UnityEngine.Debug.LogWarning($"[MGModClient][SyncService] config.json 读取失败或损坏，跳过写回：{_pathLocator.ConfigPath}");
+                return;
+            }
+            if (onDisk.saveTime != _lastSavedTime)
                 _mirror.Model.CopyFrom(onDisk); // 以磁盘为事实源合并外部变更（简化版）
 
             // ② 更新版本戳并原子写
