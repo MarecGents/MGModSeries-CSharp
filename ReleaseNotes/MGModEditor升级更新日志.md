@@ -13,6 +13,19 @@
 ## 移出
 0. x
 
+# MGModEditor v1.3.2.1
+## 新增
+0. x
+## 修复
+1. 【MGModEditor】[主题]：修复自定义主题（如 TeaDark）加载失效的问题——主题字典 pack URI 残留旧程序集名「MGEditor」，改为「MGModEditor」后 36 个自定义主题恢复正常加载与切换。✅
+2. 【MGModEditor】[设置]：About 页应用名与版本串由「MGEditor」统一为「MGModEditor」。✅
+## 变更
+1. 【MGModEditor】版本号更新至 v1.3.2.1。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MGModEditor v1.3.2.0
 ## 新增
 1. 【MGModEditor】全部功能页：新增"功能描述"提示——每个功能行左侧按钮旁新增圆形问号图标，悬停或点击显示功能说明（悬停 10 秒 ToolTip、点击 Popup 钉住，随语言切换实时刷新）。✅

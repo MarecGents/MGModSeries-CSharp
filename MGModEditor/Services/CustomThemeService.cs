@@ -36,7 +36,7 @@ public static class CustomThemeService
         var overlayDict = new ResourceDictionary
         {
             Source = new Uri(
-                $"pack://application:,,,/MGEditor;component/Theme/{config.DictionaryFileName}",
+                $"pack://application:,,,/MGModEditor;component/Theme/{config.DictionaryFileName}",
                 UriKind.Absolute)
         };
         Application.Current.Resources.MergedDictionaries.Add(overlayDict);
@@ -72,7 +72,7 @@ public static class CustomThemeService
 
         var toRemove = Application.Current.Resources.MergedDictionaries
             .Where(d => d.Source?.ToString()
-                .Contains("MGEditor", StringComparison.OrdinalIgnoreCase) == true
+                .Contains("MGModEditor", StringComparison.OrdinalIgnoreCase) == true
                      && d.Source?.ToString()
                 .Contains("/Theme/", StringComparison.OrdinalIgnoreCase) == true)
             .ToList();

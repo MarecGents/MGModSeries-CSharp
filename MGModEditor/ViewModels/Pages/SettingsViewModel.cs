@@ -37,7 +37,7 @@ public partial class SettingsViewModel : ViewModel
     {
         ThemeTypeValue = AppSettingService1.EditorSetting.Personalized.Theme;
         LanguageValue = AppSettingService1.EditorSetting.Personalized.Language ?? _translationService.CurrentLanguage;
-        AppVersion = $"MGEditor - {GetAssemblyVersion()}";
+        AppVersion = $"MGModEditor - {GetAssemblyVersion()}";
     }
 
     private string GetAssemblyVersion()
