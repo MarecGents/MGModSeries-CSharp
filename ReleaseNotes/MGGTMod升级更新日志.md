@@ -19,6 +19,18 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 
 ## 移出
 
+# MG-GT-Mod v0.5.0.040102-Hotfix.2
+## 新增
+0. x
+## 修复
+1. [FG商人]：修复商人处出售范围，现允许所有品类物品在麻瓜商人处出售。
+## 变更
+0. x
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-GT-Mod v0.5.0.040102
 FG商人新增任务系统、护甲/弹挂甲装备与自定义弹挂布局，全面适配SPT-4.1.2。✅
 ## 新增

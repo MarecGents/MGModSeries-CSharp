@@ -8,6 +8,20 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 夸克网盘链接：https://pan.quark.cn/s/565b1b8cea2d?pwd=Q1A8 提取码：Q1A8
 123网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-E6Gy3?pwd=MGYY# 提取码：MGYY
 
+
+# MG-Mod v1.1.1.040102-Hotfix.1
+
+## 新增
+0. x
+## 修复
+1. 【功能】[特色功能][独立功能][独立商人]：修复商人处出售范围，现允许所有品类物品在麻瓜商人处出售。
+## 变更
+0. x
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-Mod v1.1.1.040102
 
 ## 新增
