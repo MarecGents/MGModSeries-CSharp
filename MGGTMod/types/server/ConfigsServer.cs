@@ -1,4 +1,5 @@
 ﻿using _MGGTmod.types.models.Custom;
+using _MGGTmod.types.services;
 using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
@@ -11,41 +12,14 @@ namespace _MGGTmod.types.server;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class ConfigsServer(
     // ConfigServer configServer,
-    SptLogger<ConfigsServer> logger,
-    AirdropConfig Airdrop,
-    BackupConfig Backup,
-    BotConfig Bot,
-    BtrDeliveryConfig BtrDelivery,
-    CoreConfig Core,
-    GiftsConfig Gifts,
-    HealthConfig Health,
-    HideoutConfig Hideout,
-    HttpConfig Http,
-    InRaidConfig InRaid,
-    InsuranceConfig Insurance,
-    InventoryConfig Inventory,
-    ItemConfig Item,
-    LocaleConfig Locale,
-    LocationConfig Location,
-    LootConfig Loot,
-    LostOnDeathConfig LostOnDeath,
-    MatchConfig Match,
-    PlayerScavConfig PlayerScav,
-    PmcChatResponseConfig PmcChatResponse,
-    PmcConfig Pmc,
-    QuestConfig Quest,
-    RagfairConfig Ragfair,
-    RepairConfig Repair,
-    ScavCaseConfig ScavCase,
-    SeasonalEventConfig SeasonalEvent,
-    TraderConfig Trader,
-    WeatherConfig Weather
+    ConfigServices configServices
     )
 {
     // insurance.json
     public void AddTraderReturnChance(MongoId Id, double Chance)
     {
-        Insurance.ReturnChancePercent.TryAdd(Id, Chance);
+        var insurance = configServices.GetInsuranceConfig();
+        insurance.ReturnChancePercent.TryAdd(Id, Chance);
     }
     
     // quest.json
@@ -105,32 +79,36 @@ public class ConfigsServer(
             RewardCanBeWeapon = true,
             WeaponRewardChancePercent = 30
         };
-        Quest.RepeatableQuests[0].TraderWhitelist.Add(traderWhitelist);
-        Quest.RepeatableQuests[1].TraderWhitelist.Add(traderWhitelist);
+        var quest = configServices.GetQuestConfig();
+        quest.RepeatableQuests[0].TraderWhitelist.Add(traderWhitelist);
+        quest.RepeatableQuests[1].TraderWhitelist.Add(traderWhitelist);
     }
     
     // ragfair.json
     public void ApplyBaseFleaPrices()
     {
-        Ragfair.Dynamic.GenerateBaseFleaPrices.UseHandbookPrice = false;
-        Ragfair.Dynamic.GenerateBaseFleaPrices.PriceMultiplier = 1;
-        Ragfair.Dynamic.GenerateBaseFleaPrices.PreventPriceBeingBelowTraderBuyPrice = false;
+        var ragfair = configServices.GetRagfairConfig();
+        ragfair.Dynamic.GenerateBaseFleaPrices.UseHandbookPrice = false;
+        ragfair.Dynamic.GenerateBaseFleaPrices.PriceMultiplier = 1;
+        ragfair.Dynamic.GenerateBaseFleaPrices.PreventPriceBeingBelowTraderBuyPrice = false;
     }
     public void AddTraderRagfair(MongoId Id, bool flag = true)
     {
-        Ragfair.Traders.TryAdd(Id, flag);
+        var ragfair = configServices.GetRagfairConfig();
+        ragfair.Traders.TryAdd(Id, flag);
     }
     
     // trader.json
     public void SetTradersUpdateTime(int min, int? max=null, string? traderId=null, string? traderName=null)
     {
+        var trader = configServices.GetTraderConfig();
         var seconds = new MinMax<int>
         {
             Max = max??min,
             Min = min
         };
         int flag = 0;
-        foreach (var key in Trader.UpdateTime)
+        foreach (var key in trader.UpdateTime)
         {
             if (string.IsNullOrEmpty(traderId) || key.TraderId == traderId)
             {
@@ -142,7 +120,7 @@ public class ConfigsServer(
         if (flag == 1) return;
         if (!MongoId.IsValidMongoId(traderId) || traderId == null) return;
         
-        Trader.UpdateTime.Add(new UpdateTime()
+        trader.UpdateTime.Add(new UpdateTime()
         {
             Name =  traderName,
             TraderId = traderId,
@@ -153,6 +131,7 @@ public class ConfigsServer(
     // weather.json
     public void SetWeatherConfig(MGModConfig_Config_WeatherSettings value, string type = "default")
     {
+        var Weather =  configServices.GetWeatherConfig();
         if (!Weather.Weather.PresetWeights.Keys.Contains(type)) return;
         var weather = Weather.Weather.PresetWeights[type];
         SetWeatherPresetWeightsType1(weather.Clouds, value.clouds);

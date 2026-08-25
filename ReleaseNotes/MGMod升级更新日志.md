@@ -9,6 +9,20 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 123网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-E6Gy3?pwd=MGYY# 提取码：MGYY
 
 
+# MG-Mod v1.1.2.040102
+
+## 新增
+1. 【功能】[独立物品]：新增 RPD 反物质弹药盒。✅
+## 修复
+0. x
+## 变更
+1. 【架构】[数据流]：新增底层数据服务 DatabaseServices/ConfigServices（聚合 SPT 表与配置访问），Server 层不再直接注入 SPT 类型——隔离 SPT 版本/框架升级影响，未来升级只改这两处门面即可。✅
+2. 【版本】SptVersion 调整为 ~4.1.0（适配 SPT 4.1.x 全系列）。✅
+## 优化
+1. 【架构】[数据流]：清理 ConfigSettingServices/CustomProfileServices 未使用的日志注入。✅
+## 移出
+0. x
+
 # MG-Mod v1.1.1.040102-Hotfix.1
 
 ## 新增

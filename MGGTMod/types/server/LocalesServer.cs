@@ -1,14 +1,16 @@
 ﻿using _MGGTmod.types.models.EFT.locales;
+using _MGGTmod.types.services;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Utils.Json;
 
 namespace _MGGTmod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class LocalesServer(
-    LocaleTable Locale
+    DatabaseServices databaseServices
     )
 {
     
@@ -34,13 +36,17 @@ public class LocalesServer(
     
     public LocaleTable GetLocales()
     {
-        var locale = Locale;
-        return locale;
+        return databaseServices.GetLocales();
+    }
+
+    public Dictionary<string, LazyLoad<GlobalLocaleDictionary>> GetLocalesGlobal()
+    {
+        return GetLocales().Global;
     }
 
     public string GetLocale(string lang)
     {
-        var global = Locale.Global[lang].Value;
+        var global = GetLocalesGlobal()[lang].Value;
 
         if (global != null) return global[lang];
         
@@ -49,7 +55,7 @@ public class LocalesServer(
     
     public string GetInfoByKey(string key, string lang = "ch")
     {
-        var global = Locale.Global[lang].Value;
+        var global = GetLocales().Global[lang].Value;
         if (global.ContainsKey(key))
         {
             return global[key];
@@ -59,7 +65,7 @@ public class LocalesServer(
     
     public ItemsDesc GetItemInfoByLang(string id, string lang = "ch")
     {
-        var global = Locale.Global[lang].Value;
+        var global = GetLocales().Global[lang].Value;
         
         ItemsDesc itemsDesc = new()
         {
@@ -86,7 +92,7 @@ public class LocalesServer(
 
     public string GetTraderNicknameByLang(string id, string lang="ch")
     {
-        var global = Locale.Global[lang].Value;
+        var global = GetLocales().Global[lang].Value;
 
         if (global.ContainsKey($"{id} Nickname"))
         {
@@ -98,7 +104,7 @@ public class LocalesServer(
 
     public void SetInfo(GeneralInfo info)
     {
-        var global = Locale.Global;
+        var global = GetLocales().Global;
 
         foreach (var lang in global.Keys)
         {
@@ -117,7 +123,7 @@ public class LocalesServer(
 
     public void AddInfo(GeneralInfo info)
     {
-        var global = Locale.Global;
+        var global = GetLocales().Global;
         
         foreach (var lang in global.Keys) 
         {
@@ -135,7 +141,7 @@ public class LocalesServer(
     
     public void AddItemInfo(ItemsInfo info)
     {
-        var global = Locale.Global;
+        var global = GetLocales().Global;
 
         foreach (var lang in global.Keys)
         {
@@ -162,7 +168,7 @@ public class LocalesServer(
 
     public void AddQuestInfo(QuestInfo info)
     {
-        var global = Locale.Global;
+        var global = GetLocales().Global;
         
         foreach(var lang  in global.Keys)
         {
@@ -204,7 +210,7 @@ public class LocalesServer(
 
     public void AddTraderInfo(TraderInfo info)
     {
-        var global = Locale.Global;
+        var global = GetLocales().Global;
 
         foreach (var lang in global.Keys)
         {

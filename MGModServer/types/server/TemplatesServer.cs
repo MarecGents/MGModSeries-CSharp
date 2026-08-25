@@ -2,6 +2,7 @@
 using _MGMod.types.models.EFT.locales;
 using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.models.Paths;
+using _MGMod.types.services;
 using _MGMod.types.utils;
 using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
@@ -19,16 +20,20 @@ namespace _MGMod.types.server;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class TemplatesServer(
     SptLogger<TemplatesServer> logger,
-    TemplateTable Templates,
+    DatabaseServices databaseServices,
     LocalesServer localesServer,
     CustomItemService customItemService,
     MGUtils mGUtils
 )
 {
+    public TemplateTable GetTemplates()
+    {
+        return databaseServices.GetTemplates();
+    }
     // Item.json
     public Dictionary<MongoId, TemplateItem> GetItems()
     {
-        return Templates.Items;
+        return GetTemplates().Items;
     }
 
     public bool IsItemExists(string ItemId)
@@ -190,11 +195,12 @@ public class TemplatesServer(
     // handbook.json
     public HandbookBase GetHandbook()
     {
-        return Templates.Handbook;
+        return GetTemplates().Handbook;
     }
 
     public string FindHBItemParentId(string ItemId)
     {
+        var Templates = GetTemplates();
         foreach (var item in Templates.Handbook.Items)
         {
             if (item.Id == ItemId)
@@ -208,6 +214,7 @@ public class TemplatesServer(
 
     public void AddHbCategory(HandbookCategory HbCategory)
     {
+        var Templates = GetTemplates();
         if (!MongoId.IsValidMongoId(HbCategory.Id)) return;
 
         if (HbCategory.ParentId == null)
@@ -233,13 +240,13 @@ public class TemplatesServer(
     // prices.json
     public Dictionary<MongoId, double> GetPrices()
     {
-        return Templates.Prices;
+        return GetTemplates().Prices;
     }
     
     // profile.json
     public Dictionary<string, ProfileSides> GetProfiles()
     {
-        return Templates.Profiles;
+        return GetTemplates().Profiles;
     }
 
     public void AddProfile(MGProfile mGProfile)
@@ -261,7 +268,7 @@ public class TemplatesServer(
     // quests.json
     public Dictionary<MongoId, Quest> GetQuests()
     {
-        return Templates.Quests;
+        return GetTemplates().Quests;
     }
 
     public void AddCustomItem(NewItemFromCloneDetails item)
@@ -737,14 +744,14 @@ public class TemplatesServer(
         // 功能：任务免费重置 ResetFree
         if (TemplatesSetting.ResetFree)
         {
-            var RQT = Templates.RepeatableQuests.Templates;
+            var RQT = GetTemplates().RepeatableQuests.Templates;
             RQT.Elimination.ChangeCost[0].Count = 0;
             RQT.Completion.ChangeCost[0].Count = 0;
             RQT.Exploration.ChangeCost[0].Count = 0;
             RQT.Pickup.ChangeCost[0].Count = 0;
         }
 
-        var Quest = Templates.Quests;
+        var Quest = GetQuests();
         bool questOptimize = TemplatesSetting.QuestSystem.QuestOptimize;
 
         // 功能：任务优化 QuestOptimize

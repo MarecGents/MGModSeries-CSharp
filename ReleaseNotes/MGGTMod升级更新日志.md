@@ -8,16 +8,18 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 夸克网盘链接：https://pan.quark.cn/s/47cd989d2a57?pwd=MzAt 提取码：MzAt
 123 网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-Q6Gy3?pwd=MGYY# 提取码：MGYY
 
-# MG-GT-Mod v0.x.x.x
+# MG-GT-Mod v0.5.1.040102
 ## 新增
-
+0. x
 ## 修复
-
+0. x
 ## 变更
-
+1. 【架构】[数据流]：新增底层数据服务 DatabaseServices/ConfigServices（与 MGModServer 对齐），Server 层不再直接注入 SPT 类型——隔离 SPT 版本/框架升级影响。✅
+2. 【版本】SptVersion 调整为 ~4.1.0（适配 SPT 4.1.x 全系列）。✅
 ## 优化
-
+1. 【架构】[数据流]：清理 ConfigSettingServices 未使用的日志注入。✅
 ## 移出
+0. x
 
 # MG-GT-Mod v0.5.0.040102-Hotfix.2
 ## 新增

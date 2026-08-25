@@ -1,5 +1,6 @@
 ﻿using _MGMod.types.models.Custom;
 using _MGMod.types.models.EFT.traders;
+using _MGMod.types.services;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
@@ -10,21 +11,22 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class TradersServer(
-    TradersTable Traders
+    DatabaseServices databaseServices
     )
 {
     public Dictionary<MongoId, Trader> GetTraders()
     {
-        return Traders;
+        return databaseServices.GetTraders();
     }
     
     public Trader? GetTrader(MongoId traderId)
     {
-        return Traders.GetTrader(traderId);
+        return databaseServices.GetTraders().GetTrader(traderId);
     }
     
     public void AddAssortsToTrader(CustomItemAssorts assorts)
     {
+        var Traders = GetTraders();
         if (!Traders.ContainsKey(assorts.traderId))
         {
             assorts.traderId = SPTarkov.Server.Core.Models.Enums.Traders.THERAPIST; // 默认是Therapist
@@ -41,6 +43,7 @@ public class TradersServer(
     }
     public void MGmodTraders(MGModConfig_Traders TradersSetting)
     {
+        var Traders = GetTraders();
         foreach(var trader in Traders.Keys)
         {
             // if (trader == "ragfair") continue;

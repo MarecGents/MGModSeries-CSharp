@@ -12,7 +12,6 @@ namespace _MGGTmod.types.services;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class ConfigSettingServices
 {
-    private SptLogger<ConfigSettingServices> logger;
     private MGUtils mGUtils;
     private CustomTraderServices  customTraderServices;
     private TestServices testServices;
@@ -23,7 +22,6 @@ public class ConfigSettingServices
         TestServices _testServices
         )
     {
-        logger = _logger;
         mGUtils = _mGUtils;
         customTraderServices = _customTraderServices;
         testServices = _testServices;

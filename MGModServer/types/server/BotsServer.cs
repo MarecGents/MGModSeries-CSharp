@@ -1,5 +1,6 @@
 ﻿using _MGMod.types.models.Custom;
 using _MGMod.types.models.Paths;
+using _MGMod.types.services;
 using _MGMod.types.utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
@@ -10,19 +11,18 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class BotsServer(
-    BotTable Bots,
+    DatabaseServices databaseServices,
     MGUtils mGUtils
     )
 {
     public BotTable GetBots()
     {
-        var bots = Bots;
-        return bots;
+        return databaseServices.GetBots();
     }
 
     public BotType GetBot(string key)
     {
-        if (Bots.Types.TryGetValue(key, out var botType))
+        if (GetBots().Types.TryGetValue(key, out var botType))
         {
             return botType;
         }
@@ -31,11 +31,12 @@ public class BotsServer(
     
     public void SetBotsHealth(int rate, string? botType = null)
     {
-        foreach(var key in Bots.Types.Keys)
+        var bots = GetBots();
+        foreach(var key in bots.Types.Keys)
         {
             if( string.IsNullOrEmpty(botType) || key == botType)
             {
-                var bodyPart = Bots.Types[key].BotHealth.BodyParts.ElementAtOrDefault(0);
+                var bodyPart = bots.Types[key].BotHealth.BodyParts.ElementAtOrDefault(0);
 				bodyPart.Chest.Max *= rate;
                 bodyPart.Chest.Min *= rate;
                 bodyPart.Head.Max *= rate;

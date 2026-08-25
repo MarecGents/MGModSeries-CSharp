@@ -1,4 +1,5 @@
 ﻿using _MGMod.types.models.Custom;
+using _MGMod.types.services;
 using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
@@ -11,41 +12,14 @@ namespace _MGMod.types.server;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class ConfigsServer(
     // ConfigServer configServer,
-    SptLogger<ConfigsServer> logger,
-    AirdropConfig Airdrop,
-    BackupConfig Backup,
-    BotConfig Bot,
-    BtrDeliveryConfig BtrDelivery,
-    CoreConfig Core,
-    GiftsConfig Gifts,
-    HealthConfig Health,
-    HideoutConfig Hideout,
-    HttpConfig Http,
-    InRaidConfig InRaid,
-    InsuranceConfig Insurance,
-    InventoryConfig Inventory,
-    ItemConfig Item,
-    LocaleConfig Locale,
-    LocationConfig Location,
-    LootConfig Loot,
-    LostOnDeathConfig LostOnDeath,
-    MatchConfig Match,
-    PlayerScavConfig PlayerScav,
-    PmcChatResponseConfig PmcChatResponse,
-    PmcConfig Pmc,
-    QuestConfig Quest,
-    RagfairConfig Ragfair,
-    RepairConfig Repair,
-    ScavCaseConfig ScavCase,
-    SeasonalEventConfig SeasonalEvent,
-    TraderConfig Trader,
-    WeatherConfig Weather
+    ConfigServices configServices
     )
 {
     // insurance.json
     public void AddTraderReturnChance(MongoId Id, double Chance)
     {
-        Insurance.ReturnChancePercent.TryAdd(Id, Chance);
+        var insurance = configServices.GetInsuranceConfig();
+        insurance.ReturnChancePercent.TryAdd(Id, Chance);
     }
     
     // quest.json
@@ -105,32 +79,36 @@ public class ConfigsServer(
             RewardCanBeWeapon = true,
             WeaponRewardChancePercent = 30
         };
-        Quest.RepeatableQuests[0].TraderWhitelist.Add(traderWhitelist);
-        Quest.RepeatableQuests[1].TraderWhitelist.Add(traderWhitelist);
+        var quest = configServices.GetQuestConfig();
+        quest.RepeatableQuests[0].TraderWhitelist.Add(traderWhitelist);
+        quest.RepeatableQuests[1].TraderWhitelist.Add(traderWhitelist);
     }
     
     // ragfair.json
     public void ApplyBaseFleaPrices()
     {
-        Ragfair.Dynamic.GenerateBaseFleaPrices.UseHandbookPrice = false;
-        Ragfair.Dynamic.GenerateBaseFleaPrices.PriceMultiplier = 1;
-        Ragfair.Dynamic.GenerateBaseFleaPrices.PreventPriceBeingBelowTraderBuyPrice = false;
+        var ragfair = configServices.GetRagfairConfig();
+        ragfair.Dynamic.GenerateBaseFleaPrices.UseHandbookPrice = false;
+        ragfair.Dynamic.GenerateBaseFleaPrices.PriceMultiplier = 1;
+        ragfair.Dynamic.GenerateBaseFleaPrices.PreventPriceBeingBelowTraderBuyPrice = false;
     }
     public void AddTraderRagfair(MongoId Id, bool flag = true)
     {
-        Ragfair.Traders.TryAdd(Id, flag);
+        var ragfair = configServices.GetRagfairConfig();
+        ragfair.Traders.TryAdd(Id, flag);
     }
     
     // trader.json
     public void SetTradersUpdateTime(int min, int? max=null, string? traderId=null, string? traderName=null)
     {
+        var trader = configServices.GetTraderConfig();
         var seconds = new MinMax<int>
         {
             Max = max??min,
             Min = min
         };
         int flag = 0;
-        foreach (var key in Trader.UpdateTime)
+        foreach (var key in trader.UpdateTime)
         {
             if (string.IsNullOrEmpty(traderId) || key.TraderId == traderId)
             {
@@ -142,7 +120,7 @@ public class ConfigsServer(
         if (flag == 1) return;
         if (!MongoId.IsValidMongoId(traderId) || traderId == null) return;
         
-        Trader.UpdateTime.Add(new UpdateTime()
+        trader.UpdateTime.Add(new UpdateTime()
         {
             Name =  traderName,
             TraderId = traderId,
@@ -153,6 +131,7 @@ public class ConfigsServer(
     // weather.json
     public void SetWeatherConfig(MGModConfig_Config_WeatherSettings value, string type = "default")
     {
+        var Weather =  configServices.GetWeatherConfig();
         if (!Weather.Weather.PresetWeights.Keys.Contains(type)) return;
         var weather = Weather.Weather.PresetWeights[type];
         SetWeatherPresetWeightsType1(weather.Clouds, value.clouds);
@@ -176,8 +155,9 @@ public class ConfigsServer(
         // 功能：空投种类 AirdropType
         if (ConfigSetting.AirdropType != "default")
         {
+            var airdrop = configServices.GetAirdropConfig();
             var Type = ConfigSetting.AirdropType;
-            var Weight = Airdrop.AirdropTypeWeightings;
+            var Weight = airdrop.AirdropTypeWeightings;
             foreach (var w in Weight.Keys)
             {
                 Weight[w] = 0;
@@ -206,9 +186,10 @@ public class ConfigsServer(
         // 功能：AI刷新数量 AISpawnNumber
         if (ConfigSetting.AISpawnNumber != 0)
         {
-            foreach(var key in Bot.MaxBotCap.Keys)
+            var bot =  configServices.GetBotConfig();
+            foreach(var key in bot.MaxBotCap.Keys)
             {
-                Bot.MaxBotCap[key] += ConfigSetting.AISpawnNumber;
+                bot.MaxBotCap[key] += ConfigSetting.AISpawnNumber;
             }
         }
 
@@ -223,23 +204,25 @@ public class ConfigsServer(
         // 功能：战局默认选项 RaidDefault
         if (ConfigSetting.RaidDefault.enable)
         {
-            InRaid.RaidMenuSettings.AiAmount = ConfigSetting.RaidDefault.aiAmount;
-            InRaid.RaidMenuSettings.AiDifficulty = ConfigSetting.RaidDefault.aiDifficulty;
-            InRaid.RaidMenuSettings.BossEnabled = ConfigSetting.RaidDefault.bossEnabled;
-            InRaid.RaidMenuSettings.ScavWars = ConfigSetting.RaidDefault.scavWars;
-            InRaid.RaidMenuSettings.TaggedAndCursed = ConfigSetting.RaidDefault.taggedAndCursed;
+            var inRaid = configServices.GetInRaidConfig();
+            inRaid.RaidMenuSettings.AiAmount = ConfigSetting.RaidDefault.aiAmount;
+            inRaid.RaidMenuSettings.AiDifficulty = ConfigSetting.RaidDefault.aiDifficulty;
+            inRaid.RaidMenuSettings.BossEnabled = ConfigSetting.RaidDefault.bossEnabled;
+            inRaid.RaidMenuSettings.ScavWars = ConfigSetting.RaidDefault.scavWars;
+            inRaid.RaidMenuSettings.TaggedAndCursed = ConfigSetting.RaidDefault.taggedAndCursed;
         }
 
         // insurance.json
         //功能：商人百分百回保 ReturnChance
         if(ConfigSetting.ReturnChance.enable)
         {
+            var insurance = configServices.GetInsuranceConfig();
             var chance = ConfigSetting.ReturnChance.value;
-            foreach(var key in Insurance.ReturnChancePercent.Keys)
+            foreach(var key in insurance.ReturnChancePercent.Keys)
             {
-                Insurance.ReturnChancePercent[key] = chance;
+                insurance.ReturnChancePercent[key] = chance;
             }
-            Insurance.RunIntervalSeconds = 0;
+            insurance.RunIntervalSeconds = 0;
         }
 
         // inventory.json
@@ -258,8 +241,9 @@ public class ConfigsServer(
         // 功能：容器物资倍率 Container
         if (ConfigSetting.LootMultiple.Container != 1)
         {
+            var location =  configServices.GetLocationConfig();
             var multiplier = ConfigSetting.LootMultiple.Container;
-            var staticsets = Location.StaticLootMultiplier;
+            var staticsets = location.StaticLootMultiplier;
             foreach(var key in staticsets.Keys)
             {
                 staticsets[key] *= multiplier;
@@ -268,8 +252,9 @@ public class ConfigsServer(
         // 功能：地面物资倍率 Ground
         if (ConfigSetting.LootMultiple.Ground != 1)
         {
+            var location =  configServices.GetLocationConfig();
             var multiplier = ConfigSetting.LootMultiple.Ground;
-            var loosesets = Location.LooseLootMultiplier;
+            var loosesets = location.LooseLootMultiplier;
             foreach(var key in loosesets.Keys)
             {
                 loosesets[key] *= multiplier;
@@ -278,10 +263,11 @@ public class ConfigsServer(
         //功能：容器随机生成 RandomContainer
         if (ConfigSetting.RandomContainer)
         {
-            Location.ContainerRandomisationSettings.Enabled = false; // 默认为开启随机， 所以若为true，则表示关闭随机
-            foreach (var map in Location.ContainerRandomisationSettings.Maps.Keys)
+            var location =  configServices.GetLocationConfig();
+            location.ContainerRandomisationSettings.Enabled = false; // 默认为开启随机， 所以若为true，则表示关闭随机
+            foreach (var map in location.ContainerRandomisationSettings.Maps.Keys)
             {
-                Location.ContainerRandomisationSettings.Maps[map] = false;
+                location.ContainerRandomisationSettings.Maps[map] = false;
             }
         }
 
@@ -291,18 +277,19 @@ public class ConfigsServer(
         // 功能： 死亡不掉落 NoLostonDeath
         if (ConfigSetting.NoLostonDeath)
         {
-            LostOnDeath.Equipment.Headwear = false;
-            LostOnDeath.Equipment.Earpiece = false;
-            LostOnDeath.Equipment.FaceCover = false;
-            LostOnDeath.Equipment.ArmorVest = false;
-            LostOnDeath.Equipment.Eyewear = false;
-            LostOnDeath.Equipment.TacticalVest = false;
-            LostOnDeath.Equipment.PocketItems = false;
-            LostOnDeath.Equipment.Backpack = false;
-            LostOnDeath.Equipment.Holster = false;
-            LostOnDeath.Equipment.FirstPrimaryWeapon = false;
-            LostOnDeath.Equipment.SecondPrimaryWeapon = false;
-            LostOnDeath.QuestItems = false;
+            var lostOnDeath = configServices.GetLostOnDeathConfig();
+            lostOnDeath.Equipment.Headwear = false;
+            lostOnDeath.Equipment.Earpiece = false;
+            lostOnDeath.Equipment.FaceCover = false;
+            lostOnDeath.Equipment.ArmorVest = false;
+            lostOnDeath.Equipment.Eyewear = false;
+            lostOnDeath.Equipment.TacticalVest = false;
+            lostOnDeath.Equipment.PocketItems = false;
+            lostOnDeath.Equipment.Backpack = false;
+            lostOnDeath.Equipment.Holster = false;
+            lostOnDeath.Equipment.FirstPrimaryWeapon = false;
+            lostOnDeath.Equipment.SecondPrimaryWeapon = false;
+            lostOnDeath.QuestItems = false;
         }
         
         // match.json
@@ -311,20 +298,21 @@ public class ConfigsServer(
         // 功能： Scav装备优化 ScavEquipmentOptimize
         if (ConfigSetting.ScavEquipmentOptimize)
         {
-            foreach (var level in PlayerScav.KarmaLevel.Keys)
+            var playerScav =  configServices.GetPlayerScavConfig();
+            foreach (var level in playerScav.KarmaLevel.Keys)
             {
                 int addValue = 0;
                 if (int.TryParse(level, out int x))
                 {
                     addValue = x;
                 }
-                foreach (var equipment in PlayerScav.KarmaLevel[level].Modifiers.Equipment.Keys)
+                foreach (var equipment in playerScav.KarmaLevel[level].Modifiers.Equipment.Keys)
                 {
-                    PlayerScav.KarmaLevel[level].Modifiers.Equipment[equipment] += (addValue + 8) * 3;
+                    playerScav.KarmaLevel[level].Modifiers.Equipment[equipment] += (addValue + 8) * 3;
                 }
-                foreach (var mod in PlayerScav.KarmaLevel[level].Modifiers.Mod.Keys)
+                foreach (var mod in playerScav.KarmaLevel[level].Modifiers.Mod.Keys)
                 {
-                    PlayerScav.KarmaLevel[level].Modifiers.Mod[mod] += (addValue + 8) * 3;
+                    playerScav.KarmaLevel[level].Modifiers.Mod[mod] += (addValue + 8) * 3;
                 }
             }
         }
@@ -332,7 +320,8 @@ public class ConfigsServer(
         // 功能：USEC比例 USECRate
         if (ConfigSetting.USECRate.enable)
         {
-            Pmc.IsUsec = ConfigSetting.USECRate.value;
+            var pmc =  configServices.GetPmcConfig();
+            pmc.IsUsec = ConfigSetting.USECRate.value;
         }
 
         // pmcchatresponse.json
@@ -342,7 +331,8 @@ public class ConfigsServer(
         // 功能：跳蚤出售100% Sell100
         if (ConfigSetting.Sell100)
         {
-            var RagfairSellChance = Ragfair.Sell.Chance;
+            var ragfair = configServices.GetRagfairConfig();
+            var RagfairSellChance = ragfair.Sell.Chance;
             RagfairSellChance.Base = 100;
             RagfairSellChance.SellMultiplier = 2;
             RagfairSellChance.MaxSellChancePercent = 100;
@@ -351,7 +341,8 @@ public class ConfigsServer(
         // 功能：跳蚤极速出售 SellFast
         if (ConfigSetting.SellFast)
         {
-            Ragfair.Sell.Time = new MinMax<double>
+            var ragfair = configServices.GetRagfairConfig();
+            ragfair.Sell.Time = new MinMax<double>
             {
                 Max = 0.01,
                 Min = 0
@@ -360,12 +351,14 @@ public class ConfigsServer(
         // 功能：购买物品带钩 BuyFoundInRaid
         if (ConfigSetting.BuyFoundInRaid)
         {
-            Ragfair.Dynamic.PurchasesAreFoundInRaid = ConfigSetting.BuyFoundInRaid;
+            var ragfair = configServices.GetRagfairConfig();
+            ragfair.Dynamic.PurchasesAreFoundInRaid = ConfigSetting.BuyFoundInRaid;
         }
         // 功能：跳蚤购买优化 SellOptimize
         if (ConfigSetting.SellOptimize)
         {
-            var RagfairDynamic = Ragfair.Dynamic;
+            var ragfair = configServices.GetRagfairConfig();
+            var RagfairDynamic = ragfair.Dynamic;
             // 跳蚤不可堆叠物品出售数量
             RagfairDynamic.NonStackableCount = new MinMax<int>
             {
@@ -386,7 +379,8 @@ public class ConfigsServer(
         // 功能：跳蚤物品全新 SellNew
         if (ConfigSetting.SellNew)
         {
-            var RagfairDynamicCondition = Ragfair.Dynamic.Condition;
+            var ragfair = configServices.GetRagfairConfig();
+            var RagfairDynamicCondition = ragfair.Dynamic.Condition;
             foreach (var key in RagfairDynamicCondition.Keys)
             {
                 RagfairDynamicCondition[key].ConditionChance = 0;
@@ -395,14 +389,16 @@ public class ConfigsServer(
         // 功能：禁用跳蚤黑名单 NoBlackList
         if (ConfigSetting.NoBlackList)
         {
-            Ragfair.Dynamic.Blacklist.EnableBsgList = !ConfigSetting.NoBlackList;
+            var ragfair = configServices.GetRagfairConfig();
+            ragfair.Dynamic.Blacklist.EnableBsgList = !ConfigSetting.NoBlackList;
         }
 
         // repair.json
         // 功能：护甲附魔
         if (ConfigSetting.Buffs.BuffsArmor)
         {
-            var RepairKit = Repair.RepairKit;
+            var repair = configServices.GetRepairConfig();
+            var RepairKit = repair.RepairKit;
             var RarityWeight = new Dictionary<string, double>
             {
                 { "Common", 0},
@@ -411,12 +407,13 @@ public class ConfigsServer(
             RepairKit.Armor.RarityWeight = RarityWeight;
             RepairKit.Vest.RarityWeight = RarityWeight;
             RepairKit.Headwear.RarityWeight = RarityWeight;
-            Repair.ArmorKitSkillPointGainPerRepairPointMultiplier *= 100;
+            repair.ArmorKitSkillPointGainPerRepairPointMultiplier *= 100;
         }
         // 功能：武器附魔
         if (ConfigSetting.Buffs.BuffsWeapon)
         {
-            var RepairKit = Repair.RepairKit;
+            var repair = configServices.GetRepairConfig();
+            var RepairKit = repair.RepairKit;
             var RarityWeight = new Dictionary<string, double>
             {
                 { "Common", 0},
@@ -428,11 +425,12 @@ public class ConfigsServer(
         // 功能：附魔
         if (ConfigSetting.Buffs.BuffsWeapon || ConfigSetting.Buffs.BuffsArmor)
         {
-            Repair.RepairKitIntellectGainMultiplier.Weapon = 100;
-            Repair.RepairKitIntellectGainMultiplier.Armor = 100;
-            Repair.WeaponTreatment.CritSuccessChance= 1;
-            Repair.WeaponTreatment.CritFailureChance= 0;
-            Repair.WeaponTreatment.PointGainMultiplier= 100;
+            var repair = configServices.GetRepairConfig();
+            repair.RepairKitIntellectGainMultiplier.Weapon = 100;
+            repair.RepairKitIntellectGainMultiplier.Armor = 100;
+            repair.WeaponTreatment.CritSuccessChance= 1;
+            repair.WeaponTreatment.CritFailureChance= 0;
+            repair.WeaponTreatment.PointGainMultiplier= 100;
         }
 
         // scavcase.json
@@ -442,14 +440,16 @@ public class ConfigsServer(
         // 功能：商人供货时间 UpdateTime
         if (ConfigSetting.UpdateTime.enable)
         {
+            var trader =  configServices.GetTraderConfig();
             var updateTime = ConfigSetting.UpdateTime.value;
-            Trader.UpdateTimeDefault = updateTime;
+            trader.UpdateTimeDefault = updateTime;
             SetTradersUpdateTime(updateTime);
         }
         // 功能：购买物品带钩 BuyFoundInRaid
         if (ConfigSetting.BuyFoundInRaid)
         {
-            Trader.PurchasesAreFoundInRaid = ConfigSetting.BuyFoundInRaid;
+            var trader =  configServices.GetTraderConfig();
+            trader.PurchasesAreFoundInRaid = ConfigSetting.BuyFoundInRaid;
         }
 
         // weather.json

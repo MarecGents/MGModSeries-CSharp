@@ -21,6 +21,7 @@
 2. 【MGModEditor】[设置]：About 页应用名与版本串由「MGEditor」统一为「MGModEditor」。✅
 ## 变更
 1. 【MGModEditor】版本号更新至 v1.3.2.1。✅
+2. 【MGModEditor】依赖升级：Microsoft.Extensions.Hosting 10.0.11、CommunityToolkit.Mvvm 8.4.2。✅
 ## 优化
 0. x
 ## 移出

@@ -1,4 +1,5 @@
 ﻿using _MGMod.types.models.Custom;
+using _MGMod.types.services;
 using Spectre.Console;
 using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
@@ -9,17 +10,17 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class GlobalsServer(
-    GlobalTable Globals,
+    DatabaseServices databaseServices,
     SptLogger<GlobalsServer> logger
     )
 {
     public GlobalTable GetGlobals()
     {
-        return Globals;
+        return databaseServices.GetGlobals();
     }
     public void AddBuff(string buffName, List<Buff> buff)
     {
-        var Buffs = Globals.Configuration.Health.Effects.Stimulator.Buffs;
+        var Buffs = GetGlobals().Configuration.Health.Effects.Stimulator.Buffs;
         if (!Buffs.ContainsKey(buffName))
         {
             Buffs.Add(buffName, buff);
@@ -38,6 +39,7 @@ public class GlobalsServer(
     }
     public void MGmodGlobals(MGModConfig_Globals GlobalsSetting)
     {
+        var Globals = GetGlobals();
         // 功能：撤离时间无限制 EscapeNoTimeLimit
         if (GlobalsSetting.EscapeNoTimeLimit)
         {

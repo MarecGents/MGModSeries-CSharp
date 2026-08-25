@@ -2,6 +2,7 @@
 using _MGMod.types.models.EFT.locations;
 using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.models.Paths;
+using _MGMod.types.services;
 using _MGMod.types.utils;
 using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
@@ -14,13 +15,13 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class LocationsServer(
-    LocationTable Locations,
+    DatabaseServices databaseServices,
     MGUtils mGUtils
     )
 {
     public Dictionary<string, Location> GetLocations()
     {
-        return Locations.GetDictionary();
+        return databaseServices.GetLocations().GetDictionary();
     }
     
     public void MGmodLocations(MGModConfig_Locations LocationsSetting)

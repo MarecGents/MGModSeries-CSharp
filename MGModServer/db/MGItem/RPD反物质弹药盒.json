@@ -1,0 +1,52 @@
+﻿{
+  "items": {
+    "newId": "8ef5b2ef0000000000000022",
+    "cloneId": "6513f0a194c72326990a3868",
+    "_props": {
+      "BackgroundColor": "blue",
+      "Cartridges": [
+        {
+          "_id": "8ef5b2ef2000000000000003",
+          "_max_count": 200,
+          "_name": "cartridges",
+          "_parent": "8ef5b2ef0000000000000022",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "59e0d99486f7744a32234762",
+                  "59e4d3d286f774176a36250a",
+                  "5656d7c34bdc2d9d198b4587",
+                  "59e4cf5286f7741778269d8a",
+                  "59e4d24686f7741776641ac7",
+                  "64b7af5a8532cf95ee0a0dbd",
+                  "601aa3d2b2bcb34913271e6d",
+                  "64b7af434b75259c590fa893",
+                  "64b7af734b75259c590fa895"
+                ]
+              }
+            ]
+          },
+          "_proto": "5748538b2459770af276a261"
+        }
+      ],
+      "Ergonomics": 10,
+      "Recoil": -10,
+      "Height": 2,
+      "Width": 1,
+      "Weight": 0.1
+    }
+  },
+  "price": 50000,
+  "description": {
+    "name": "RPD 扩容弹药盒",
+    "shortName": "扩容弹药盒",
+    "description": "M.G出品的200发7.62x39四维材质弹药盒，用更小的体积装更多的子弹，立刻治好你的火力不足恐惧症。"
+  },
+  "Buffs": {},
+  "toTraderId": "8ef5b2eff000000000000000",
+  "isSold": true,
+  "loyal_level": 1,
+  "assort": [],
+  "currency": "5449016a4bdc2d6f028b456f"
+}

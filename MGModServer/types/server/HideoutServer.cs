@@ -1,4 +1,5 @@
 ﻿using _MGMod.types.models.Custom;
+using _MGMod.types.services;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
@@ -8,17 +9,18 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class HideoutServer(
-    HideoutTable Hideout
+    DatabaseServices databaseServices
     )
 {
 
     public HideoutTable GetHideout()
     {
-        return Hideout;
+        return databaseServices.GetHideouts();
     }
 
     private void SetConstructionTime(double value)
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach(var area in Hideout.Areas)
         {
             foreach(var n in area.Stages.Keys)
@@ -32,6 +34,7 @@ public class HideoutServer(
     }
     private void SetProductionTime(double value)
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach(var product in Hideout.Production.Recipes)
         {
             if(product.ProductionTime != 0)
@@ -42,6 +45,7 @@ public class HideoutServer(
     }
     private void SetScavecaseTime(double value)
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach(var scavcase in Hideout.Production.ScavRecipes)
         {
             if(scavcase.ProductionTime != 0)
@@ -52,6 +56,7 @@ public class HideoutServer(
     }
     private void SetUpgradeNoLimit()
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach(var area in Hideout.Areas)
         {
             foreach(var n in area.Stages.Keys)
@@ -94,6 +99,7 @@ public class HideoutServer(
         List<double> TimesValue = [1, 2, 5, 10];
         List<double> AddorReducePercent = [0, 10, 20, 50];
         
+        var Hideout = databaseServices.GetHideouts();
         foreach(var area in Hideout.Areas)
         {
             foreach(var n in area.Stages.Keys)
@@ -122,6 +128,7 @@ public class HideoutServer(
     }
     private void SetNoNeedsFuel()
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach(var area in Hideout.Areas)
         {
             area.NeedsFuel = false;
@@ -129,6 +136,7 @@ public class HideoutServer(
     }
     private void SetQteSucess100()
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach (var qte in Hideout.Qte)
         {
             foreach (var quickTimeEvents in qte.QuickTimeEvents)
@@ -143,6 +151,7 @@ public class HideoutServer(
     }
     private void SetQteNoPunish()
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach (var qte in Hideout.Qte)
         {
             foreach (var n in qte.Results.Keys)
@@ -156,6 +165,7 @@ public class HideoutServer(
     }
     private void SetQteRewardMultiple(int value)
     {
+        var Hideout = databaseServices.GetHideouts();
         foreach (var qte in Hideout.Qte)
         {
             foreach (var rewardEffects in qte.Results[QteEffectType.singleSuccessEffect].RewardEffects)

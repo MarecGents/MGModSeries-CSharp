@@ -12,7 +12,6 @@ namespace _MGMod.types.services;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 
 public class CustomProfileServices(
-	SptLogger<CustomProfileServices> logger,
 	TemplatesServer templatesServer,
 	MGUtils mGUtils
 	)

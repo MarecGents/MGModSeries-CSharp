@@ -12,7 +12,6 @@ namespace _MGMod.types.services;
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class ConfigSettingServices
 {
-    private SptLogger<ConfigSettingServices> logger;
     private ConfigSettingType? configJson;
     private MGUtils mGUtils;
 
@@ -32,7 +31,6 @@ public class ConfigSettingServices
     private CustomAssortServices  customAssortServices;
     private TestServices testServices;
     public ConfigSettingServices(
-        SptLogger<ConfigSettingServices> _logger,
         MGUtils _mGUtils,
 
         BotsServer _botsServer,
@@ -53,7 +51,6 @@ public class ConfigSettingServices
         TestServices _testServices
         )
     {
-        logger = _logger;
         mGUtils = _mGUtils;
 
         botsServer = _botsServer;
