@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
-		<Version>0.5.1.040102</Version>
+		<Version>0.5.2.040103</Version>
 		<OutputPath>$(MGModModsOutputDir)MGGTMod\</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
@@ -28,9 +28,9 @@
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="SPTarkov.Common" Version="4.1.2" />
-		<PackageReference Include="SPTarkov.DI" Version="4.1.2" />
-		<PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
+		<PackageReference Include="SPTushonka.Common" Version="4.1.3" />
+		<PackageReference Include="SPTushonka.DI" Version="4.1.3" />
+		<PackageReference Include="SPTushonka.Server.Core" Version="4.1.3" />
 	</ItemGroup>
 
 </Project>

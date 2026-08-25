@@ -9,6 +9,20 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 123网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-E6Gy3?pwd=MGYY# 提取码：MGYY
 
 
+# MG-Mod v1.1.3.040103
+## 新增
+0. x
+## 修复
+1. 【功能】[独立商人]：修复 traderInfo.json 保险字段大小写（minreturnTime→minreturntime，SPT JsonUtil 大小写敏感），保险返还时间不再静默失效。✅
+2. 【功能】[独立商人]：修复 traderInfo.json 缺失时空引用崩溃（提前 return）。✅
+## 变更
+1. 【版本】版本号更新至 v1.1.3.040103（适配 SPT 4.1.3 / SPTushonka）。✅
+2. 【架构】包引用升级至 SPTushonka.* 4.1.3（4.1.x API 线无需代码级适配，四项目全量核查通过）。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-Mod v1.1.2.040102
 
 ## 新增

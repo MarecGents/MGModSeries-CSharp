@@ -88,7 +88,7 @@ public class CustomTraderServices(
         {
             // 2026.01.19 23:14 进度于此
             Log($"商人{Path.GetFileName(traderPath)}不存在配置文件\"traderInfo.json\"，请检查商人文件完整性。",Color.Cyan);
-            returnFlag = returnFlag + 1;
+            return false;
         }
         
         var Traders = tradersServer.GetTraders();

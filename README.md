@@ -3,8 +3,9 @@
 **MG Mod 系列 C# 整合仓库** — 四个 C# 项目的统一解决方案（MGModServer / MGGTMod / MGModEditor / MGModClient）
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
-[![SPT Version](https://img.shields.io/badge/SPT-4.1.2-blue)](https://dev.sp-tarkov.com/)
+[![SPT Version](https://img.shields.io/badge/SPT-4.1.3-blue)](https://dev.sp-tarkov.com/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey)](LICENSE)
+> **当前分支 `v4.1.3`**：适配 SPT 4.1.3 服务端（SPTushonka，net10.0）｜MG-Mod v1.1.3.040103 ｜ MG-GT-Mod v0.5.2.040103 ｜ MGModClient v0.2.1.040102 ｜ MGModEditor v1.3.2.1
 
 ---
 
@@ -92,7 +93,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **模块体系**：Server 层 8 个子系统（Bots / Configs / Globals / Hideout / Locales / Locations / Templates / Traders）+ Services 层 7 个服务（配置加载、商人服务等）
 - **ZDFW BotSystem**：AI 名字池、PMC 战术小队、地图难度、地图刷新、PMC 战吼（25 语言翻译）
 - **数据资源**：`db/` 游戏数据库覆盖、`res/botsystem/` AI 配置、`res/quest/` 任务数据（含 3X4 任务标记）、`traders/` 自定义商人
-- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.2
+- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.3
 
 📄 详细文档：[docs/MGModServer-README.md](docs/MGModServer-README.md)
 
@@ -103,7 +104,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **核心服务**：`CustomTraderServices`（商人加载）、`ConfigSettingServices`（配置）
 - **可热加载**：`traders/` 目录下的商人配置（内置 FlanrecGents 示例 + MarecGents 任务系统参考）
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
-- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.2
+- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.3
 
 📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
 
@@ -172,7 +173,7 @@ Reference/
 
   MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
 - 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
-- MGGTMod 与 MGModServer 均引用 SPTarkov 4.1.2（已对齐）。
+- MGGTMod 与 MGModServer 均引用 SPTushonka 4.1.3（4.1.x 命名空间仍为 SPTarkov.Server.Core.*，已对齐）。
 
 ## 📜 许可
 

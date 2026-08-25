@@ -8,6 +8,19 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 夸克网盘链接：https://pan.quark.cn/s/47cd989d2a57?pwd=MzAt 提取码：MzAt
 123 网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-Q6Gy3?pwd=MGYY# 提取码：MGYY
 
+# MG-GT-Mod v0.5.2.040103
+## 新增
+0. x
+## 修复
+1. 【功能】[FG商人]：修复 traderInfo.json 保险字段大小写与缺失时空引用崩溃。✅
+## 变更
+1. 【版本】版本号更新至 v0.5.2.040103（适配 SPT 4.1.3 / SPTushonka）。✅
+2. 【架构】包引用升级至 SPTushonka.* 4.1.3（与 MGModServer 同步）。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-GT-Mod v0.5.1.040102
 ## 新增
 0. x
