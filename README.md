@@ -2,9 +2,10 @@
 
 **MG Mod 系列 C# 整合仓库** — 四个 C# 项目的统一解决方案（MGModServer / MGGTMod / MGModEditor / MGModClient）
 
-[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
-[![SPT Version](https://img.shields.io/badge/SPT-4.1.2-blue)](https://dev.sp-tarkov.com/)
+[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4)](https://dotnet.microsoft.com/)
+[![SPT Version](https://img.shields.io/badge/SPT-4.0.13-blue)](https://dev.sp-tarkov.com/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey)](LICENSE)
+> **当前分支 `v4.0.13`**：适配 SPT 4.0.13 服务端（net9.0）｜MG-Mod v1.1.3.040013 ｜ MG-GT-Mod v0.5.2.040013 ｜ MGModClient v0.2.1.040013 ｜ MGModEditor v1.3.2.1
 
 ---
 
@@ -14,8 +15,8 @@
 
 | 项目 | 目录 | 类型 | 说明 |
 |---|---|---|---|
-| **MGModServer** | `MGModServer/` | SPT 服务端 Mod（net10.0） | MG-Mod 服务端核心逻辑库，DI 深度集成 SPT |
-| **MGGTMod** | `MGGTMod/` | SPT 服务端 Mod（net10.0） | 通用自定义商人框架（独立发布版） |
+| **MGModServer** | `MGModServer/` | SPT 服务端 Mod（net9.0） | MG-Mod 服务端核心逻辑库，DI 深度集成 SPT |
+| **MGGTMod** | `MGGTMod/` | SPT 服务端 Mod（net9.0） | 通用自定义商人框架（独立发布版） |
 | **MGModEditor** | `MGModEditor/` | WPF 桌面 GUI（net10.0-windows） | MG-Mod 图形化配置编辑器（36 主题 / 5 语言） |
 | **MGModClient** | `MGModClient/` | BepInEx 客户端插件（netstandard2.1） | 游戏内配置编辑器（F12 菜单镜像 + 写回） |
 
@@ -87,23 +88,23 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 
 ### 1. MGModServer — SPT 服务端 Mod（核心）
 
-**MG-Mod 服务端核心逻辑库**，基于 C#（.NET 10.0）编写，通过依赖注入（DI）架构深度集成 SPT 框架，实现对游戏服务器的全面配置与功能扩展，是 MG-Mod 功能体系的技术基石。
+**MG-Mod 服务端核心逻辑库**，基于 C#（.NET 9.0）编写，通过依赖注入（DI）架构深度集成 SPT 框架，实现对游戏服务器的全面配置与功能扩展，是 MG-Mod 功能体系的技术基石。
 
 - **模块体系**：Server 层 8 个子系统（Bots / Configs / Globals / Hideout / Locales / Locations / Templates / Traders）+ Services 层 7 个服务（配置加载、商人服务等）
 - **ZDFW BotSystem**：AI 名字池、PMC 战术小队、地图难度、地图刷新、PMC 战吼（25 语言翻译）
 - **数据资源**：`db/` 游戏数据库覆盖、`res/botsystem/` AI 配置、`res/quest/` 任务数据（含 3X4 任务标记）、`traders/` 自定义商人
-- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.2
+- **依赖**：SPTarkov.Common / DI / Server.Core 4.0.13
 
 📄 详细文档：[docs/MGModServer-README.md](docs/MGModServer-README.md)
 
 ### 2. MGGTMod — 通用自定义商人框架（服务端）
 
-**MG General Trader Mod**，独立发布的 SPT 自定义商人框架（.NET 10.0）。提供完整商人框架，用户通过 JSON 配置即可创建自定义商人，无需编写代码。核心商人加载逻辑与 MGModServer 的独立商人功能一致，是剥离后的独立版本。
+**MG General Trader Mod**，独立发布的 SPT 自定义商人框架（.NET 9.0）。提供完整商人框架，用户通过 JSON 配置即可创建自定义商人，无需编写代码。核心商人加载逻辑与 MGModServer 的独立商人功能一致，是剥离后的独立版本。
 
 - **核心服务**：`CustomTraderServices`（商人加载）、`ConfigSettingServices`（配置）
 - **可热加载**：`traders/` 目录下的商人配置（内置 FlanrecGents 示例 + MarecGents 任务系统参考）
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
-- **依赖**：SPTarkov.Common / DI / Server.Core 4.1.2
+- **依赖**：SPTarkov.Common / DI / Server.Core 4.0.13
 
 📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
 
@@ -172,7 +173,7 @@ Reference/
 
   MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
 - 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
-- MGGTMod 与 MGModServer 均引用 SPTarkov 4.1.2（已对齐）。
+- MGGTMod 与 MGModServer 均引用 SPTarkov 4.0.13（已对齐）。
 
 ## 📜 许可
 

@@ -9,6 +9,23 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 123网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-E6Gy3?pwd=MGYY# 提取码：MGYY
 
 
+# MG-Mod v1.1.3.040013
+
+## 新增
+0. x
+## 修复
+1. 【架构】[数据流]：修复 DatabaseServices 自我引用注入（构造函数误注入自身）——改为包装 SPT 单数 DatabaseService，杜绝 DI 循环依赖崩溃。✅
+2. 【架构】[配置]：修复 ConfigServices 28 个配置键缺失 spt- 前缀（SPT 4.0.13 ConfigServer 字典键为 spt-{文件名}）及 seasonalevent→seasonalevents 复数，避免取配置时 KeyNotFoundException。✅
+3. 【功能】[独立商人]：修复 traderInfo.json 保险字段大小写（minreturnTime→minreturntime，SPT JsonUtil 大小写敏感），保险返还时间不再静默失效。✅
+4. 【功能】[独立商人]：修复 traderInfo.json 缺失时空引用崩溃（提前 return）。✅
+## 变更
+1. 【版本】版本号更新至 v1.1.3.040013（适配 SPT 4.0.13）。✅
+2. 【架构】全面适配 SPT 4.0.13：IModMetadata→AbstractModMetadata、OnLoadAsync→OnLoad、OnLoadOrder.Preload→PostDBModLoader、net10.0→net9.0、SPTarkov 包 4.1.2→4.0.13、SptVersion 精确 4.0.13、日志改用 LogTextColor。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-Mod v1.1.2.040102
 
 ## 新增
