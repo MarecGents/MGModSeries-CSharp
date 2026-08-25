@@ -1,18 +1,21 @@
 ﻿using _MGGTmod.types.models.Paths;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Extensions;
+using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.RegularExpressions;
-using SPTarkov.Common.Logger;
-using SPTarkov.Server.Core.Helpers.Server;
-using Color = Spectre.Console.Color;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Logging;
+using SPTarkov.Server.Core.Utils.Logger;
 using Path = System.IO.Path;
 
 namespace _MGGTmod.types.utils;
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 
 public class MGUtils(
     ModHelper modHelper,
@@ -56,7 +59,7 @@ public class MGUtils(
 
     public string? Serialize<T>(T? obj)
     {
-        return jsonUtil.Serialize<T>(obj);
+        return jsonUtil.Serialize<T>(obj, true);
     }
 
     public T? Deserialize<T>(string? json)
@@ -221,17 +224,17 @@ public class MGUtils(
         fileUtil.WriteFile(System.IO.Path.Combine(modPath, $"./Log/{new MongoId()}.log"),jsonUtil.Serialize(data));
     }
 
-    public void Log(string server,string data, Color textColor)
+    public void Log(string server,string data, LogTextColor textColor)
     {
         logger.LogWithColor($"[MGMod][{server}]：" + data, textColor);
     }
-    public void Log_GT(string server,string data, Color textColor)
+    public void Log_GT(string server,string data, LogTextColor textColor)
     {
         logger.LogWithColor($"[MG通用商人框架][{server}]：" + data, textColor);
     }
     public void TestOutput<T>(T data)
     {
         string data2String = jsonUtil.Serialize(data);
-        logger.LogWithColor(data2String,  Color.Gray, Color.White);
+        logger.LogWithColor(data2String,  LogTextColor.Gray, LogBackgroundColor.White);
     }
 }

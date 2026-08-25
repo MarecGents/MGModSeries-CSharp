@@ -5,12 +5,11 @@ using _MGMod.types.utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using Color = Spectre.Console.Color;
+using SPTarkov.Server.Core.Models.Logging;
 
 namespace _MGMod.types.services;
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class KeyClassfyServices
 {
     private LocalesServer  localesServer;
@@ -32,7 +31,7 @@ public class KeyClassfyServices
     {
         var mapHdIds = AddMapZhNameIdToHb();
         AddorChangeKeyHbParendId(mapHdIds);
-        Log("已开启。", Color.Yellow);
+        Log("已开启。", LogTextColor.Yellow);
     }
 
     private Dictionary<string, string> AddMapZhNameIdToHb()
@@ -101,7 +100,7 @@ public class KeyClassfyServices
         }
     }
 
-    private void Log(string data, Color textColor)
+    private void Log(string data, LogTextColor textColor)
     {
         mGUtils.Log("钥匙分类", data, textColor);
     }

@@ -5,11 +5,10 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace _MGMod.types.server;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class TradersServer(
     DatabaseServices databaseServices
     )
@@ -21,7 +20,7 @@ public class TradersServer(
     
     public Trader? GetTrader(MongoId traderId)
     {
-        return databaseServices.GetTraders().GetTrader(traderId);
+        return databaseServices.GetTraders()[traderId];
     }
     
     public void AddAssortsToTrader(CustomItemAssorts assorts)

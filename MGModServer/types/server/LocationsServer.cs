@@ -4,16 +4,14 @@ using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.models.Paths;
 using _MGMod.types.services;
 using _MGMod.types.utils;
-using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
-using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace _MGMod.types.server;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class LocationsServer(
     DatabaseServices databaseServices,
     MGUtils mGUtils

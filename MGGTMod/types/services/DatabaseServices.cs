@@ -1,71 +1,70 @@
 ﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Spt.Bots;
+using SPTarkov.Server.Core.Models.Spt.Server;
+using SPTarkov.Server.Core.Models.Spt.Templates;
+using SPTarkov.Server.Core.Services;
+using Hideout = SPTarkov.Server.Core.Models.Spt.Hideout.Hideout;
+using Locations = SPTarkov.Server.Core.Models.Spt.Server.Locations;
 
 namespace _MGGTmod.types.services;
 
-// SPT-4.1.X DatabaseServices
-[Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.Preload + 1)]
+// SPT-4.0.X DatabaseServices：包装 SPT 的 DatabaseService（单数），方法名保持本 mod 既有复数命名
+[Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class DatabaseServices(
-    BotTable bots,
-    HideoutTable hideouts,
-    LocaleTable locales,
-    LocationTable locations,
-    MatchTable matches,
-    TemplateTable templates,
-    TradersTable traders,
-    GlobalTable globals,
-    ServerTable servers,
-    SettingsTable settings
-    )
+    DatabaseService databaseService
+)
 {
-    public BotTable GetBots()
+    public Bots GetBots()
     {
-        return bots;
+        return databaseService.GetBots();
     }
 
-    public HideoutTable GetHideouts()
+    public Hideout GetHideouts()
     {
-        return hideouts;
+        return databaseService.GetHideout();
     }
 
-    public LocaleTable GetLocales()
+    public LocaleBase GetLocales()
     {
-        return locales;
+        return databaseService.GetLocales();
     }
 
-    public LocationTable GetLocations()
+    public Locations GetLocations()
     {
-        return locations;
+        return databaseService.GetLocations();
     }
     
-    public MatchTable GetMatches()
+    public Match GetMatches()
     {
-        return matches;
+        return databaseService.GetMatch();
     }
 
-    public TemplateTable GetTemplates()
+    public Templates GetTemplates()
     {
-        return templates;
+        return databaseService.GetTemplates();
     }
 
-    public TradersTable GetTraders()
+    public Dictionary<MongoId, Trader> GetTraders()
     {
-        return traders;
+        return databaseService.GetTraders();
     }
 
-    public GlobalTable GetGlobals()
+    public Globals GetGlobals()
     {
-        return globals;
+        return databaseService.GetGlobals();
     }
 
-    public ServerTable GetServers()
+    public ServerBase GetServers()
     {
-        return servers;
+        return databaseService.GetServer();
     }
 
-    public SettingsTable GetSettings()
+    public SettingsBase GetSettings()
     {
-        return settings;
+        return databaseService.GetSettings();
     }
 }

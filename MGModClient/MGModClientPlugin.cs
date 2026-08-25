@@ -18,7 +18,7 @@ namespace MGModClient;
 ///
 /// 设计约束（见《MGModEditor客户端迁移-代码落地方案报告》§一）：
 ///  - 核心功能（配置编辑）不打游戏逻辑补丁 → 只做文件编辑 + Config 镜像；
-///  - RigLayoutInjector 为加载布局预制体引用了 Assembly-CSharp（ContainedGridsView/ResourcesCache）；
+///  - RigLayoutInjector 为加载布局预制体引用了 Assembly-CSharp（ContainedGridsView/CacheResourcesPopAbstractClass）；
 ///  - 唯一运行时依赖 BepInEx + 0Harmony；ConfigurationManager 通过反射调用。
 /// </summary>
 [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]

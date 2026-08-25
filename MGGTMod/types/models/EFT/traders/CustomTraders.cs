@@ -1,9 +1,9 @@
 ﻿using _MGGTmod.types.models.EFT.locales;
 using _MGGTmod.types.models.EFT.locations;
 using _MGGTmod.types.models.EFT.templetes;
+using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Bundles;
 
 namespace _MGGTmod.types.models.EFT.traders;
 

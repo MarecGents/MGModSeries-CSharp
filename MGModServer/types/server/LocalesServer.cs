@@ -2,12 +2,12 @@
 using _MGMod.types.services;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Utils.Json;
 
 namespace _MGMod.types.server;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class LocalesServer(
     DatabaseServices databaseServices
     )
@@ -33,12 +33,12 @@ public class LocalesServer(
         "Description"
     };
     
-    public LocaleTable GetLocales()
+    public LocaleBase GetLocales()
     {
         return databaseServices.GetLocales();
     }
 
-    public Dictionary<string, LazyLoad<GlobalLocaleDictionary>> GetLocalesGlobal()
+    public Dictionary<string, LazyLoad<Dictionary<string, string>>> GetLocalesGlobal()
     {
         return GetLocales().Global;
     }

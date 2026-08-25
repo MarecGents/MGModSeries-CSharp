@@ -1,178 +1,152 @@
 ﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Servers;
 
 namespace _MGGTmod.types.services;
 
-[Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class ConfigServices(
-    AirdropConfig airdrop,
-    BackupConfig backup,
-    BotConfig bot,
-    BtrDeliveryConfig btrDelivery,
-    CoreConfig core,
-    GiftsConfig gifts,
-    HealthConfig health,
-    HideoutConfig hideout,
-    HttpConfig hHttp,
-    InRaidConfig inRaid,
-    InsuranceConfig insurance,
-    InventoryConfig inventory,
-    ItemConfig item,
-    LocaleConfig locale,
-    LocationConfig location,
-    LootConfig loot,
-    LostOnDeathConfig lostOnDeath,
-    MatchConfig match,
-    PlayerScavConfig playerScav,
-    PmcConfig pmc,
-    PmcChatResponseConfig pmcChatResponse,
-    QuestConfig quest,
-    RagfairConfig ragfair,
-    RepairConfig repair,
-    ScavCaseConfig scavCase,
-    SeasonalEventConfig seasonalEvent,
-    TraderConfig trader,
-    WeatherConfig weather
+    ConfigServer  configServer
     )
 {
     public AirdropConfig GetAirdropConfig()
     {
-        return airdrop;
+        return configServer.GetConfigByString<AirdropConfig>("spt-airdrop");
     }
 
     public BackupConfig GetBackupConfig()
     {
-        return backup;
+        return configServer.GetConfigByString<BackupConfig>("spt-backup");
     }
 
     public BotConfig GetBotConfig()
     {
-        return bot;
+        return configServer.GetConfigByString<BotConfig>("spt-bot");
     }
 
     public BtrDeliveryConfig GetBtrDeliveryConfig()
     {
-        return btrDelivery;
+        return configServer.GetConfigByString<BtrDeliveryConfig>("spt-btrdelivery");
     }
     
     public CoreConfig GetCoreConfig()
     {
-        return core;
+        return configServer.GetConfigByString<CoreConfig>("spt-core");
     }
 
     public GiftsConfig GetGiftsConfig()
     {
-        return gifts;
+        return configServer.GetConfigByString<GiftsConfig>("spt-gifts");
     }
 
     public HealthConfig GetHealthConfig()
     {
-        return health;
+        return configServer.GetConfigByString<HealthConfig>("spt-health");
     }
 
     public HideoutConfig GetHideoutConfig()
     {
-        return hideout;
+        return configServer.GetConfigByString<HideoutConfig>("spt-hideout");
     }
 
     public HttpConfig GetHttpConfig()
     {
-        return hHttp;
+        return configServer.GetConfigByString<HttpConfig>("spt-http");
     }
 
     public InRaidConfig GetInRaidConfig()
     {
-        return inRaid;
+        return configServer.GetConfigByString<InRaidConfig>("spt-inraid");
     }
 
     public InsuranceConfig GetInsuranceConfig()
     {
-        return insurance;
+        return configServer.GetConfigByString<InsuranceConfig>("spt-insurance");
     }
 
     public InventoryConfig GetInventoryConfig()
     {
-        return inventory;
+        return configServer.GetConfigByString<InventoryConfig>("spt-inventory");
     }
 
     public ItemConfig GetItemConfig()
     {
-        return item;
+        return configServer.GetConfigByString<ItemConfig>("spt-item");
     }
 
     public LocaleConfig GetLocaleConfig()
     {
-        return locale;
+        return configServer.GetConfigByString<LocaleConfig>("spt-locale");
     }
 
     public LocationConfig GetLocationConfig()
     {
-        return location;
+        return configServer.GetConfigByString<LocationConfig>("spt-location");
     }
 
     public LootConfig GetLootConfig()
     {
-        return loot;
+        return configServer.GetConfigByString<LootConfig>("spt-loot");
     }
 
     public LostOnDeathConfig GetLostOnDeathConfig()
     {
-        return lostOnDeath;
+        return configServer.GetConfigByString<LostOnDeathConfig>("spt-lostondeath");
     }
 
     public MatchConfig GetMatchConfig()
     {
-        return match;
+        return configServer.GetConfigByString<MatchConfig>("spt-match");
     }
 
     public PlayerScavConfig GetPlayerScavConfig()
     {
-        return playerScav;
+        return configServer.GetConfigByString<PlayerScavConfig>("spt-playerscav");
     }
 
     public PmcConfig GetPmcConfig()
     {
-        return pmc;
+        return configServer.GetConfigByString<PmcConfig>("spt-pmc");
     }
 
-    public PmcChatResponseConfig GetPmcChatResponseConfig()
+    public PmcChatResponse GetPmcChatResponseConfig()
     {
-        return pmcChatResponse;
+        return configServer.GetConfigByString<PmcChatResponse>("spt-pmcchatresponse");
     }
 
     public QuestConfig GetQuestConfig()
     {
-        return quest;
+        return configServer.GetConfigByString<QuestConfig>("spt-quest");
     }
 
     public RagfairConfig GetRagfairConfig()
     {
-        return ragfair;
+        return configServer.GetConfigByString<RagfairConfig>("spt-ragfair");
     }
 
     public RepairConfig GetRepairConfig()
     {
-        return repair;
+        return configServer.GetConfigByString<RepairConfig>("spt-repair");
     }
 
     public ScavCaseConfig GetScavCaseConfig()
     {
-        return scavCase;
+        return configServer.GetConfigByString<ScavCaseConfig>("spt-scavcase");
     }
 
     public SeasonalEventConfig GetSeasonalEventConfig()
     {
-        return seasonalEvent;
+        return configServer.GetConfigByString<SeasonalEventConfig>("spt-seasonalevents");
     }
 
     public TraderConfig GetTraderConfig()
     {
-        return trader;
+        return configServer.GetConfigByString<TraderConfig>("spt-trader");
     }
 
     public WeatherConfig GetWeatherConfig()
     {
-        return weather;
+        return configServer.GetConfigByString<WeatherConfig>("spt-weather");
     }
 }

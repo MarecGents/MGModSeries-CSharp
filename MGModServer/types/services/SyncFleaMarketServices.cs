@@ -8,11 +8,11 @@ using _MGMod.types.models.Paths;
 using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.server;
 using _MGMod.types.utils;
-using Spectre.Console;
+using SPTarkov.Server.Core.Models.Logging;
 
 namespace _MGMod.types.services;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class SyncFleaMarketServices(
     MGUtils mGUtils,
     TemplatesServer templatesServer,
@@ -50,7 +50,7 @@ public class SyncFleaMarketServices(
         }
         else
         {
-            Log("同步数据与当前日期差距过大，正在重新同步。", Color.Cyan);
+            Log("同步数据与当前日期差距过大，正在重新同步。", LogTextColor.Cyan);
             await GetPrices();
             if (priceJson != null) LoadPrice();
         }
@@ -69,7 +69,7 @@ public class SyncFleaMarketServices(
             if (await TryFetchPriceFromUrl(url)) return;
         }
 
-        Log("所有外部源均不可用，已保留本地缓存数据。", Color.Cyan);
+        Log("所有外部源均不可用，已保留本地缓存数据。", LogTextColor.Cyan);
     }
 
     private string[] GetPriceUrls()
@@ -100,7 +100,7 @@ public class SyncFleaMarketServices(
             using var response = await client.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
-                Log($"从 [{url}] 返回 HTTP {(int)response.StatusCode}", Color.Yellow);
+                Log($"从 [{url}] 返回 HTTP {(int)response.StatusCode}", LogTextColor.Yellow);
                 return false;
             }
 
@@ -124,13 +124,13 @@ public class SyncFleaMarketServices(
             var fetched = new PriceType { date = date, prices = prices };
             if (fetched == null)
             {
-                Log($"从 [{url}] 获取数据格式异常。", Color.Yellow);
+                Log($"从 [{url}] 获取数据格式异常。", LogTextColor.Yellow);
                 return false;
             }
 
             priceJson = fetched;
             SavePrice();
-            Log($"已从 CDN 同步最新价格数据。", Color.Green);
+            Log($"已从 CDN 同步最新价格数据。", LogTextColor.Green);
             return true;
         }
         catch (Exception ex)
@@ -138,7 +138,7 @@ public class SyncFleaMarketServices(
             string detail = ex.InnerException != null
                 ? $"{ex.Message} → {ex.InnerException.Message}"
                 : ex.Message;
-            Log($"从 [{url}] 获取失败: {detail}", Color.Yellow);
+            Log($"从 [{url}] 获取失败: {detail}", LogTextColor.Yellow);
             return false;
         }
     }
@@ -160,10 +160,10 @@ public class SyncFleaMarketServices(
             }
         }
 
-        Log($"已同步至日期 {priceJson.date[0]}年{priceJson.date[1]}月{priceJson.date[2]}日。", Color.Yellow);
+        Log($"已同步至日期 {priceJson.date[0]}年{priceJson.date[1]}月{priceJson.date[2]}日。", LogTextColor.Yellow);
     }
     
-    private void Log(string data, Color textColor)
+    private void Log(string data, LogTextColor textColor)
     {
         mGUtils.Log("实时跳蚤", data, textColor);
     }

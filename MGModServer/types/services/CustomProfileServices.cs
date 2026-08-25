@@ -4,12 +4,11 @@ using _MGMod.types.utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using _MGMod.types.server;
-using SPTarkov.Common.Logger;
 using SPTarkov.Server.Core.Models.Eft.Profile;
-using Color = Spectre.Console.Color;
+using SPTarkov.Server.Core.Models.Logging;
 
 namespace _MGMod.types.services;
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 
 public class CustomProfileServices(
 	TemplatesServer templatesServer,
@@ -22,7 +21,7 @@ public class CustomProfileServices(
 		List<MGProfile> MGProfiles = mGUtils.GetJsonDataFromFile<List<MGProfile>>(Paths.ProfileJson);
 		AddProfileToServer(MGProfiles);
 		AddProfileToDB(MGProfiles);
-        Log("已开启。", Color.Yellow);
+        Log("已开启。", LogTextColor.Yellow);
 		return;
 	}
 
@@ -74,7 +73,7 @@ public class CustomProfileServices(
 		}
 	}
 
-	private void Log(string data, Color textColor)
+	private void Log(string data, LogTextColor textColor)
 	{
 		mGUtils.Log("独立存档", data, textColor);
 	}

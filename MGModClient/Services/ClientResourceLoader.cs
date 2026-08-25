@@ -13,7 +13,8 @@ namespace MGModClient.Services;
 /// 背景：SPT 的 bundle 链路（BundleManager/EasyBundlePatch）只服务「游戏本会请求的 AssetBundle key」
 /// （如物品 Prefab 路径 assets/content/...），而塔科夫 Unity 中走 **Resources 系统（Resources.Load）**
 /// 的资源（UI/Rig Layouts、Slots、Prefabs/UGUI/Layouts、语音等）不经过该链路——这类资源必须由客户端
-/// 插件自行 `AssetBundle.LoadFromFile` 加载后注入 `ResourcesCache._storage`。
+/// 插件自行 `AssetBundle.LoadFromFile` 加载后注入 `CacheResourcesPopAbstractClass.Dictionary_0`
+/// （旧版名为 `ResourcesCache._storage`，4.0.13 游戏已改名）。
 ///
 /// 目录约定（与 SPT 链路完全隔离）：
 ///  - 服务端 mod 的客户端资源统一放 `{mod}/bundles/resources/`（对应 Unity Resources 系统语义）；
@@ -91,7 +92,7 @@ public static class ClientResourceLoader
         //    var sprites = bundle.LoadAllAssets<Sprite>();   → SlotIconInjector.Inject(sprites, logger)
         //    var clips   = bundle.LoadAllAssets<AudioClip>(); → VoiceInjector.Inject(clips, logger)
 
-        bundle.Unload(false); // 资源已注入 ResourcesCache，卸载 bundle 本体保留资源
+        bundle.Unload(false); // 资源已注入资源缓存，卸载 bundle 本体保留资源
         return any;
     }
 }

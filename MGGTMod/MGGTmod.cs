@@ -5,36 +5,32 @@ using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Helpers;
 using _MGGTmod.types.services;
 using _MGGTmod.types.utils;
-using SPTarkov.Common.Logger;
-using SPTarkov.Common.Models.Logging;
-using SPTarkov.Server.Core.Helpers.Server;
 
 namespace _MGGTmod;
 
-public record ModMetadata : IModMetadata
+public record ModMetadata : AbstractModMetadata
 {
-	public string ModGuid { get; init; } = "com.marecgents.tarkovmod.mggtmod";
-	public string Name { get; init; } = "MGGTMod";
-	public string Author { get; init; } = "MarecGents";
-	public List<string>? Contributors { get; init; } = ["MarecGents"];
-	public SemanticVersioning.Version Version { get; init; } = new("0.5.1");
-	public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
-    public bool HasPrepatcher { get; init; } = false;
-	public List<string>? Incompatibilities { get; init; }
-	public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public string? Url { get; init; } = "https://github.com/MarecGents/MG-GT-Mod-CSharp/";
-	public string? License { get; init; } = "CC BY-NC-ND 4.0";
+	public override string ModGuid { get; init; } = "com.marecgents.tarkovmod.mggtmod";
+	public override string Name { get; init; } = "MGGTMod";
+	public override string Author { get; init; } = "MarecGents";
+	public override List<string>? Contributors { get; init; } = ["MarecGents"];
+	public override SemanticVersioning.Version Version { get; init; } = new("0.5.1");
+	public override SemanticVersioning.Range SptVersion { get; init; } = new("4.0.13");
+	public override List<string>? Incompatibilities { get; init; }
+	public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
+    public override string? Url { get; init; } = "https://github.com/MarecGents/MG-GT-Mod-CSharp/";
+    public override bool? IsBundleMod { get; init; } = true;
+	public override string? License { get; init; } = "CC BY-NC-ND 4.0";
 }
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class MGGTmod(
-    SptLogger<MGGTmod> logger,
     ModHelper modHelper,
     ConfigSettingServices configSettingServices,
     MGUtils  mGUtils
     ) : IOnLoad
 {
-    public async Task OnLoadAsync(CancellationToken cancellationToken)
+	public async Task OnLoad()
     {
         await configSettingServices.ModSetting();
     }

@@ -4,17 +4,17 @@ using _MGGTmod.types.utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Models.Spt.Bots;
 
 namespace _MGGTmod.types.server;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class BotsServer(
     DatabaseServices databaseServices,
     MGUtils mGUtils
-)
+    )
 {
-    public BotTable GetBots()
+    public Bots GetBots()
     {
         return databaseServices.GetBots();
     }
@@ -36,7 +36,7 @@ public class BotsServer(
             if( string.IsNullOrEmpty(botType) || key == botType)
             {
                 var bodyPart = bots.Types[key].BotHealth.BodyParts.ElementAtOrDefault(0);
-                bodyPart.Chest.Max *= rate;
+				bodyPart.Chest.Max *= rate;
                 bodyPart.Chest.Min *= rate;
                 bodyPart.Head.Max *= rate;
                 bodyPart.Head.Min *= rate;
@@ -53,4 +53,5 @@ public class BotsServer(
             }
         }
     }
+    
 }

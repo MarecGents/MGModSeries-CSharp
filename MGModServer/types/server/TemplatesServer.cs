@@ -4,20 +4,20 @@ using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.models.Paths;
 using _MGMod.types.services;
 using _MGMod.types.utils;
-using SPTarkov.Common.Logger;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Server.Core.Models.Spt.Tables;
-using SPTarkov.Server.Core.Services.Modding.Custom;
-using Color = Spectre.Console.Color;
+using SPTarkov.Server.Core.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Templates;
+using SPTarkov.Server.Core.Services.Mod;
+using SPTarkov.Server.Core.Utils.Logger;
 using Path = System.IO.Path;
 
 namespace _MGMod.types.server;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class TemplatesServer(
     SptLogger<TemplatesServer> logger,
     DatabaseServices databaseServices,
@@ -26,7 +26,7 @@ public class TemplatesServer(
     MGUtils mGUtils
 )
 {
-    public TemplateTable GetTemplates()
+    public Templates GetTemplates()
     {
         return databaseServices.GetTemplates();
     }
@@ -289,7 +289,7 @@ public class TemplatesServer(
         if (!IsItemExists(item.items.cloneId))
         {
             logger.LogWithColor($"MG独立物品id为{item.items.newId}的\"cloneId\"未能在items.json找到，无法添加到游戏中，请检查\"cloneId\"是否正确！",
-                Color.Cyan);
+                LogTextColor.Cyan);
             return;
         }
 
@@ -308,7 +308,6 @@ public class TemplatesServer(
 
         var newItemDetails = new NewItemFromCloneDetails()
         {
-            NewItemName = item.description.Name,
             FleaPriceRoubles = item.price,
             HandbookParentId = item.HandbookId ?? "5b47574386f77428ca22b2f4",
             HandbookPriceRoubles = item.price,
