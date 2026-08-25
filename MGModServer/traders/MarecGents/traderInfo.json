@@ -11,8 +11,8 @@
 	},
 	"insurance": {
 		"enable": true,
-		"minreturnTime": 0,
-		"maxreturnTime": 0,
+		"minreturntime": 0,
+		"maxreturntime": 0,
 		"pay": 0,
 		"chance": 100,
 		"storageTime": 100,

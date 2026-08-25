@@ -5,6 +5,7 @@
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
 [![SPT Version](https://img.shields.io/badge/SPT-4.1.2-blue)](https://dev.sp-tarkov.com/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey)](LICENSE)
+> **当前分支 `v4.1.2`**：适配 SPT 4.1.2 服务端（net10.0）｜MG-Mod v1.1.3.040102 ｜ MG-GT-Mod v0.5.2.040102 ｜ MGModClient v0.2.1.040102 ｜ MGModEditor v1.3.2.1
 
 ---
 
