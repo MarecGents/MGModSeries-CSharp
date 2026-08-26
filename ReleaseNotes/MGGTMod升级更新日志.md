@@ -15,19 +15,8 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 0. x
 ## 变更
 1. 【版本】版本号更新至 v0.5.2.040102，版本后缀统一为 SPT 版本号规范（040102=SPT 4.1.2）；无功能变更。✅
-## 优化
-0. x
-## 移出
-0. x
-
-# MG-GT-Mod v0.5.1.040102
-## 新增
-0. x
-## 修复
-0. x
-## 变更
-1. 【架构】[数据流]：新增底层数据服务 DatabaseServices/ConfigServices（与 MGModServer 对齐），Server 层不再直接注入 SPT 类型——隔离 SPT 版本/框架升级影响。✅
-2. 【版本】SptVersion 调整为 ~4.1.0（适配 SPT 4.1.x 全系列）。✅
+2. 【架构】[数据流]：新增底层数据服务 DatabaseServices/ConfigServices（与 MGModServer 对齐），Server 层不再直接注入 SPT 类型——隔离 SPT 版本/框架升级影响。✅
+3. 【版本】SptVersion 调整为 ~4.1.0（适配 SPT 4.1.x 全系列）。✅
 ## 优化
 1. 【架构】[数据流]：清理 ConfigSettingServices 未使用的日志注入。✅
 ## 移出
