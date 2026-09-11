@@ -34,12 +34,16 @@ public static class RigLayoutInjector
 
         // 键 = "UI/Rig Layouts/" + 预制体名（须与物品 JSON 的 RigLayoutName 一致）
         var key = "UI/Rig Layouts/" + prefab.name;
-        if (CacheResourcesPopAbstractClass.Dictionary_0.TryAdd(key, gridView))
+        var storage = CacheResourcesPopAbstractClass.Dictionary_0;
+        if (storage.TryGetValue(key, out var existing) && existing != null)
         {
-            logger.LogInfo($"[RigLayoutInjector] 布局已注入: {key}");
-            return true;
+            logger.LogWarning($"[RigLayoutInjector] {key} 已存在原版资源，跳过（防覆盖）");
+            return false;
         }
-        logger.LogWarning($"[RigLayoutInjector] {key} 已存在，跳过（重复注入或与原版冲突）");
-        return false;
+        // 直接赋值注入：若游戏此前 Pop 未命中已把 null 缓存进字典（CacheResourcesPopAbstractClass.Pop 未命中也会 Add），
+        // TryAdd 会静默失败，这里用覆盖修正；存在非空原版资源时上方已拦截
+        storage[key] = gridView;
+        logger.LogInfo($"[RigLayoutInjector] 布局已注入: {key}");
+        return true;
     }
 }

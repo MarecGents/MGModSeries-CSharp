@@ -1,12 +1,26 @@
-# 发布链接
+﻿# 发布链接
 见MGMod和MGGTMod
 
+
+# MGModClient v0.2.1.040013-hotfix-1
+## 新增
+0. x
+## 修复
+1. 【功能】[客户端资源]-[弹挂布局]：修复 rig 不显示格子的根因——ModDetector 缺少 C# SPT 4.0.13 目录 SPT/user/mods（4.1 起改为 SPT_Runtime/user/mods）。改为多候选探测并按分支优先：4.0.x SPT/user/mods 优先，4.1.x SPT_Runtime/user/mods 优先。✅
+2. 【功能】[客户端资源]-[弹挂布局]：注入改覆盖式写入——空缓存项覆盖注入（Pop 未命中时 null 已写入字典致 TryAdd 静默失败），非空原版资源跳过。✅
+## 变更
+1. 【版本】v0.2.1.040013-hotfix-1（修复 rig 路径）。✅
+## 优化
+0. x
+## 移出
+0. x
 
 # MGModClient v0.2.1.040013
 ## 新增
 0. x
 ## 修复
 1. 【功能】[客户端资源]-[弹挂布局]：适配 SPT 4.0.13 游戏客户端——资源缓存类由 EFT.Utilities.ResourcesCache 更名为 CacheResourcesPopAbstractClass（静态字段 _storage→Dictionary_0），RigLayoutInjector 注入目标同步更新，修复自定义弹挂布局注入失效。✅
+
 ## 变更
 1. 【版本】版本号更新至 v0.2.1.040013（适配 SPT 4.0.13 客户端）。✅
 ## 优化

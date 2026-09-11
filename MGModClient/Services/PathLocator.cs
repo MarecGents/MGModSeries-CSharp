@@ -17,10 +17,10 @@ public class PathLocator
         @"SPT_Runtime\user\mods\MGMod-CSharp\" + Rel,
         @"SPT_Runtime\user\mods\MGGTMod\" + Rel,
         @"SPT_Runtime\user\mods\MGGTMod-CSharp\" + Rel,
-        @"..\user\mods\MGMod\" + Rel,
-        @"..\user\mods\MGMod-CSharp\" + Rel,
-        @"..\user\mods\MGGTMod\" + Rel,
-        @"..\user\mods\MGGTMod-CSharp\" + Rel,
+        @"SPT\user\mods\MGMod\" + Rel,
+        @"SPT\user\mods\MGMod-CSharp\" + Rel,
+        @"SPT\user\mods\MGGTMod\" + Rel,
+        @"SPT\user\mods\MGGTMod-CSharp\" + Rel,
     };
 
     public string ConfigPath { get; private set; }

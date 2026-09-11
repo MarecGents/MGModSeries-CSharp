@@ -5,12 +5,18 @@ namespace MGModClient.Services;
 
 /// <summary>
 /// 服务端 mod 存在性检测 —— 独立判断 MG-Mod / MGGTMod 是否安装，无前置关系。
-/// 路径基准：SPT_Runtime/user/mods（游戏目录下）；可用 ModsDirOverride 覆盖（部署布局异常时）。
+/// 路径基准：按候选顺序探测（C# SPT 服务器 SPT/user/mods 布局优先，标准 user/mods，仓库构建 SPT_Runtime/user/mods）；
+/// 可用 ModsDirOverride 覆盖（部署布局异常时）。
 /// </summary>
 public static class ModDetector
 {
-    /// <summary>SPT 客户端运行时 mod 目录（服务端 mod 解压于此）。</summary>
-    private const string SptRuntimeModsDir = @"SPT_Runtime/user/mods";
+    /// <summary>mods 目录候选（相对游戏目录）：C# SPT 服务器在 SPT/ 子文件夹布局优先，其次标准布局，最后仓库构建输出布局。</summary>
+    private static readonly string[] ModsDirCandidates =
+    {
+        "SPT/user/mods",         // C# SPT 服务器分布（SPT.Server.exe 在 SPT/ 内，mod 在 SPT/user/mods）
+        "user/mods",             // 标准 SPT 安装布局（游戏目录 = SPT 根）
+        "SPT_Runtime/user/mods", // 仓库构建输出布局（Build\SPT_Runtime\，开发调试用）
+    };
 
     /// <summary>MGMod 目录名候选（源码名/发布名）。</summary>
     public static readonly string[] MGModDirNames = { "MGMod", "MGMod-CSharp" };
@@ -21,13 +27,18 @@ public static class ModDetector
     /// <summary>可选覆盖：SPT_Runtime/user/mods 绝对路径。</summary>
     public static string ModsDirOverride;
 
-    /// <summary>解析 mods 根目录（游戏目录为基准，可用覆盖）。返回 null 表示无法定位。</summary>
+    /// <summary>解析 mods 根目录（游戏目录为基准按候选顺序探测，可用覆盖）。返回第一个存在的候选；均不存在时返回首选候选路径。</summary>
     public static string GetModsDir()
     {
         if (!string.IsNullOrWhiteSpace(ModsDirOverride))
             return Path.GetFullPath(ModsDirOverride);
         var gameDir = Directory.GetCurrentDirectory(); // EscapeFromTarkov.exe 所在
-        return Path.GetFullPath(Path.Combine(gameDir, SptRuntimeModsDir));
+        foreach (var candidate in ModsDirCandidates)
+        {
+            var dir = Path.GetFullPath(Path.Combine(gameDir, candidate));
+            if (Directory.Exists(dir)) return dir;
+        }
+        return Path.GetFullPath(Path.Combine(gameDir, ModsDirCandidates[0]));
     }
 
     /// <summary>任一候选目录名存在即视为该 mod 已安装（独立判断）。</summary>
