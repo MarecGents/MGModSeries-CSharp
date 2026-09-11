@@ -8,6 +8,19 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 夸克网盘链接：https://pan.quark.cn/s/47cd989d2a57?pwd=MzAt 提取码：MzAt
 123 网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-Q6Gy3?pwd=MGYY# 提取码：MGYY
 
+# MG-GT-Mod v0.5.3.040105
+## 新增
+0. x
+## 修复
+0. x
+## 变更
+1. 【版本】版本号更新至 v0.5.3.040105。✅
+2. 【适配】SPTushonka 包引用升级至 4.1.5（SPT 4.1.5 适配，API 无变动）。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-GT-Mod v0.5.2.040103
 ## 新增
 0. x

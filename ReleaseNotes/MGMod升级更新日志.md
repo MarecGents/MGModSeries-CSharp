@@ -9,6 +9,19 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 123网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-E6Gy3?pwd=MGYY# 提取码：MGYY
 
 
+# MG-Mod v1.1.4.040105
+## 新增
+0. x
+## 修复
+0. x
+## 变更
+1. 【版本】版本号更新至 v1.1.4.040105。✅
+2. 【适配】SPTushonka 包引用升级至 4.1.5（SPT 4.1.5 适配，API 无变动）。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-Mod v1.1.3.040103
 ## 新增
 0. x
