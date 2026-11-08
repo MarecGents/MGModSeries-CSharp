@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BepInEx.Logging;
 using EFT.Animations;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace MGModClient.Services;
 
@@ -221,6 +222,72 @@ public static class ThermalScopeProbeService
         }
     }
 
+    // ================= ForwardAlpha 模式 =================
+
+    private static readonly Dictionary<int, CommandBuffer> ForwardAlphaBuffers = new Dictionary<int, CommandBuffer>();
+    private static readonly Dictionary<int, Camera> ForwardAlphaCameras = new Dictionary<int, Camera>();
+
+    /// <summary>
+    /// ThermalVision.OnPreCull 之后调用，按模式分流：
+    ///  - Global：立即把全局置 0（影响整帧，含不透明几何）；
+    ///  - ForwardAlpha：在相机的 BeforeForwardAlpha 事件挂一个只把全局置 0 的 CommandBuffer
+    ///    —— 不透明几何（环境/地形/植被）已按热成像渲染完毕，之后才置 0，
+    ///    因此只影响前向透明阶段（瞄具玻璃/准星在这里绘制），最大限度保住热成像观感。
+    /// </summary>
+    public static void OnThermalPreCull(ThermalVision thermalVision)
+    {
+        try
+        {
+            if (string.Equals(Mode, "Global", StringComparison.OrdinalIgnoreCase))
+            {
+                Shader.SetGlobalFloat(PropName, 0f);
+                return;
+            }
+
+            if (string.Equals(Mode, "ForwardAlpha", StringComparison.OrdinalIgnoreCase) && thermalVision != null)
+            {
+                EnsureForwardAlphaBuffer(thermalVision);
+            }
+        }
+        catch (Exception e)
+        {
+            Warn($"OnThermalPreCull 异常：{e.GetType().Name}: {e.Message}");
+        }
+    }
+
+    private static void EnsureForwardAlphaBuffer(ThermalVision thermalVision)
+    {
+        var cam = thermalVision.GetComponent<Camera>();
+        if (cam == null) return;
+
+        int id = cam.GetInstanceID();
+        if (ForwardAlphaBuffers.ContainsKey(id)) return;
+
+        var cb = new CommandBuffer { name = "MGModClient.ThermalScope" };
+        cb.SetGlobalFloat(Shader.PropertyToID(PropName), 0f);
+
+        cam.RemoveCommandBuffer(CameraEvent.BeforeForwardAlpha, cb);
+        cam.AddCommandBuffer(CameraEvent.BeforeForwardAlpha, cb);
+
+        ForwardAlphaBuffers[id] = cb;
+        ForwardAlphaCameras[id] = cam;
+        Log($"ForwardAlpha 模式：已在相机 '{cam.name}' 的 BeforeForwardAlpha 挂载 SetGlobalFloat({PropName}=0)");
+    }
+
+    private static void RemoveForwardAlphaBuffers()
+    {
+        foreach (var kv in ForwardAlphaBuffers)
+        {
+            if (ForwardAlphaCameras.TryGetValue(kv.Key, out var cam) && cam != null)
+            {
+                try { cam.RemoveCommandBuffer(CameraEvent.BeforeForwardAlpha, kv.Value); } catch { }
+            }
+            try { kv.Value.Release(); } catch { }
+        }
+        ForwardAlphaBuffers.Clear();
+        ForwardAlphaCameras.Clear();
+    }
+
     /// <summary>模式切换时清空去重集合，便于同一局内反复试验。</summary>
     public static void ResetState()
     {
@@ -228,5 +295,6 @@ public static class ThermalScopeProbeService
         LoggedShaders.Clear();
         LoggedSkip.Clear();
         _summaryLogged = false;
+        RemoveForwardAlphaBuffers();
     }
 }

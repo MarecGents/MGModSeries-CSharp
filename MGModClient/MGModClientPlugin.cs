@@ -71,10 +71,11 @@ public class MGModClientPlugin : BaseUnityPlugin
         // ④ 【探针】热成像 × 瞄具：把光学材质（CW FX/Collimator 等四个 shader）的
         //    _ThermalVisionOn 按材质钉为 0，验证「按材质覆盖全局 uniform」在 v4.1.x 是否成立。
         //    属临时验证代码，结论确定后迁出为正式功能或独立插件。
-        ThermalScope = Config.Bind("MGModClient", "ThermalScope Mode", "Material",
+        ThermalScope = Config.Bind("MGModClient", "ThermalScope Mode", "ForwardAlpha",
             new ConfigDescription(
-                "热成像下瞄具可用性探针：Off=关闭；Material=按材质钉 0（推荐）；Global=全局钉 0（仅判别用）",
-                new AcceptableValueList<string>("Off", "Material", "Global")));
+                "热成像下瞄具探针：Off=关闭；ForwardAlpha=前向透明阶段前把全局置 0（推荐）；" +
+                "Global=全局置 0（影响整帧，仅判别用）；Material=按材质写（已验证无效，保留仅作对照）",
+                new AcceptableValueList<string>("Off", "ForwardAlpha", "Global", "Material")));
         ThermalScope.SettingChanged += OnThermalScopeModeChanged;
 
         ThermalScopeProbeService.Mode = ThermalScope.Value;

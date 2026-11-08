@@ -114,8 +114,8 @@ public static class ThermalScopePatch
         ThermalScopeProbeService.Apply(__instance, "FindAimTransforms");
     }
 
-    private static void OnPreCullPostfix()
+    private static void OnPreCullPostfix(ThermalVision __instance)
     {
-        ThermalScopeProbeService.ForceGlobalOff();
+        ThermalScopeProbeService.OnThermalPreCull(__instance);
     }
 }
