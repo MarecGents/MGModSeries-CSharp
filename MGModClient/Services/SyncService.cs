@@ -12,6 +12,9 @@ namespace MGModClient.Services;
 /// </summary>
 public class SyncService
 {
+    /// <summary>本插件自身的 BepInEx 配置分区名（非游戏 config.json 镜像项）。</summary>
+    private const string PluginSection = "MGModClient";
+
     private readonly ConfigMirror _mirror;
     private readonly PathLocator _pathLocator;
     private bool _suppress;
@@ -26,6 +29,12 @@ public class SyncService
     public void OnEntryChanged(object sender, SettingChangedEventArgs e)
     {
         if (_suppress) return;
+
+        // 本插件自身的设置项（Language / Server Config Path / ThermalScope Mode 等）
+        // 不属于需要镜像到服务端 config.json 的数据，跳过写回，避免无谓刷新 saveTime 版本戳。
+        if (string.Equals(e.ChangedSetting.Definition.Section, PluginSection, StringComparison.OrdinalIgnoreCase))
+            return;
+
         _mirror.ApplyEntryToModel(e.ChangedSetting);
         // TODO(M2): 500ms 防抖后 WriteBack()
         WriteBack();

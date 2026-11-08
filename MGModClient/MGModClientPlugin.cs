@@ -18,6 +18,9 @@ namespace MGModClient;
 ///
 /// 设计约束（见《MGModEditor客户端迁移-代码落地方案报告》§一）：
 ///  - 核心功能（配置编辑）不打游戏逻辑补丁 → 只做文件编辑 + Config 镜像；
+///  - 【例外·临时探针】ThermalScopePatch 为验证「热成像下瞄具可用性」引入了 Harmony 补丁
+///    （InitTransforms / FindAimTransforms / ThermalVision.OnPreCull），属一次性验证代码，
+///    结论确定后应迁出为正式功能或独立插件；
 ///  - RigLayoutInjector 为加载布局预制体引用了 Assembly-CSharp（ContainedGridsView/ResourcesCache）；
 ///  - 唯一运行时依赖 BepInEx + 0Harmony；ConfigurationManager 通过反射调用。
 /// </summary>
@@ -27,6 +30,9 @@ public class MGModClientPlugin : BaseUnityPlugin
     // ---- 全局状态（供 Services/Resources 引用）----
     /// <summary>语言条目必须最先绑定：后续所有键名/描述经 Locales.Get() 解析（Radar 同款硬约束）。</summary>
     public static ConfigEntry<string> Language { get; private set; }
+
+    /// <summary>【探针】热成像 × 瞄具 的工作模式（Off / Material / Global）。</summary>
+    public static ConfigEntry<string> ThermalScope { get; private set; }
 
     private PathLocator _pathLocator;
     private ConfigMirror _mirror;
@@ -62,6 +68,19 @@ public class MGModClientPlugin : BaseUnityPlugin
         //    按资源类型分发（rig 布局等；MGMod 与 MGGTMod 各自独立存在检测）
         ClientResourceLoader.LoadAll(Logger);
 
+        // ④ 【探针】热成像 × 瞄具：把光学材质（CW FX/Collimator 等四个 shader）的
+        //    _ThermalVisionOn 按材质钉为 0，验证「按材质覆盖全局 uniform」在 v4.1.x 是否成立。
+        //    属临时验证代码，结论确定后迁出为正式功能或独立插件。
+        ThermalScope = Config.Bind("MGModClient", "ThermalScope Mode", "Material",
+            new ConfigDescription(
+                "热成像下瞄具可用性探针：Off=关闭；Material=按材质钉 0（推荐）；Global=全局钉 0（仅判别用）",
+                new AcceptableValueList<string>("Off", "Material", "Global")));
+        ThermalScope.SettingChanged += OnThermalScopeModeChanged;
+
+        ThermalScopeProbeService.Mode = ThermalScope.Value;
+        ThermalScopeProbeService.Logger = Logger;
+        ThermalScopePatch.Install(Logger);
+
         Logger.LogInfo($"{PluginInfo.NAME} v{PluginInfo.VERSION} 初始化完成");
     }
 
@@ -89,6 +108,13 @@ public class MGModClientPlugin : BaseUnityPlugin
         return cfg;
     }
 
+    private void OnThermalScopeModeChanged(object sender, System.EventArgs e)
+    {
+        ThermalScopeProbeService.Mode = ThermalScope.Value;
+        ThermalScopeProbeService.ResetState();
+        Logger.LogInfo($"[ThermalScope] 模式切换为 {ThermalScope.Value}");
+    }
+
     private void OnLanguageChanged(object sender, System.EventArgs e)
     {
         // 值保真收集 → 移除重建 → Save → CM.BuildSettingList() 刷新（见落地方案 §5.3）
@@ -98,6 +124,6 @@ public class MGModClientPlugin : BaseUnityPlugin
 
     private void Update()
     {
-        // 空实现：本插件无游戏逻辑补丁（Update 保留占位供后续功能）
+        // 主流程仍无 Update 逻辑；热成像瞄具探针走 Harmony 补丁（见 ThermalScopePatch），不在此驱动。
     }
 }
