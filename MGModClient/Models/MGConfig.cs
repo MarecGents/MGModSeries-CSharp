@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MGModClient.Models;
 
@@ -80,6 +81,7 @@ public class ConfigDomain
     public bool ScavEquipmentOptimize { get; set; }
     public ConfigBotSystemConfig BotSystem { get; set; }
     public Dictionary<string, bool> GiftsAdd { get; set; }
+    public HideoutSystemConfig HideoutSystem { get; set; }
 }
 
 public class RaidDefaultConfig
@@ -127,6 +129,14 @@ public class WeatherConfig
 public class ConfigBotSystemConfig
 {
     public string PmcWavesOptimize { get; set; }
+}
+
+public class HideoutSystemConfig
+{
+    public EnableValueAny<int> CultistCircleTime { get; set; }
+    public EnableValueAny<MinMax<double>> CultistCultistLevel { get; set; }
+    public EnableValueAny<double> BonusTimeChance { get; set; }
+    public EnableValueAny<int> BonusTimeThreshold { get; set; }
 }
 
 public class GlobalsConfig
@@ -265,8 +275,12 @@ public class EquipmentPlateConfig
 
 public class QuestSystemConfig
 {
-    public bool QuestOptimize { get; set; }
     public bool Quest3X4Marker { get; set; }
+    public EnableValueAny<double> QuestValue { get; set; }
+    public EnableValueAny<int> QuestCDTime { get; set; }
+    public bool QuestItemNoNeedFindInRaid { get; set; }
+    public bool QuestIgnoreKillZone { get; set; }
+    public bool QuestKillIgnoreAIType { get; set; }
 }
 
 public class TradersConfig
@@ -313,9 +327,21 @@ public class EnableValueBool
     public bool value { get; set; }
 }
 
-/// <summary>MinMax 双值模型（与服务端/桌面版同构）。</summary>
+/// <summary>EnableValue 通用模型（enable + 任意值类型，与桌面版/服务端同构）。</summary>
+public class EnableValueAny<T>
+{
+    public bool enable { get; set; }
+    public T value { get; set; }
+}
+
+/// <summary>MinMax 双值模型（与服务端/桌面版同构）。
+/// 注意：JSON 键必须为小写 min/max —— 服务端 System.Text.Json 大小写敏感（SPT MinMax 的 JsonPropertyName 为小写），
+/// 桌面版亦按小写读写；Newtonsoft 读取本身不区分大小写，此处 JsonProperty 保证写回为小写。</summary>
 public class MinMax<T>
 {
+    [JsonProperty("min")]
     public T Min { get; set; }
+
+    [JsonProperty("max")]
     public T Max { get; set; }
 }

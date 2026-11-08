@@ -323,6 +323,63 @@ public class ConfigItems
         new KeyValue { Key = "hard", ValueKey = Translations.ConfigItemMapBotDifficultyHard },
         new KeyValue { Key = "impossible", ValueKey = Translations.ConfigItemMapBotDifficultyImpossible },
     };
+
+    public List<KeyValue> CultistCircleTime { get; } = new()
+    {
+        new KeyValue {Key = -1, ValueKey = Translations.ConfigItemCultistCircleTimeDefault},
+        new KeyValue {Key = 30, ValueKey = Translations.ConfigItemCultistCircleTime30s},
+        new KeyValue {Key = 60*5, ValueKey = Translations.ConfigItemCultistCircleTime5m},
+        new KeyValue {Key = 60*30, ValueKey = Translations.ConfigItemCultistCircleTime30m},
+    };
+    
+    public List<KeyValue> CultistCultistLevel { get; } = new()
+    {
+        new KeyValue {Key = -1, ValueKey = Translations.ConfigItemCultistCultistLevelDefault},
+        new KeyValue {Key = 0, ValueKey = Translations.ConfigItemCultistCultistLevelGeneral},
+        new KeyValue {Key = 1, ValueKey = Translations.ConfigItemCultistCultistLevelHigher},
+        new KeyValue {Key = 2, ValueKey = Translations.ConfigItemCultistCultistLevelSuper},
+    };
+    
+    public List<KeyValue> BonusTimeChance { get; } = new()
+    {
+        new KeyValue {Key = -1.0, ValueKey = Translations.ConfigItemBonusTimeChanceDefault},
+        new KeyValue {Key = 0.15, Value = "15%"},
+        new KeyValue {Key = 0.35, Value = "35%"},
+        new KeyValue {Key = 0.45, Value = "45%"},
+        new KeyValue {Key = 0.55, Value = "55%"},
+        new KeyValue {Key = 0.65, Value = "65%"},
+        new KeyValue {Key = 0.75, Value = "75%"},
+        new KeyValue {Key = 0.90, Value = "90%"},
+        new KeyValue {Key = 1.00, Value = "100%"},
+    };
+    
+    public List<KeyValue> BonusTimeThreshold { get; } = new()
+    {
+        new KeyValue {Key = -1, ValueKey = Translations.ConfigItemBonusTimeThresholdDefault},
+        new KeyValue {Key = 0, ValueKey = Translations.ConfigItemBonusTimeThreshold0},
+        new KeyValue {Key = 10 * 1000, ValueKey = Translations.ConfigItemBonusTimeThreshold10K},
+        new KeyValue {Key = 100 * 1000, ValueKey = Translations.ConfigItemBonusTimeThreshold100K},
+        new KeyValue {Key = 1000 * 1000, ValueKey = Translations.ConfigItemBonusTimeThreshold1M},
+    };
+
+    public List<KeyValue> QuestValue { get; } = new()
+    {
+        new KeyValue {Key = -1.0, ValueKey = Translations.ConfigItemQuestValueDefault},
+        new KeyValue {Key = 1.0, ValueKey = Translations.ConfigItemQuestValueOne},
+        new KeyValue {Key = 0.5, ValueKey = Translations.ConfigItemQuestValueHalf},
+        new KeyValue {Key = 2.0, ValueKey = Translations.ConfigItemQuestValueDouble},
+    };
+    
+    public List<KeyValue> QuestCDTime { get; } = new()
+    {
+        new KeyValue {Key = -1, ValueKey = Translations.ConfigItemQuestCDTimeDefault},
+        new KeyValue {Key = 0, ValueKey = Translations.ConfigItemQuestCDTime0s},
+        new KeyValue {Key = 30, ValueKey = Translations.ConfigItemQuestCDTime30s},
+        new KeyValue {Key = 5*60, ValueKey = Translations.ConfigItemQuestCDTime5m},
+        new KeyValue {Key = 10*60, ValueKey = Translations.ConfigItemQuestCDTime10m},
+        new KeyValue {Key = -2, ValueKey = Translations.ConfigItemQuestCDTimeHalf},
+    };
+    
 }
 
 public class KeyValue

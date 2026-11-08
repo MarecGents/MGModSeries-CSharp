@@ -197,6 +197,29 @@ public class ConfigsServer(
         // gifts.json
         // health.json
         // hideout.json
+        var hideout =  configServices.GetHideoutConfig();
+        if (ConfigSetting.HideoutSystem.CultistCircleTime.enable)
+        {
+            foreach (var craftTimeThreshold in hideout.CultistCircle.CraftTimeThresholds)
+            {
+                craftTimeThreshold.CraftTimeSeconds = ConfigSetting.HideoutSystem.CultistCircleTime.value;
+            }
+
+            hideout.CultistCircle.HideoutTaskRewardTimeSeconds = 30;
+        }
+        if (ConfigSetting.HideoutSystem.CultistCultistLevel.enable)
+        {
+            hideout.CultistCircle.RewardPriceMultiplierMinMax = ConfigSetting.HideoutSystem.CultistCultistLevel.value;
+        }
+        if (ConfigSetting.HideoutSystem.BonusTimeChance.enable)
+        {
+            hideout.CultistCircle.BonusChanceMultiplier = ConfigSetting.HideoutSystem.BonusTimeChance.value;
+        }
+        if (ConfigSetting.HideoutSystem.BonusTimeThreshold.enable)
+        {
+            hideout.CultistCircle.HideoutCraftSacrificeThresholdRub =  ConfigSetting.HideoutSystem.BonusTimeThreshold.value;
+        }
+        
         // http.json
 
         // inraid.json

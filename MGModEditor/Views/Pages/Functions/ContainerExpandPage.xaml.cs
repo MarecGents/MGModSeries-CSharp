@@ -6,7 +6,8 @@ namespace MGEditor.Views.Pages.Functions;
 
 [GalleryPage(
     Translations.GalleryDescContainer, 
-    SymbolRegular.BoxArrowUp24
+    SymbolRegular.BoxArrowUp24,
+    4
     )]
 public partial class ContainerExpandPage : INavigableView<ContainerExpandViewModel>
 {

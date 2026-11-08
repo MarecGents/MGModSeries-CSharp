@@ -12,6 +12,7 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services.Modding.Custom;
+using SPTarkov.Server.Core.Utils.Json;
 using Color = Spectre.Console.Color;
 using Path = System.IO.Path;
 
@@ -30,6 +31,7 @@ public class TemplatesServer(
     {
         return databaseServices.GetTemplates();
     }
+
     // Item.json
     public Dictionary<MongoId, TemplateItem> GetItems()
     {
@@ -95,7 +97,7 @@ public class TemplatesServer(
             var Chambers = itemProp.Chambers ?? null;
             var Cartridges = itemProp.Cartridges ?? null;
             var Grids = itemProp.Grids ?? null;
-            if (StackSlots != null )
+            if (StackSlots != null)
             {
                 foreach (var slot in StackSlots)
                 {
@@ -114,7 +116,7 @@ public class TemplatesServer(
                 }
             }
 
-            if (Slots != null )
+            if (Slots != null)
             {
                 foreach (var slot in Slots)
                 {
@@ -133,7 +135,7 @@ public class TemplatesServer(
                 }
             }
 
-            if (Chambers != null )
+            if (Chambers != null)
             {
                 foreach (var chamber in Chambers)
                 {
@@ -152,7 +154,7 @@ public class TemplatesServer(
                 }
             }
 
-            if (Cartridges != null )
+            if (Cartridges != null)
             {
                 foreach (var cartridge in Cartridges)
                 {
@@ -171,7 +173,7 @@ public class TemplatesServer(
                 }
             }
 
-            if (Grids != null )
+            if (Grids != null)
             {
                 foreach (var grid in Grids)
                 {
@@ -242,7 +244,7 @@ public class TemplatesServer(
     {
         return GetTemplates().Prices;
     }
-    
+
     // profile.json
     public Dictionary<string, ProfileSides> GetProfiles()
     {
@@ -264,7 +266,7 @@ public class TemplatesServer(
             profile.Value.Usec.Trader.InitialLoyaltyLevel.TryAdd(Id, Level);
         }
     }
-    
+
     // quests.json
     public Dictionary<MongoId, Quest> GetQuests()
     {
@@ -752,33 +754,80 @@ public class TemplatesServer(
         }
 
         var Quest = GetQuests();
-        bool questOptimize = TemplatesSetting.QuestSystem.QuestOptimize;
-
-        // 功能：任务优化 QuestOptimize
-        if (questOptimize)
+        foreach (var quest in Quest)
         {
-            foreach (var qusetId in Quest.Keys)
+            var AForFinish = quest.Value.Conditions.AvailableForFinish;
+            var AForStart = quest.Value.Conditions.AvailableForStart;
+            var AForFail = quest.Value.Conditions.Fail;
+            
+            foreach (var Finish in AForFinish)
             {
-                var quest = Quest[qusetId];
-
-                var AForFinish = quest.Conditions.AvailableForFinish;
-                foreach (var Finish in AForFinish)
+                // 功能：任务要求数量 QuestValue (default[enable=false], 1[value=1], 0.5*[value=0.5], 2*[value=2])
+                if (TemplatesSetting.QuestSystem.QuestValue.enable)
                 {
-                    Finish.Value = 1;
+                    if (TemplatesSetting.QuestSystem.QuestValue.value is 1.0)
+                    {
+                        Finish.Value = 1;
+                    }
+                    else if (Finish.Value is > 0)
+                    {
+                        Finish.Value = Math.Ceiling(Finish.Value.Value * TemplatesSetting.QuestSystem.QuestValue.value);
+                    }
+                }
+                
+                // 功能：上交物品无需带勾 QuestItemNoNeedFindInRaid (bool)
+                if (TemplatesSetting.QuestSystem.QuestItemNoNeedFindInRaid)
+                {
+                    if (Finish.ConditionType is "FindItem" or "HandoverItem")
+                    {
+                        Finish.OnlyFoundInRaid = false;
+                    }
                 }
 
-                var AForStart = quest.Conditions.AvailableForStart;
-                foreach (var Start in AForStart)
+                if (Finish.ConditionType != "CounterCreator") continue;
+                if (Finish.Counter?.Conditions is null || Finish.Counter.Conditions.All(s => s.ConditionType != "Kills")) 
+                    continue;
+                // 功能：击杀无视区域限制 QuestIgnoreKillZone (bool)
+                if (TemplatesSetting.QuestSystem.QuestIgnoreKillZone)
                 {
-                    Start.AvailableAfter = 0;
+                    Finish.Counter?.Conditions.RemoveAll(s => s.ConditionType is "Location" or "InZone");
+                }
+                // 功能：击杀无视AI种类 QuestKillIgnoreAIType (bool)
+                if (TemplatesSetting.QuestSystem.QuestKillIgnoreAIType)
+                {
+                    foreach (var kill in Finish.Counter?.Conditions.Where(s => s.ConditionType == "Kills"))
+                    {
+                        kill.Target = new ListOrT<string>(null, "Any");
+                        kill.SavageRole = [];
+                    }
                 }
             }
+            
+            foreach (var Start in AForStart)
+            {
+                // 功能：任务间冷却时长 QuestCDTime (default, 0s, 30s ,5min, 10min, half)
+                if (TemplatesSetting.QuestSystem.QuestCDTime.enable)
+                {
+                    if (Start.AvailableAfter is not > 0) continue;
+                    
+                    if (TemplatesSetting.QuestSystem.QuestCDTime.value is -2)
+                    {
+                        Start.AvailableAfter = (int)Math.Ceiling(Start.AvailableAfter.Value * 0.5);
+                    }
+                    else
+                    {
+                        Start.AvailableAfter = TemplatesSetting.QuestSystem.QuestCDTime.value;
+                    }
+                }
+            }
+            
         }
-        
+
         // 功能：3X4任务标记 Quest3X4Marker
         if (TemplatesSetting.QuestSystem.Quest3X4Marker)
         {
-            Dictionary<MongoId, string> quest3X4Json = mGUtils.GetJsonDataFromFile<Dictionary<MongoId, string>>(Paths.Quest3X4Json);
+            Dictionary<MongoId, string> quest3X4Json =
+                mGUtils.GetJsonDataFromFile<Dictionary<MongoId, string>>(Paths.Quest3X4Json);
             var globalLocale = localesServer.GetLocalesGlobal();
             foreach (var lang in globalLocale.Keys)
             {
@@ -788,25 +837,26 @@ public class TemplatesServer(
                     {
                         foreach (var quest in quest3X4Json)
                         {
-                            if (!localeData.TryGetValue($"{quest.Key} name", out var questName) || string.IsNullOrEmpty(questName))
+                            if (!localeData.TryGetValue($"{quest.Key} name", out var questName) ||
+                                string.IsNullOrEmpty(questName))
                             {
                                 continue;
                             }
+
                             string newQuestName =
                                 $"{questName}<color=#ff0000><b>【Road of 3X4】</b></color>";
                             localeData[$"{quest.Key} name"] = newQuestName;
                         }
+
                         return localeData;
                     });
                 }
-                
             }
-            
         }
     }
 
     private void MGmodServers(MGModConfig_Templates TemplatesSetting)
-    {   
+    {
         // 功能：PMC怒吼 PMCRoar
         if (!TemplatesSetting.PMCRoar) return;
         List<string> pmcroarFiles = mGUtils.GetFiles(BotSystemPathsType.PmcRoarPath);
@@ -879,7 +929,7 @@ public class TemplatesServer(
                     server.TryAdd(response_suffix_Key + (it + ModKeyStart), responses_suffix[it]);
                 }
             }
-            
+
             mGUtils.DeleteFile(serverFile);
             mGUtils.WriteFile(serverFile, mGUtils.Serialize(server));
         }

@@ -1,7 +1,12 @@
 ﻿using _MGMod.types.models.Custom;
+using _MGMod.types.models.EFT.hideout;
 using _MGMod.types.services;
+using _MGMod.types.utils;
+using Spectre.Console;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Hideout;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 
@@ -9,7 +14,8 @@ namespace _MGMod.types.server;
 
 [Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class HideoutServer(
-    DatabaseServices databaseServices
+    DatabaseServices databaseServices,
+    MGUtils  mGUtils
     )
 {
 
@@ -18,6 +24,110 @@ public class HideoutServer(
         return databaseServices.GetHideouts();
     }
 
+    public void AddProductionToHideout(CustomProduction production)
+    {
+        if (IsProductionPresent(production.Id))
+        {
+            mGUtils.Log("HideoutServer.AddProductionToHideout", $"id为{production.Id}的配方已存在", Color.Blue);
+            return;
+        }
+        HideoutProduction hideoutProduction = new HideoutProduction()
+        {
+            Id = production.Id,
+            AreaType = (HideoutAreas)production.AreaType,
+            Requirements = new List<Requirement>(),
+            ProductionTime = production.ProductionTime,
+            EndProduct = production.TargetProductId,
+            IsEncoded = false,
+            Locked = false,
+            NeedFuelForAllProductionTime = false,
+            Continuous = false,
+            Count = production.Count,
+            ProductionLimitCount = 0,
+            IsCodeProduction = false
+        };
+        hideoutProduction.Requirements.Add(new Requirement()
+        {
+            AreaType = production.AreaType,
+            RequiredLevel = production.RequiredLevel,
+            Type = "Area"
+        });
+
+        foreach (var requirement in production.RequirementList
+                     .Select(x => ConvertRequirement(x.Key, x.Value))
+                     .Where(r => r is not null && r.Type != "Area"))
+        {
+            hideoutProduction.Requirements.Add(requirement!);
+        }
+
+        var hideout = GetHideout();
+        hideout.Production.Recipes?.Add(hideoutProduction);
+    }
+    public void AddProductionToHideouts(List<CustomProduction>  productions)
+    {
+        foreach (var production in productions)
+        {
+            AddProductionToHideout(production);
+        }
+    }
+    private Requirement ConvertRequirement(MongoId itemId,RequirementItemProperty requirementItem)
+    {
+        Requirement requirement = new Requirement();
+        requirement.Type = requirementItem.Type;
+        switch (requirementItem.Type)
+        {
+            case "Resource":
+            {
+                requirement.TemplateId = itemId;
+                requirement.Resource = requirementItem.Count;
+                break;
+            }
+            case "Item":
+            {
+                requirement.TemplateId = itemId;
+                requirement.Count = requirementItem.Count;
+                requirement.IsEncoded = false;
+                requirement.IsFunctional = false;
+                requirement.IsSpawnedInSession = false;
+                break;
+            }
+            case "Tool":
+            {
+                requirement.TemplateId = itemId;
+                break;
+            }
+            case "QuestComplete":
+            {
+                requirement.QuestId = itemId;
+                break;
+            }
+            case "GameVersion":
+            {
+                requirement.GameVersions = requirementItem.GameVersions;
+                break;
+            }
+            default:
+            {
+                mGUtils.Log("HideoutServer.ConvertRequirement", $"未知需求类型：{requirementItem.Type}，已跳过转换。", Color.Yellow);
+                return null;
+            }
+        }
+        return requirement;
+    }
+
+    private bool IsProductionPresent(MongoId productionId)
+    {
+        var hideout = GetHideout();
+        foreach (var recipe in hideout.Production.Recipes)
+        {
+            if (recipe.Id == productionId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void SetConstructionTime(double value)
     {
         var Hideout = databaseServices.GetHideouts();

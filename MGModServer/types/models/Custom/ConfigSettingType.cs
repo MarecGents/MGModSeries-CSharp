@@ -13,19 +13,18 @@ public class ConfigSettingType
     public MGModConfig_Traders Traders { get; set; }
     public MGModConfig_MGCustom MGCustom { get; set; }
     public string saveTime { get; set; }
-
 }
 
 public class MGModConfig_Bot
 {
     public int AIHealth { get; set; }
-    
+
     public MGModConfig_Bot_BotSystem BotSystem { get; set; }
 }
 
 public class MGModConfig_Bot_BotSystem
 {
-    public MGModConfig_Bot_BotSystem_BotBrain BotBrain {get; set;}
+    public MGModConfig_Bot_BotSystem_BotBrain BotBrain { get; set; }
     public string EquipmentQuality { get; set; }
     public bool BotNameAdd { get; set; }
 }
@@ -41,29 +40,30 @@ public class MGModConfig_Config
 {
     public string AirdropType { get; set; }
     public int AISpawnNumber { get; set; }
-    public MGModConfig_Config_RaidDefault RaidDefault {  get; set; }
-    public EnableValueInt ReturnChance {  get; set; }  // string | double
+    public MGModConfig_Config_RaidDefault RaidDefault { get; set; }
+    public EnableValueInt ReturnChance { get; set; } // string | double
     public bool BuyFoundInRaid { get; set; }
-    public  MGModConfig_Config_LootMultiple LootMultiple {  get; set; }
+    public MGModConfig_Config_LootMultiple LootMultiple { get; set; }
     public bool RandomContainer { get; set; }
-    public EnableValueInt USECRate {  get; set; }
-    public bool Sell100 {  get; set; }
-    public bool SellFast {  get; set; }
-    public bool SellOptimize {  get; set; }
-    public bool SellNew {  get; set; }
-    public bool NoBlackList {  get; set; }
-    public MGModConfig_Config_Buffs Buffs {  get; set; }
-    public EnableValueInt UpdateTime {  get; set; }    // string | int
-    public MGModConfig_Config_WeatherSettings WeatherSettings {  get; set; }
-    public bool NoLostonDeath {  get; set; }
+    public EnableValueInt USECRate { get; set; }
+    public bool Sell100 { get; set; }
+    public bool SellFast { get; set; }
+    public bool SellOptimize { get; set; }
+    public bool SellNew { get; set; }
+    public bool NoBlackList { get; set; }
+    public MGModConfig_Config_Buffs Buffs { get; set; }
+    public EnableValueInt UpdateTime { get; set; } // string | int
+    public MGModConfig_Config_WeatherSettings WeatherSettings { get; set; }
+    public bool NoLostonDeath { get; set; }
     public bool ScavEquipmentOptimize { get; set; }
     public MGModConfig_Config_BotSystem BotSystem { get; set; }
-    public Dictionary<string, bool> GiftsAdd {get; set; }
+    public Dictionary<string, bool> GiftsAdd { get; set; }
+    public MGModConfig_Config_HideoutSystem HideoutSystem { get; set; }
 }
 
 public class MGModConfig_Config_RaidDefault
 {
-    public bool enable {  get; set; }
+    public bool enable { get; set; }
     public string aiAmount { get; set; }
     public string aiDifficulty { get; set; }
     public bool bossEnabled { get; set; }
@@ -105,7 +105,15 @@ public class MGModConfig_Config_Weather
 
 public class MGModConfig_Config_BotSystem
 {
-    public string PmcWavesOptimize  { get; set; }
+    public string PmcWavesOptimize { get; set; }
+}
+
+public class MGModConfig_Config_HideoutSystem
+{
+    public EnableValueAny<int> CultistCircleTime { get; set; }
+    public EnableValueAny<MinMax<double>> CultistCultistLevel { get; set; }
+    public EnableValueAny<double> BonusTimeChance { get; set; }
+    public EnableValueAny<int> BonusTimeThreshold { get; set; }
 }
 
 public class MGModConfig_Globals
@@ -123,6 +131,7 @@ public class MGModConfig_Globals
     public MGModConfig_Globals_Buffs Buffs { get; set; }
     public bool ExpOptimize { get; set; }
 }
+
 public class MGModConfig_Globals_LoadSpeed
 {
     public string mode { get; set; }
@@ -148,9 +157,9 @@ public class MGModConfig_Hideout
     public EnableValueDouble ProductTime { get; set; }
     public EnableValueDouble ScavCaseTime { get; set; }
     public bool UpgradeNoLimit { get; set; }
-    public EnableValueInt BonusesLevel { get; set; } 
-    public bool NoNeedsFuel { get; set; } 
-    public MGModConfig_Hideout_Qte Qte { get; set; } 
+    public EnableValueInt BonusesLevel { get; set; }
+    public bool NoNeedsFuel { get; set; }
+    public MGModConfig_Hideout_Qte Qte { get; set; }
 }
 
 public class MGModConfig_Hideout_Qte
@@ -199,7 +208,7 @@ public class MGModConfig_Templates
     public bool T7ThermalImaging { get; set; }
     public bool ResetFree { get; set; }
     public MGModConfig_Templates_QuestSystem QuestSystem { get; set; }
-    public bool PMCRoar  { get; set; }
+    public bool PMCRoar { get; set; }
 }
 
 public class MGModConfig_Templates_ContainerExpands
@@ -225,12 +234,12 @@ public class MGModConfig_Templates_Backpack
     public bool SmallSize { get; set; }
     public bool NoBuff { get; set; }
     public bool NoWeight { get; set; }
-
 }
 
 public class MGModConfig_Templates_ArmorHelmet
 {
     public bool Filter { get; set; }
+
     // public int Durability { get; set; }
     public bool NoBuff { get; set; }
     public bool NoWeight { get; set; }
@@ -245,14 +254,18 @@ public class MGModConfig_Templates_EquipmentPlate
 
 public class MGModConfig_Templates_QuestSystem
 {
-    public bool QuestOptimize { get; set; }
     public bool Quest3X4Marker { get; set; }
+    public EnableValueAny<double> QuestValue { get; set; }
+    public EnableValueAny<int> QuestCDTime { get; set; }
+    public bool QuestItemNoNeedFindInRaid { get; set; }
+    public bool QuestIgnoreKillZone { get; set; }
+    public bool QuestKillIgnoreAIType { get; set; }
 }
 
 public class MGModConfig_Traders
 {
-    public EnableValueInt InsuranceTime { get; set; }  // string || int
-    public EnableValueDouble InsuranceCost { get; set; }  // string || double
+    public EnableValueInt InsuranceTime { get; set; } // string || int
+    public EnableValueDouble InsuranceCost { get; set; } // string || double
 }
 
 public class MGModConfig_MGCustom
@@ -290,4 +303,10 @@ public class EnableValueBool
 {
     public bool enable { get; set; }
     public bool value { get; set; }
+}
+
+public class EnableValueAny<T>
+{
+    public bool enable { get; set; }
+    public T value { get; set; }
 }

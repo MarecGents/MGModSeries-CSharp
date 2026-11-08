@@ -6,7 +6,8 @@ namespace MGEditor.Views.Pages.Functions;
 
 [GalleryPage(
     Translations.GalleryDescFeature, 
-    SymbolRegular.Premium12
+    SymbolRegular.Premium12,
+    5
     )]
 public partial class ExclusiveFeaturePage : INavigableView<ExclusiveFeatureViewModel>
 {

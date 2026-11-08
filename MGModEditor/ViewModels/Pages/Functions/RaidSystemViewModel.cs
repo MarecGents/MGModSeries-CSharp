@@ -208,38 +208,38 @@ public partial class RaidSystemViewModel: ViewModel
         {
             case "mode1":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 0;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 0;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 0;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 0;
                 break;
             }
             case "mode2":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 0.2;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 0.2;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 0.2;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 0.2;
                 break;
             }
             case "mode3":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 0.4;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 0.4;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 0.4;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 0.4;
                 break;
             }
             case "mode4":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 0.75;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 0.75;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 0.75;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 0.75;
                 break;
             }
             case "mode5":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 1;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 1;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 1;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 1;
                 break;
             }
             case "default":
             {
-                ConfigJson.Config.WeatherSettings.rainIntensity.Min = 0;
-                ConfigJson.Config.WeatherSettings.rainIntensity.Max = 1;
+                ConfigJson.Config.WeatherSettings.rainIntensity.min = 0;
+                ConfigJson.Config.WeatherSettings.rainIntensity.max = 1;
                 break;
             }
         }

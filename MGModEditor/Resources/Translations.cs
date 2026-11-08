@@ -155,6 +155,7 @@ public static class Translations
     public const string DevelopHeaderWarehouseOpt = "Develop.Header.WarehouseOpt";
     public const string DevelopHeaderQuestSystem = "Develop.Header.QuestSystem";
     public const string DevelopHeaderHideout = "Develop.Header.Hideout";
+    public const string DevelopHeaderCultistCircle = "Develop.Header.CultistCircle";
     public const string DevelopButtonUnloadSpeed = "Develop.Button.UnloadSpeed";
     public const string DevelopButtonSkillExpBoost = "Develop.Button.SkillExpBoost";
     public const string DevelopButtonSupermanMode = "Develop.Button.SupermanMode";
@@ -189,7 +190,6 @@ public static class Translations
     public const string DevelopButtonMoneyStack = "Develop.Button.MoneyStack";
     public const string DevelopButtonFullInspect = "Develop.Button.FullInspect";
     public const string DevelopButtonQuestFreeReset = "Develop.Button.QuestFreeReset";
-    public const string DevelopButtonQuestOptimize = "Develop.Button.QuestOptimize";
     public const string DevelopButtonQuest3X4Marker = "Develop.Button.Quest3X4Marker";
     public const string DevelopButtonHideoutUpgradeTime = "Develop.Button.HideoutUpgradeTime";
     public const string DevelopButtonHideoutProductionTime = "Develop.Button.HideoutProductionTime";
@@ -200,6 +200,10 @@ public static class Translations
     public const string DevelopButtonGymAlwaysSucceed = "Develop.Button.GymAlwaysSucceed";
     public const string DevelopButtonGymNoPenalty = "Develop.Button.GymNoPenalty";
     public const string DevelopButtonGymRewardMultiplier = "Develop.Button.GymRewardMultiplier";
+    public const string DevelopButtonCultistCircleTime = "Develop.Button.CultistCircleTime";
+    public const string DevelopButtonCultistCultistLevel = "Develop.Button.CultistCultistLevel";
+    public const string DevelopButtonBonusTimeChance = "Develop.Button.BonusTimeChance";
+    public const string DevelopButtonBonusTimeThreshold = "Develop.Button.BonusTimeThreshold";
 
     // ---- Develop Desc ----
     public const string DevelopDescUnloadSpeed = "Develop.Desc.UnloadSpeed";
@@ -236,7 +240,6 @@ public static class Translations
     public const string DevelopDescMoneyStack = "Develop.Desc.MoneyStack";
     public const string DevelopDescFullInspect = "Develop.Desc.FullInspect";
     public const string DevelopDescQuestFreeReset = "Develop.Desc.QuestFreeReset";
-    public const string DevelopDescQuestOptimize = "Develop.Desc.QuestOptimize";
     public const string DevelopDescQuest3X4Marker = "Develop.Desc.Quest3X4Marker";
     public const string DevelopDescHideoutUpgradeTime = "Develop.Desc.HideoutUpgradeTime";
     public const string DevelopDescHideoutProductionTime = "Develop.Desc.HideoutProductionTime";
@@ -247,6 +250,10 @@ public static class Translations
     public const string DevelopDescGymAlwaysSucceed = "Develop.Desc.GymAlwaysSucceed";
     public const string DevelopDescGymNoPenalty = "Develop.Desc.GymNoPenalty";
     public const string DevelopDescGymRewardMultiplier = "Develop.Desc.GymRewardMultiplier";
+    public const string DevelopDescCultistCircleTime = "Develop.Desc.CultistCircleTime";
+    public const string DevelopDescCultistCultistLevel = "Develop.Desc.CultistCultistLevel";
+    public const string DevelopDescBonusTimeChance = "Develop.Desc.BonusTimeChance";
+    public const string DevelopDescBonusTimeThreshold = "Develop.Desc.BonusTimeThreshold";
 
     // ---- Develop HeaderDesc ----
     public const string DevelopHeaderDescBaseAttributes = "Develop.HeaderDesc.BaseAttributes";
@@ -261,6 +268,7 @@ public static class Translations
     public const string DevelopHeaderDescWarehouseOpt = "Develop.HeaderDesc.WarehouseOpt";
     public const string DevelopHeaderDescQuestSystem = "Develop.HeaderDesc.QuestSystem";
     public const string DevelopHeaderDescHideout = "Develop.HeaderDesc.Hideout";
+    public const string DevelopHeaderDescCultistCircle = "Develop.HeaderDesc.CultistCircle";
 
     // ---- Economy ----
     public const string EconomyHeaderFlea = "Economy.Header.Flea";
@@ -427,7 +435,30 @@ public static class Translations
     public const string ConfigItemMapBotDifficultyNormal = "ConfigItem.MapBotDifficulty.Normal";
     public const string ConfigItemMapBotDifficultyHard = "ConfigItem.MapBotDifficulty.Hard";
     public const string ConfigItemMapBotDifficultyImpossible = "ConfigItem.MapBotDifficulty.Impossible";
-
+    public const string ConfigItemCultistCircleTimeDefault = "ConfigItem.CultistCircleTime.Default";
+    public const string ConfigItemCultistCircleTime30s = "ConfigItem.CultistCircleTime.30s";
+    public const string ConfigItemCultistCircleTime5m = "ConfigItem.CultistCircleTime.5m";
+    public const string ConfigItemCultistCircleTime30m = "ConfigItem.CultistCircleTime.30m";
+    public const string ConfigItemCultistCultistLevelDefault = "ConfigItem.CultistCultistLevel.Default";
+    public const string ConfigItemCultistCultistLevelGeneral = "ConfigItem.CultistCultistLevel.General";
+    public const string ConfigItemCultistCultistLevelHigher = "ConfigItem.CultistCultistLevel.Higher";
+    public const string ConfigItemCultistCultistLevelSuper = "ConfigItem.CultistCultistLevel.Super";
+    public const string ConfigItemBonusTimeChanceDefault = "ConfigItem.BonusTimeChance.Default";
+    public const string ConfigItemBonusTimeThresholdDefault = "ConfigItem.BonusTimeThreshold.Default";
+    public const string ConfigItemBonusTimeThreshold0 = "ConfigItem.BonusTimeThreshold.0";
+    public const string ConfigItemBonusTimeThreshold10K = "ConfigItem.BonusTimeThreshold.10K";
+    public const string ConfigItemBonusTimeThreshold100K = "ConfigItem.BonusTimeThreshold.100K";
+    public const string ConfigItemBonusTimeThreshold1M = "ConfigItem.BonusTimeThreshold.1M";
+    public const string ConfigItemQuestValueDefault = "ConfigItem.QuestValue.Default";
+    public const string ConfigItemQuestValueOne = "ConfigItem.QuestValue.One";
+    public const string ConfigItemQuestValueHalf = "ConfigItem.QuestValue.Half";
+    public const string ConfigItemQuestValueDouble = "ConfigItem.QuestValue.Double";
+    public const string ConfigItemQuestCDTimeDefault = "ConfigItem.QuestCDTime.Default";
+    public const string ConfigItemQuestCDTime0s = "ConfigItem.QuestCDTime.0s";
+    public const string ConfigItemQuestCDTime30s = "ConfigItem.QuestCDTime.30s";
+    public const string ConfigItemQuestCDTime5m = "ConfigItem.QuestCDTime.5m";
+    public const string ConfigItemQuestCDTime10m = "ConfigItem.QuestCDTime.10m";
+    public const string ConfigItemQuestCDTimeHalf = "ConfigItem.QuestCDTime.Half";
     // ---- Theme ----
     public const string ThemePurpleLight = "Theme.PurpleLight";
     public const string ThemePurpleDark = "Theme.PurpleDark";

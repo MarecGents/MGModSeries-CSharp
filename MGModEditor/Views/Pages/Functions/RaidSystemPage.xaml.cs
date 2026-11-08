@@ -6,7 +6,8 @@ namespace MGEditor.Views.Pages.Functions;
 
 [GalleryPage(
     Translations.GalleryDescRaid, 
-    SymbolRegular.PersonWalking16
+    SymbolRegular.PersonWalking16,
+    1
     )]
 public partial class RaidSystemPage : INavigableView<RaidSystemViewModel>
 {

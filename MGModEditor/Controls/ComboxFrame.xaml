@@ -51,7 +51,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0"
                                     Description="{TemplateBinding Description}" />
-                                <ComboBox
+                                <controls:FlipComboBox
                                     Grid.Column="1"
                                     ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType={x:Type controls:ComboxFrame}}}"
                                     SelectedValue="{Binding SelectedValue, RelativeSource={RelativeSource AncestorType={x:Type controls:ComboxFrame}}}"
@@ -60,7 +60,7 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     MinWidth="150">
-                                    <ComboBox.ItemTemplate>
+                                    <controls:FlipComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock>
                                                 <TextBlock.Text>
@@ -71,8 +71,8 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                         </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
+                                    </controls:FlipComboBox.ItemTemplate>
+                                </controls:FlipComboBox>
                             </Grid>
                         </Border>
                     </Grid>

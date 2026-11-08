@@ -6,7 +6,8 @@ namespace MGEditor.Views.Pages.Functions;
 
 [GalleryPage(
     Translations.GalleryDescEconomy, 
-    SymbolRegular.CurrencyDollarEuro16
+    SymbolRegular.CurrencyDollarEuro16,
+    2
     )]
 public partial class EconomySystemPage : INavigableView<EconomySystemViewModel>
 {

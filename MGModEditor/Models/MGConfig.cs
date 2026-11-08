@@ -57,6 +57,7 @@ public class MGModConfig_Config
     public bool ScavEquipmentOptimize { get; set; }
     public MGModConfig_Config_BotSystem BotSystem { get; set; }
     public Dictionary<string, bool> GiftsAdd {get; set; }
+    public MGModConfig_Config_HideoutSystem HideoutSystem { get; set; }
 }
 
 public class MGModConfig_Config_RaidDefault
@@ -104,6 +105,14 @@ public class MGModConfig_Config_Weather
 public class MGModConfig_Config_BotSystem
 {
     public string PmcWavesOptimize  { get; set; }
+}
+
+public class MGModConfig_Config_HideoutSystem
+{
+    public EnableValueAny<int> CultistCircleTime { get; set; }
+    public EnableValueAny<MinMax<double>> CultistCultistLevel { get; set; }
+    public EnableValueAny<double> BonusTimeChance  { get; set; }
+    public EnableValueAny<int> BonusTimeThreshold  { get; set; }
 }
 
 public class MGModConfig_Globals
@@ -243,8 +252,12 @@ public class MGModConfig_Templates_EquipmentPlate
 
 public class MGModConfig_Templates_QuestSystem
 {
-    public bool QuestOptimize { get; set; }
     public bool Quest3X4Marker { get; set; }
+    public EnableValueAny<double> QuestValue { get; set; }
+    public EnableValueAny<int> QuestCDTime { get; set; }
+    public bool QuestItemNoNeedFindInRaid { get; set; }
+    public bool QuestIgnoreKillZone { get; set; }
+    public bool QuestKillIgnoreAIType { get; set; }
 }
 
 public class MGModConfig_Traders
@@ -288,4 +301,10 @@ public class EnableValueBool
 {
     public bool enable { get; set; }
     public bool value { get; set; }
+}
+
+public class EnableValueAny<T>
+{
+    public bool enable { get; set; }
+    public T value { get; set; }
 }

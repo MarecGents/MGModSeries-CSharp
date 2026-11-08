@@ -239,13 +239,32 @@
                     Description="{DynamicResource Develop.Desc.QuestFreeReset}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.ResetFree}"/>
                 <controls:CheckButtonFrame
-                    ButtonContent="{DynamicResource Develop.Button.QuestOptimize}"
-                    Description="{DynamicResource Develop.Desc.QuestOptimize}"
-                    IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.QuestOptimize}"/>
-                <controls:CheckButtonFrame
                     ButtonContent="{DynamicResource Develop.Button.Quest3X4Marker}"
                     Description="{DynamicResource Develop.Desc.Quest3X4Marker}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.Quest3X4Marker}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.QuestValue}"
+                    Description="{DynamicResource Develop.Desc.QuestValue}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.QuestValue}"
+                    SelectedValue="{Binding ViewModel.QuestValueValue}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.QuestCDTime}"
+                    Description="{DynamicResource Develop.Desc.QuestCDTime}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.QuestCDTime}"
+                    SelectedValue="{Binding ViewModel.QuestCDTimeValue}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Develop.Button.QuestItemNoNeedFindInRaid}"
+                    Description="{DynamicResource Develop.Desc.QuestItemNoNeedFindInRaid}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.QuestItemNoNeedFindInRaid}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Develop.Button.QuestIgnoreKillZone}"
+                    Description="{DynamicResource Develop.Desc.QuestIgnoreKillZone}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.QuestIgnoreKillZone}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Develop.Button.QuestKillIgnoreAIType}"
+                    Description="{DynamicResource Develop.Desc.QuestKillIgnoreAIType}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.QuestSystem.QuestKillIgnoreAIType}"/>
+                
             </StackPanel>
         </controls:FrameGroup>
         
@@ -297,6 +316,32 @@
             </StackPanel>
         </controls:FrameGroup>
         
+        <controls:FrameGroup
+            HeaderText="{DynamicResource Develop.Header.CultistCircle}"
+            HeaderDescription="{DynamicResource Develop.HeaderDesc.CultistCircle}">
+            <StackPanel>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.CultistCircleTime}"
+                    Description="{DynamicResource Develop.Desc.CultistCircleTime}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.CultistCircleTime}"
+                    SelectedValue="{Binding ViewModel.CultistCircleTimeValue}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.CultistCultistLevel}"
+                    Description="{DynamicResource Develop.Desc.CultistCultistLevel}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.CultistCultistLevel}"
+                    SelectedValue="{Binding ViewModel.CultistCultistLevelValue}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.BonusTimeChance}"
+                    Description="{DynamicResource Develop.Desc.BonusTimeChance}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.BonusTimeChance}"
+                    SelectedValue="{Binding ViewModel.BonusTimeChanceValue}"/>
+                <controls:ComboxFrame 
+                    ButtonContent="{DynamicResource Develop.Button.BonusTimeThreshold}"
+                    Description="{DynamicResource Develop.Desc.BonusTimeThreshold}"
+                    ItemsSource="{Binding ViewModel.ConfigItemList.BonusTimeThreshold}"
+                    SelectedValue="{Binding ViewModel.BonusTimeThresholdValue}"/>
+            </StackPanel>
+        </controls:FrameGroup>
     </StackPanel>
 </Page>
 

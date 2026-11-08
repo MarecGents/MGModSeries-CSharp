@@ -90,7 +90,6 @@
                     IsChecked="{Binding ViewModel.ConfigJson.Config.BuyFoundInRaid}"/>
             </StackPanel>
         </controls:FrameGroup>
-        
     </StackPanel>
 </Page>
 

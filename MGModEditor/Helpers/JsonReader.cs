@@ -7,7 +7,8 @@ public class JsonReader
     {
         options = new JsonSerializerOptions
         {
-            WriteIndented = true // 启用换行和缩进
+            WriteIndented = true, // 启用换行和缩进
+            PropertyNameCaseInsensitive = true // 兼容旧配置 PascalCase 键（如 MinMax 历史 Min/Max → 现读写 min/max）
         };
     }
     /// <summary>
@@ -18,7 +19,7 @@ public class JsonReader
     /// <returns>Deserialized object or null</returns>
     public T? Deserialize<T>(string? json)
     {
-        return string.IsNullOrEmpty(json) ? default : JsonSerializer.Deserialize<T>(json);
+        return string.IsNullOrEmpty(json) ? default : JsonSerializer.Deserialize<T>(json, options);
     }
 
     /// <summary>
@@ -29,7 +30,7 @@ public class JsonReader
     /// <returns></returns>
     public object? Deserialize(string? json, Type type)
     {
-        return string.IsNullOrEmpty(json) ? null : JsonSerializer.Deserialize(json, type);
+        return string.IsNullOrEmpty(json) ? null : JsonSerializer.Deserialize(json, type, options);
     }
 
     /// <summary>

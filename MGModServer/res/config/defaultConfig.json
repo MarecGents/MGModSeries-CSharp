@@ -102,8 +102,8 @@
                 ]
             },
             "rainIntensity": {
-                "Min": 0,
-                "Max": 1
+                "min": 0,
+                "max": 1
             },
             "rain": {
                 "type": "default",
@@ -147,6 +147,27 @@
         },
         "GiftsAdd": {
             
+        },
+        "HideoutSystem": {
+            "CultistCircleTime": {
+                "enable": false,
+                "value": 30
+            },
+            "CultistCultistLevel": {
+                "enable": false,
+                "value": {
+                    "min": 0.7,
+                    "max": 1.4
+                }
+            },
+            "BonusTimeChance": {
+                "enable": false,
+                "value": 0.25
+            },
+            "BonusTimeThreshold": {
+                "enable": false,
+                "value": 400000
+            }
         }
     },
     "Globals": {
@@ -460,8 +481,18 @@
         "T7ThermalImaging": false,
         "ResetFree": false,
         "QuestSystem": {
-            "QuestOptimize": false,
-            "Quest3X4Marker": false
+            "Quest3X4Marker": false,
+            "QuestValue": {
+                "enable": false,
+                "value": 1
+            },
+            "QuestCDTime": {
+                "enable": false,
+                "value": 0
+            },
+            "QuestItemNoNeedFindInRaid": false,
+            "QuestIgnoreKillZone": false,
+            "QuestKillIgnoreAIType": false
         },
         "PMCRoar": false
     },

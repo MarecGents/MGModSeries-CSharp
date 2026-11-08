@@ -2,6 +2,6 @@
 
 public class MinMax<T>
 {
-    public T Min { get; set; }
-    public T Max { get; set; }
+    public T min { get; set; }
+    public T max { get; set; }
 }

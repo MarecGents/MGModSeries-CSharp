@@ -6,7 +6,8 @@ namespace MGEditor.Views.Pages.Functions;
 
 [GalleryPage(
     Translations.GalleryDescDevelop, 
-    SymbolRegular.Guardian24
+    SymbolRegular.Guardian24,
+    3
     )]
 public partial class DevelopSystemPage : INavigableView<DevelopSystemViewModel>
 {

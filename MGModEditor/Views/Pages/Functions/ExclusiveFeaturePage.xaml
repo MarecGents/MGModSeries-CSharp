@@ -62,7 +62,6 @@
                     IsChecked="{Binding ViewModel.ConfigJson.MGCustom.SyncFlea}"/>
             </StackPanel>
         </controls:FrameGroup>
-        
     </StackPanel>
 </Page>
 
