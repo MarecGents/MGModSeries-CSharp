@@ -1,17 +1,13 @@
 ﻿using _MGMod.types.models.Paths;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Extensions;
-using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Server.Core.Models.Utils;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Utils;
 using System.Reflection;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using SPTarkov.Common.Logger;
 using SPTarkov.Server.Core.Helpers.Server;
-using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using Color = Spectre.Console.Color;
 using Path = System.IO.Path;
 
@@ -180,6 +176,11 @@ public class MGUtils(
     {
         return fileUtil.StripExtension(filePath);
     }
+
+    public string PathCombine(PathType pathType)
+    {
+        return Path.Combine(pathType.Path, pathType.FileName);
+    }
     
     public MongoId Generate()
     {
@@ -222,7 +223,7 @@ public class MGUtils(
 
     public void Logs(object data)
     {
-        fileUtil.WriteFile(System.IO.Path.Combine(modPath, $"./Log/{new MongoId()}.log"),jsonUtil.Serialize(data));
+        fileUtil.WriteFile(System.IO.Path.Combine(modPath, $"./Log/{new MongoId()}.log"),jsonUtil.Serialize(data, true));
     }
 
     public void Log(string server,string data, Color textColor)
@@ -235,7 +236,7 @@ public class MGUtils(
     }
     public void TestOutput<T>(T data)
     {
-        string data2String = jsonUtil.Serialize(data);
+        string data2String = jsonUtil.Serialize(data, true);
         logger.LogWithColor(data2String,  Color.Gray, Color.White);
     }
 }

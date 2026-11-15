@@ -67,6 +67,12 @@ public static class Paths
         FileName = "looseLoot.json",
         Path = "./res/services/locationsDB"
     };
+    
+    public static readonly PathType TraderItemsSopeAllowInThermal = new ()
+    {
+        FileName = "scope_allow_in_thermal.json",
+        Path = "./res/plugins"
+    };
 
     public static readonly string TraderDB = "./res/services/TraderDB";
 

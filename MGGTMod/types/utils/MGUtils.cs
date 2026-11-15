@@ -56,7 +56,7 @@ public class MGUtils(
 
     public string? Serialize<T>(T? obj)
     {
-        return jsonUtil.Serialize<T>(obj);
+        return jsonUtil.Serialize<T>(obj, true);
     }
 
     public T? Deserialize<T>(string? json)
@@ -176,6 +176,11 @@ public class MGUtils(
     {
         return fileUtil.StripExtension(filePath);
     }
+
+    public string PathCombine(PathType pathType)
+    {
+        return Path.Combine(pathType.Path, pathType.FileName);
+    }
     
     public MongoId Generate()
     {
@@ -218,7 +223,7 @@ public class MGUtils(
 
     public void Logs(object data)
     {
-        fileUtil.WriteFile(System.IO.Path.Combine(modPath, $"./Log/{new MongoId()}.log"),jsonUtil.Serialize(data));
+        fileUtil.WriteFile(System.IO.Path.Combine(modPath, $"./Log/{new MongoId()}.log"),jsonUtil.Serialize(data, true));
     }
 
     public void Log(string server,string data, Color textColor)
@@ -231,7 +236,7 @@ public class MGUtils(
     }
     public void TestOutput<T>(T data)
     {
-        string data2String = jsonUtil.Serialize(data);
+        string data2String = jsonUtil.Serialize(data, true);
         logger.LogWithColor(data2String,  Color.Gray, Color.White);
     }
 }

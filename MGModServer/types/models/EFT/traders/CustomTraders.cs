@@ -88,3 +88,9 @@ public class CustomTraderLoyaltyLevelsDesc
     public string exchange_price_coef {get;set;}
     public string heal_price_coef {get;set;}
 }
+
+
+public class CustomTraderPlugins
+{
+    public List<MongoId>? scope_allow_in_thermal { get; set; }
+}

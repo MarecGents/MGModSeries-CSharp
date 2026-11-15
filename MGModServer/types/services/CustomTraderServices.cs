@@ -1,6 +1,5 @@
 ﻿using _MGMod.types.models.EFT;
 using _MGMod.types.models.EFT.locales;
-using _MGMod.types.models.EFT.locations;
 using _MGMod.types.models.EFT.templetes;
 using _MGMod.types.models.EFT.traders;
 using _MGMod.types.models.Paths;
@@ -43,37 +42,57 @@ public class CustomTraderServices(
         {
             Manifest = []
         };
+        CustomTraderPlugins Plugins = new CustomTraderPlugins
+        {
+            scope_allow_in_thermal = new List<MongoId>()
+        };
         foreach (var traderPath in TradersDirectories)
         {
-            bool addFlag = AddTraderBaseToDB(traderPath);
-            if (!addFlag) continue;
-            AddImageToDB(traderPath);
-            AddTraderItemsToDB(traderPath);
-            AddTraderLocalesToDB(traderPath);
-            AddTraderLocationToDB(traderPath);
-            AddTraderTemplatesToDB(traderPath);
-            AddTraderGlobalsToDB(traderPath);
-            Log($"商人【{Path.GetFileName(traderPath)}】已添加。", Color.Yellow);
-            BundleManifest bundles = mGUtils.GetJsonDataFromFile<BundleManifest>(new PathType
+            var traderName = Path.GetFileName(traderPath);
+            try
             {
-                FileName = TraderPathsType.TraderBundles,
-                Path = traderPath,
-            }, false);
-            if(bundles.Manifest.Count > 0) Bundles.Manifest.AddRange(bundles.Manifest);
+                bool addFlag = AddTraderBaseToDB(traderPath);
+                if (!addFlag) continue;
+                AddImageToDB(traderPath);
+                var plugin = AddTraderItemsToDB(traderPath);
+                Plugins.scope_allow_in_thermal.AddRange(plugin.scope_allow_in_thermal ?? new List<MongoId>());
+                AddTraderLocalesToDB(traderPath);
+                AddTraderLocationToDB(traderPath);
+                AddTraderTemplatesToDB(traderPath);
+                AddTraderGlobalsToDB(traderPath);
+                Log($"商人【{Path.GetFileName(traderPath)}】已添加。", Color.Yellow);
+                BundleManifest bundles = mGUtils.GetJsonDataFromFile<BundleManifest>(new PathType
+                {
+                    FileName = TraderPathsType.TraderBundles,
+                    Path = traderPath,
+                }, false);
+                if(bundles?.Manifest is {Count: >0}) Bundles.Manifest.AddRange(bundles.Manifest);
+            }
+            catch (Exception ex)
+            {
+                Log($"商人【{traderName}】加载异常，已跳过：{ex.GetType().Name}: {ex.Message}", Color.Red);
+            }
         }
+        UpdateCustomTraderItemsPlugins(Plugins);
         return Bundles;
     }
 
     public void AddBundles(BundleManifest Bundles)
     {
-        BundleManifest mainBundles = mGUtils.GetJsonDataFromFile<BundleManifest>(Paths.BundlesJson);
+        BundleManifest mainBundles = mGUtils.GetJsonDataFromFile<BundleManifest>(Paths.BundlesJson)??
+                                     new BundleManifest
+                                     {
+                                         Manifest = new ()
+                                     };
+        mainBundles.Manifest ??= new();
         mainBundles.Manifest.Clear();
-        if (Bundles.Manifest.Count > 0)
+        if (Bundles?.Manifest is { Count: > 0 })
         {
             mainBundles.Manifest.AddRange(Bundles.Manifest);
-            mGUtils.DeleteFile(Paths.BundlesJson.FileName);
-            mGUtils.WriteFile(Paths.BundlesJson.FileName, mGUtils.Serialize(mainBundles));
         }
+        var json = mGUtils.Serialize(mainBundles);
+        if (json == null) { Log("【警告】bundles.json 序列化失败，跳过写入。", Color.Cyan); return; }
+        mGUtils.WriteFile(Paths.BundlesJson.FileName, json);
     }
 
     public bool AddTraderBaseToDB(string traderPath)
@@ -84,9 +103,8 @@ public class CustomTraderServices(
             Path = traderPath,
         }, false);
         var returnFlag = 0;
-        if (traderInfo == default)
+        if (traderInfo is null)
         {
-            // 2026.01.19 23:14 进度于此
             Log($"商人{Path.GetFileName(traderPath)}不存在配置文件\"traderInfo.json\"，请检查商人文件完整性。",Color.Cyan);
             return false;
         }
@@ -109,6 +127,8 @@ public class CustomTraderServices(
             FileName = "base.json",
             Path = Paths.TraderDB,
         });
+        if (traderBase is null) return false;
+        if (traderInfo.locales is null) return false;
         
         // base.json
         traderBase.Id = traderInfo._id;
@@ -171,11 +191,14 @@ public class CustomTraderServices(
         };
         
         // dialogue.json
-        foreach (var dialogue in newTrader.Dialogue)
+        if (traderInfo.insurance?.Message != null)
         {
-            if (traderInfo.insurance.Message.TryGetValue(dialogue.Key, out var message))
+            foreach (var dialogue in newTrader.Dialogue)
             {
-                dialogue.Value?.AddRange(message);
+                if (traderInfo.insurance.Message.TryGetValue(dialogue.Key, out var message))
+                {
+                    dialogue.Value?.AddRange(message);
+                }
             }
         }
         // questassort.json  Dictionary<string, Dictionary<MongoId, MongoId>>
@@ -183,14 +206,14 @@ public class CustomTraderServices(
         {
             FileName = "questassort.json",
             Path = Path.Combine(traderPath,TraderPathsType.TraderDataPath),
-        }, false);
+        }, false) ?? new Dictionary<string, Dictionary<string, string>>();
         // assort.json
         TraderAssortStringId traderAssortStringId = mGUtils.GetJsonDataFromFile<TraderAssortStringId>(new PathType
         {
             FileName = "assort.json",
             Path = Path.Combine(traderPath,TraderPathsType.TraderDataPath),
         }, false);
-        if (traderAssortStringId.items.Count > 0)
+        if (traderAssortStringId?.items is { Count: > 0 })
         {
             foreach (var item in traderAssortStringId.items)
             {
@@ -200,14 +223,17 @@ public class CustomTraderServices(
                 traderQuestAssort = mGUtils.ReplaceKey(traderQuestAssort, item._id, newId);
             }
             TraderAssort traderAssort = mGUtils.Deserialize<TraderAssort>(mGUtils.Serialize(traderAssortStringId));
-            newTrader.Assort.Items.AddRange(traderAssort.Items);
-            foreach (var item in traderAssort.BarterScheme)
+            if (traderAssort != null)
             {
-                newTrader.Assort.BarterScheme.TryAdd(item.Key, item.Value);
-            }
-            foreach (var item in traderAssort.LoyalLevelItems)
-            {
-                newTrader.Assort.LoyalLevelItems.TryAdd(item.Key, item.Value);
+                newTrader.Assort.Items.AddRange(traderAssort.Items);
+                foreach (var item in traderAssort.BarterScheme)
+                {
+                    newTrader.Assort.BarterScheme.TryAdd(item.Key, item.Value);
+                }
+                foreach (var item in traderAssort.LoyalLevelItems)
+                {
+                    newTrader.Assort.LoyalLevelItems.TryAdd(item.Key, item.Value);
+                }
             }
 
             foreach (var key in traderQuestAssort)
@@ -222,7 +248,7 @@ public class CustomTraderServices(
         // image
         string traderImage = $"{traderInfo._id}.jpg";
         string imagePath = Path.Combine(traderPath,traderImage);
-        if (mGUtils.FileExists(imagePath, false))
+        if (mGUtils.FileExists(imagePath, false) && !string.IsNullOrEmpty(newTrader.Base.Avatar))
         {
             newTrader.Base.Avatar = newTrader.Base.Avatar.Replace("000000000000000000000000.jpg", traderImage);
             imageRouter.AddRoute(newTrader.Base.Avatar.Replace(".jpg",""), imagePath);
@@ -236,20 +262,21 @@ public class CustomTraderServices(
         }
         
         // locales
-        localesServer.AddTraderInfo(new _MGMod.types.models.EFT.locales.TraderInfo
+        localesServer.AddTraderInfo(new models.EFT.locales.TraderInfo
         {
             Id = traderInfo._id,
             Desc = traderInfo.locales
         });
         
         // insurance.json
-        if (traderInfo.insurance.enable) configsServer.AddTraderReturnChance(traderInfo._id, traderInfo.insurance.chance);
+        if (traderInfo.insurance?.enable is true) configsServer.AddTraderReturnChance(traderInfo._id, traderInfo.insurance.chance);
         // quest.json
         configsServer.AddRepeatableQuestTraderWhitelist(traderInfo._id, traderInfo.locales.Nickname);
         // ragfair.json
         configsServer.AddTraderRagfair(traderInfo._id);
         // traders.json
-        configsServer.SetTradersUpdateTime(traderInfo.updateTime.Min,traderInfo.updateTime.Max, traderInfo._id, traderInfo.locales.Nickname);
+        if (traderInfo.updateTime != null)
+            configsServer.SetTradersUpdateTime(traderInfo.updateTime.Min, traderInfo.updateTime.Max, traderInfo._id, traderInfo.locales.Nickname);
 
         templatesServer.AddTraderInitLoyaltyLevel(traderInfo._id);
 
@@ -271,8 +298,12 @@ public class CustomTraderServices(
         
     }
 
-    public void AddTraderItemsToDB(string traderPath)
+    public CustomTraderPlugins AddTraderItemsToDB(string traderPath)
     {
+        CustomTraderPlugins plugins = new CustomTraderPlugins
+        {
+            scope_allow_in_thermal = new List<MongoId>()
+        };
         Dictionary<string, string> filterList = new();
         string TraderItemsPath = Path.Combine(traderPath, TraderPathsType.TraderItemsPath);
         var itemList = mGUtils.GetFiles(TraderItemsPath);
@@ -283,17 +314,32 @@ public class CustomTraderServices(
                 FileName = Path.GetFileName(itemFilePath),
                 Path = TraderItemsPath,
             }, false);
+            if (traderItem?.item == null)
+            {
+                Log($"【警告】物品文件解析失败或缺少 item 节点，已跳过：{Path.GetFileName(itemFilePath)}", Color.Cyan);
+                continue;
+            }
             if (templatesServer.IsItemExists(traderItem.item.Id))
             {
                 Log($"【警告】独立商人物品【id:{traderItem.item.Id}】已存在，请酌情修改id，本次不执行添加操作。", Color.Cyan);
+                continue;
             }
 
             if (!String.IsNullOrEmpty(traderItem.origin) && mGUtils.IsMongoId(traderItem.origin))
                 filterList.TryAdd(traderItem.item.Id, traderItem.origin);
             var flag = templatesServer.AddCustomTraderItemsToDB(traderItem);
             if(!flag) Log($"【警告】独立商人物品【id:{traderItem.item.Id}】添加失败，请检查物品文件是否正确。", Color.Cyan);
+            else
+            {
+                if (traderItem.plugin?.scope_allow_in_thermal is true)
+                {
+                    plugins.scope_allow_in_thermal.Add(traderItem.item.Id);
+                }
+            }
         }
         templatesServer.AddFilters(filterList);
+
+        return plugins;
     }
 
     public void AddTraderLocalesToDB(string traderPath)
@@ -303,7 +349,7 @@ public class CustomTraderServices(
         {
             FileName = TraderPathsType.TraderItemDesc.FileName,
             Path = Path.Combine(traderPath,TraderPathsType.TraderItemDesc.Path),
-        }, false);
+        }, false) ?? new Dictionary<MongoId, ItemsDesc>();
         foreach (var item in itemsDescs)
         {
             localesServer.AddItemInfo(new ItemsInfo
@@ -318,7 +364,7 @@ public class CustomTraderServices(
         {
             FileName = TraderPathsType.TraderMail.FileName,
             Path = Path.Combine(traderPath, TraderPathsType.TraderMail.Path),
-        }, false);
+        }, false) ?? new Dictionary<MongoId, QuestDesc>();
         foreach (var quest in mails)
         {
             localesServer.AddQuestInfo(new QuestInfo
@@ -330,8 +376,13 @@ public class CustomTraderServices(
     }
 
     public void AddTraderLocationToDB(string traderPath)
-    { 
-        
+    {
+        int num = locationsServer.AddLooseLoot(new PathType
+        {
+            FileName =  TraderPathsType.TraderLooseLoot.FileName,
+            Path = Path.Combine($"./traders/{Path.GetFileName(traderPath)}",TraderPathsType.TraderLooseLoot.Path),
+        });
+        if (num > 0) Log($"商人{Path.GetFileName(traderPath)}已添加{num}个自定义物品刷新点",  Color.Blue);
     }
 
     public void AddTraderTemplatesToDB(string traderPath)
@@ -343,7 +394,7 @@ public class CustomTraderServices(
             FileName = TraderPathsType.TraderHandbook.FileName,
             Path = Path.Combine(traderPath, TraderPathsType.TraderHandbook.Path),
         }, false);
-        handbookBase.Items.AddRange(items);
+        if (items is { Count: > 0 }) handbookBase.Items.AddRange(items);
         
         // quests.json
         Dictionary<MongoId, Quest> quests = templatesServer.GetQuests();
@@ -351,7 +402,7 @@ public class CustomTraderServices(
         {
             FileName = TraderPathsType.TraderQuests.FileName,
             Path = Path.Combine(traderPath, TraderPathsType.TraderQuests.Path),
-        }, false);
+        }, false) ?? new Dictionary<MongoId, Quest>();
         foreach (var quest in mGQuests)
         {
             quests.TryAdd(quest.Key, quest.Value);
@@ -366,6 +417,11 @@ public class CustomTraderServices(
             FileName = TraderPathsType.TraderGlobals,
             Path = traderPath,
         }, false);
+        if (mGGlobals == null)
+        {
+            return;
+        }
+
         GlobalTable globals = globalsServer.GetGlobals();
         
         // ItemPreset
@@ -388,6 +444,17 @@ public class CustomTraderServices(
         
     }
 
+    public void UpdateCustomTraderItemsPlugins(CustomTraderPlugins plugins)
+    {
+        List<MongoId> scope_allow_in_thermal = mGUtils.GetJsonDataFromFile<List<MongoId>>(Paths.TraderItemsSopeAllowInThermal)??
+                                               new List<MongoId>();
+        scope_allow_in_thermal.Clear();
+        scope_allow_in_thermal.AddRange(plugins.scope_allow_in_thermal ?? new List<MongoId>());
+        var json = mGUtils.Serialize(scope_allow_in_thermal);
+        if (json == null) { Log("【警告】白名单序列化失败，跳过写入。", Color.Cyan); return; }
+        mGUtils.WriteFile(mGUtils.PathCombine(Paths.TraderItemsSopeAllowInThermal), json);
+    }
+    
     public void Log(string data, Color textColor)
     {
         mGUtils.Log("独立商人", data, textColor);

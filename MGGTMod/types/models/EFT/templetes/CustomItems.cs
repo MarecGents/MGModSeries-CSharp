@@ -59,4 +59,10 @@ public class CustomTraderItems
     public TemplateItem item { get; set; }
     public string origin { get; set; }
     public List<string>? Type { get; set; }
+    public CustomTraderItems_Plugin? plugin { get; set; }
+}
+
+public class CustomTraderItems_Plugin
+{
+    public bool? scope_allow_in_thermal { get; set; }
 }

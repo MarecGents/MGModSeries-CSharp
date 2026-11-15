@@ -1039,6 +1039,76 @@
                 "UnlimitedCount": true,
                 "StackObjectsCount": 9999999
             }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00h",
+            "_tpl": "8ef5b2ef0000000000000024",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999,
+                "BuyRestrictionMax": 1,
+                "BuyRestrictionCurrent": 0
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00i",
+            "_tpl": "8ef5b2ef0000000000000023",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999,
+                "BuyRestrictionMax": 5,
+                "BuyRestrictionCurrent": 0
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00j",
+            "_tpl": "5d235b4d86f7742e017bc88a",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00k",
+            "_tpl": "8ef5b2ef0000000000000025",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999,
+                "BuyRestrictionMax": 1,
+                "BuyRestrictionCurrent": 0
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00l",
+            "_tpl": "8ef5b2ef0000000000000026",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999,
+                "BuyRestrictionMax": 1,
+                "BuyRestrictionCurrent": 0
+            }
+        },
+        {
+            "_id": "mgtrader_default_assort_item00m",
+            "_tpl": "8ef5b2ef0000000000000027",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 9999999,
+                "BuyRestrictionMax": 1,
+                "BuyRestrictionCurrent": 0
+            }
         }
     ],
     "barter_scheme": {
@@ -1873,8 +1943,55 @@
                     "_tpl": "5449016a4bdc2d6f028b456f"
                 }
             ]
+        ],
+        "mgtrader_default_assort_item00h": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "8ef5b2ef0000000000000023"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_item00i": [
+            [
+                {
+                    "count": 125000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_item00j": [
+            [
+                {
+                    "count": 3,
+                    "_tpl": "8ef5b2ef0000000000000023"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_item00k": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "8ef5b2ef0000000000000023"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_item00l": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "8ef5b2ef0000000000000023"
+                }
+            ]
+        ],
+        "mgtrader_default_assort_item00m": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "8ef5b2ef0000000000000023"
+                }
+            ]
         ]
-        
     },
     "loyal_level_items": {
         "mgtrader_default_assort_bullet001": 1,
@@ -1980,6 +2097,12 @@
         "mgtrader_default_assort_item00d": 1,
         "mgtrader_default_assort_item00e": 1,
         "mgtrader_default_assort_item00f": 1,
-        "mgtrader_default_assort_item00g": 1
+        "mgtrader_default_assort_item00g": 1,
+        "mgtrader_default_assort_item00h": 1,
+        "mgtrader_default_assort_item00i": 1,
+        "mgtrader_default_assort_item00j": 1,
+        "mgtrader_default_assort_item00k": 1,
+        "mgtrader_default_assort_item00l": 1,
+        "mgtrader_default_assort_item00m": 1
     }
 }

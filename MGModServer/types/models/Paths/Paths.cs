@@ -86,6 +86,12 @@ public static class Paths
         Path = "./res/services/locationsDB"
     };
 
+    public static readonly PathType TraderItemsSopeAllowInThermal = new ()
+    {
+        FileName = "scope_allow_in_thermal.json",
+        Path = "./res/plugins"
+    };
+
     public static readonly string TraderDB = "./res/services/TraderDB";
 
     public static readonly string TradersPackage = "./traders";

@@ -1,3 +1,52 @@
 {
-	"manifest": []
+	"manifest": [
+		{
+			"key": "assets/content/mg/items/mods/scopes/scope_30mm_eotech_vudu_1_6x24_002.bundle",
+			"dependencyKeys": [
+				"assets/commonassets/physics/physicsmaterials.bundle",
+				"assets/content/textures/holemanager/round_spec_mask.bundle",
+				"assets/systems/effects/opticsight/opticsightsmasks.bundle",
+				"cubemaps",
+				"shaders"
+			]
+		},
+
+		{
+			"key": "assets/content/mg/items/barter/item_barter_valuable_bitcoin/item_barter_valuable_bitcoin_001.bundle",
+			"dependencyKeys": [
+				"assets/commonassets/physics/physicsmaterials.bundle",
+				"shaders"
+			]
+		},
+
+		{
+			"key": "assets/content/mg/items/mods/scopes/scope_all_elcan_specter_hco_001.bundle",
+			"dependencyKeys": [
+				"assets/commonassets/physics/physicsmaterials.bundle",
+				"assets/content/textures/holemanager/eotech_spec_mask.bundle",
+				"cubemaps",
+				"shaders"
+			]
+		},
+
+		{
+			"key": "assets/content/mg/items/mods/scopes/scope_all_walther_mrs_001.bundle",
+			"dependencyKeys": [
+				"assets/commonassets/physics/physicsmaterials.bundle",
+				"assets/systems/effects/collimator.bundle",
+				"cubemaps",
+				"shaders"
+			]
+		},
+
+		{
+			"key": "assets/content/mg/items/mods/scopes/scope_all_swampfox_trihawk_prism_scope_3x30_001.bundle",
+			"dependencyKeys": [
+				"assets/commonassets/physics/physicsmaterials.bundle",
+				"assets/systems/effects/opticsight/opticsightsmasks.bundle",
+				"cubemaps",
+				"shaders"
+			]
+		}
+	]
 }
