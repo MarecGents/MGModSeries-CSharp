@@ -93,6 +93,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **模块体系**：Server 层 8 个子系统（Bots / Configs / Globals / Hideout / Locales / Locations / Templates / Traders）+ Services 层 7 个服务（配置加载、商人服务等）
 - **ZDFW BotSystem**：AI 名字池、PMC 战术小队、地图难度、地图刷新、PMC 战吼（25 语言翻译）
 - **数据资源**：`db/` 游戏数据库覆盖、`res/botsystem/` AI 配置、`res/quest/` 任务数据（含 3X4 任务标记）、`traders/` 自定义商人
+- **独立商人扩展**：散落物资注入（`location/looseLoot.json`）、物品插件白名单（`res/plugins/`）、投保与供货配置
 - **依赖**：SPTushonka.Common / DI / Server.Core 4.1.6
 
 📄 详细文档：[docs/MGModServer-README.md](docs/MGModServer-README.md)
@@ -104,6 +105,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **核心服务**：`CustomTraderServices`（商人加载）、`ConfigSettingServices`（配置）
 - **可热加载**：`traders/` 目录下的商人配置（内置 FlanrecGents 示例 + MarecGents 任务系统参考）
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
+- **散落物资**：商人目录 `location/looseLoot.json` 可向指定地图注入自定义刷新点（与 MGModServer 同源）
 - **依赖**：SPTushonka.Common / DI / Server.Core 4.1.6
 
 📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
@@ -137,6 +139,17 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **服务端 Mod**：将 `Build\SPT_Runtime\user\mods\MGMod\` 与 `Build\SPT_Runtime\user\mods\MGGTMod\` 放入 SPT 服务端 `user\mods\` 目录（`SPT_Runtime` 即服务端运行时布局）。
 - **客户端插件**：将 `Build\BepInEx\plugins\MGModClient\MGModClient.dll` 放入游戏 `BepInEx\plugins\MGModClient\`。
 - **编辑器**：直接运行 `Build\SPT_Runtime\user\mods\MGMod\MGModEditor.exe`（免安装绿色单文件）。
+
+## 📝 更新日志
+
+各项目发布说明见 `ReleaseNotes/`：
+
+| 项目 | 当前版本 | 更新日志 |
+|---|---|---|
+| MG-Mod（MGModServer） | v1.1.5.040106 | [MGMod升级更新日志](ReleaseNotes/MGMod升级更新日志.md) |
+| MG-GT-Mod（MGGTMod） | v0.5.4.040106 | [MGGTMod升级更新日志](ReleaseNotes/MGGTMod升级更新日志.md) |
+| MGModClient | v0.2.3.040106 | [MGModClient升级更新日志](ReleaseNotes/MGModClient升级更新日志.md) |
+| MGModEditor | v1.3.3.0 | [MGModEditor升级更新日志](ReleaseNotes/MGModEditor升级更新日志.md) |
 
 ## ⚠️ 注意事项
 
@@ -173,7 +186,8 @@ Reference/
   ```
 
   MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
-- 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
+- `*.bundle` 使用 Git LFS 管理：克隆后需安装 [Git LFS](https://git-lfs.com/) 并执行 `git lfs pull`，否则 `bundles/` 下只会得到指针文件、资源缺失。
+- 原仓库发布帖等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线；本仓库更新日志见上方「📝 更新日志」。
 - MGGTMod 与 MGModServer 均引用 SPTushonka 4.1.6（4.1.x 命名空间仍为 SPTarkov.Server.Core.*，已对齐）。
 
 ## 📜 许可
