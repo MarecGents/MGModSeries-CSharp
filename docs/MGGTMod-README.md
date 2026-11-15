@@ -7,8 +7,8 @@
 | 语言 | C# 14 |
 | 运行时 | .NET 10.0 |
 | 项目类型 | 类库 (Library, SDK.Web) |
-| 框架依赖 | SPTarkov.Common / DI / Server.Core 4.1.2 |
-| 版本 | v0.5.0.040102 |
+| 框架依赖 | SPTushonka.Common / DI / Server.Core 4.1.6 |
+| 版本 | v0.5.4.040106 |
 
 > 原仓库：`MarecGents/MG-GT-Mod-CSharp`（已暂停维护，代码迁移至本整合仓 `MGGTMod/`）
 

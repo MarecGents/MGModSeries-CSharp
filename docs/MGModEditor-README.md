@@ -7,10 +7,10 @@
 | 语言 | C# 13 |
 | 运行时 | .NET 10.0-windows |
 | UI 框架 | WPF + **WPF-UI 4.3.0**（现代化控件库） |
-| 架构模式 | MVVM（CommunityToolkit.Mvvm 8.4.0） |
-| DI 容器 | Microsoft.Extensions.Hosting 10.0.1 |
+| 架构模式 | MVVM（CommunityToolkit.Mvvm 8.4.2） |
+| DI 容器 | Microsoft.Extensions.Hosting 10.0.11 |
 | 发布方式 | 单文件发布 (PublishSingleFile, win-x64) |
-| 版本 | v1.3.2.1 |
+| 版本 | v1.3.3.0 |
 
 > 原仓库：`MarecGents/MGModEditor`（已暂停维护，代码迁移至本整合仓 `MGModEditor/`）
 

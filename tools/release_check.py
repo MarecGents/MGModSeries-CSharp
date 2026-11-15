@@ -2,8 +2,8 @@
 """发布前全面检查：MGMod + MGGTMod 商人数据完整性"""
 import json, os, sys
 
-BASE = r'E:/Workdata/Git_repositories/MGModSeries/MGModSeries-CSharp'
-SPT = r'E:/Workdata/Git_repositories/SPT/SPT_Data/database'
+BASE = r'E:/Workdata/Git_repositories/MGModSeries/MGModSeries-CSharp-v4.1.x'
+SPT = r'E:/Game/EFT4.1.X/SPT_Runtime/SPT_Data/database'
 fail = []
 
 def check(cond, msg):

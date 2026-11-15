@@ -7,9 +7,9 @@
 | 语言 | C# 14 |
 | 运行时 | .NET 10.0 |
 | 项目类型 | 类库 (Library, SDK.Web) |
-| 框架依赖 | SPTarkov.Common / DI / Server.Core 4.1.2 |
+| 框架依赖 | SPTushonka.Common / DI / Server.Core 4.1.6 |
 | 架构模式 | 依赖注入 (DI) + 服务层 |
-| 版本 | v1.0.1.040102 |
+| 版本 | v1.1.5.040106 |
 
 > 原仓库：`MarecGents/MG-Mod-CSharp`（已暂停维护，代码迁移至本整合仓 `MGModServer/`）
 

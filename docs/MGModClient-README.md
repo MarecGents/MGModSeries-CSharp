@@ -1,52 +1,67 @@
-# MGModClient — 游戏内配置编辑器（BepInEx 客户端插件）
+# MGModClient — 客户端功能插件（BepInEx）
 
-**MGModEditor 客户端版** — BepInEx 5 插件，为游戏内实时编辑服务端配置打基础
+**客户端侧功能插件** — BepInEx 5 插件，承载必须在客户端生效的功能（热成像白名单、中文名称、资源注入、服务端 mod 探测）。
 
 | 项 | 值 |
 |---|---|
 | 语言 | C#（LangVersion latest） |
 | 运行时 | netstandard2.1（BepInEx 5 生态） |
-| 依赖 | BepInEx / 0Harmony / UnityEngine.* / Newtonsoft.Json（本地引用 Reference/） |
+| 依赖 | BepInEx / 0Harmony / UnityEngine.* / Newtonsoft.Json / Assembly-CSharp / Unity.TextMeshPro（本地引用 `Reference/`） |
 | 插件 GUID | com.mgmod.client |
-| 版本 | v0.1.0 |
+| 版本 | v0.2.3.040106 |
 
-> 原位置：`SPTClientMods/MGEditor-Client/`（非 git 仓库，原名「MGEditor-Client」；代码迁移至本整合仓 `MGModClient/` 并全链路改名为 MGModClient）
-> 引用 DLL 中央拷贝：仓库根 `Reference/`（游戏/SDK DLL，73MB，不入库，克隆后需自行补齐）
+> 配置编辑由桌面版 **MGModEditor** 负责；客户端**不再维护**"F12 配置镜像 + 写回 config.json"链路。
 
 ---
 
 ## 📖 简介
 
-MGModClient 是 MGModEditor 的客户端版 —— BepInEx 5 插件。目标是在游戏内（F12 ConfigurationManager 菜单）实时编辑 MGModServer 的 `res/config/config.json`，实现"游戏内改配置 → 写回文件 → 服务端生效"的闭环。
+MGModClient 是 MG 系列的客户端侧插件，只做必须在客户端生效的事情：
+
+- **热成像瞄具白名单**：读取各服务端 mod 产出的 `res/plugins/scope_allow_in_thermal.json` + 手动白名单，通过 Harmony 补丁让指定瞄具在热成像下仍可用；
+- **中文名称支持**：放开武器/装备/弹匣预设名与玩家昵称的字符校验（BMP CJK 范围），可选挂载中文字体 fallback；
+- **Rig Layout 资源注入**：把服务端 mod `bundles/resources/**/*.bundle` 注入游戏 Resources；
+- **服务端 mod 探测**：识别 MGMod / MGGTMod 的安装位置，供上述功能定位资源与配置。
+
+---
 
 ## 设计要点
 
-- **不打游戏逻辑补丁**：只做"配置镜像编辑 + 文件写回"，不引用 Assembly-CSharp/hollowed/spt-* → 版本脆弱性最低
-- **UI**：ConfigurationManager 标准 F12 菜单（`Config.Bind` 镜像配置项）
-- **写回**：`SyncService` 原子写 `config.json`（tmp + File.Replace），saveTime 版本戳，500ms 防抖，_suppress 防回环
-- **i18n**：`Locales`（Radar 模式）键复用桌面版 Translations.cs 点分体系；Language 最先绑定；语言切换 = 值保真收集 → 移除重建 → `ConfigurationManager.BuildSettingList()`
-- **Rig Layouts 注入**：检测到 MGGTMod 时注入 FG 弹挂布局（AssetBundle → ResourcesCache）
-- **服务端配合**：MGModServer 需新增 IOnUpdate 热重载组件 + 幂等性改造（见原可行性报告）
+- **只改内存态**：字符校验、字体 fallback、热成像判定均为内存补丁，不写任何配置文件；
+- **逐补丁容错**：每个 Harmony 补丁独立 try/catch，单个补丁失败不影响其余功能；
+- **Mod 识别**：`Framework/ModRegistry` 三层识别（已知目录 / 额外目录 / marker 打分），兼容 SPT 4.1.x `SPT_Runtime/user/mods` 布局；
+- **白名单契约**：兼容根数组 / 同名属性 / `ids` / `items` / `list` 等结构，并强校验 24 位 hex `MongoId`；
+- **配置项**：BepInEx 配置仅用于开关与路径（语言、mods 根、热成像、中文名称），不镜像服务端 8 域配置。
 
 ## 🏗️ 项目结构
 
 ```
 MGModClient/
-├── MGModClientPlugin.cs      # [BepInPlugin] 入口；Language 最先绑定；功能分派（MGMod→配置编辑 / MGGTMod→布局注入）
+├── MGModClientPlugin.cs      # [BepInPlugin] 入口：配置绑定 + 各功能安装
+├── Framework/
+│   ├── ModDescriptor.cs      # mod 描述
+│   ├── ModInstallation.cs    # 安装位置与能力标记
+│   ├── ModPluginFile.cs      # res/plugins/*.json 解析
+│   ├── ModRegistry.cs        # mod 识别（三层）
+│   ├── ServerConfigLocator.cs# 定位服务端 config.json
+│   └── SptLayout.cs          # SPT 4.1.x 目录布局规则
 ├── Models/
-│   └── MGConfig.cs           # 8 域配置模型 + saveTime 版本戳 + EnableValue 双值类型
+│   └── MGConfig.cs           # 服务端配置镜像模型（当前仅用于读取/探测，不写回）
 ├── Resources/
-│   ├── ConfigItems.cs        # 配置项选项表
-│   └── Locales.cs            # i18n 字典（EN/ZH，缺键回退）
+│   ├── ConfigItems.cs        # 占位（配置编辑链未启用）
+│   └── Locales.cs            # 客户端 i18n 占位（中/英，后续版本实现）
 ├── Services/
-│   ├── ModDetector.cs        # 服务端 mod 存在性检测（MGMod/MGGTMod）
-│   ├── PathLocator.cs        # 定位 server 侧 config.json
-│   ├── ConfigMirror.cs       # MGConfig ↔ F12 菜单 ConfigEntry 双向映射
-│   ├── SyncService.cs        # 变更写回（原子写/防抖/防回环）
-│   ├── ConfigurationManagerBridge.cs  # 反射刷新 ConfigurationManager 菜单
-│   └── RigLayoutInjector.cs  # FG 弹挂布局注入（AssetBundle → ResourcesCache）
+│   ├── ChineseNameSupport.cs          # 中文名称支持（字符校验 + 字体 fallback）
+│   ├── ClientResourceLoader.cs        # resources 资源注入调度
+│   ├── RigLayoutInjector.cs           # Rig Layout 注入
+│   ├── ThermalScopeAllowListProvider.cs # 白名单合并（服务端 + 手动）
+│   ├── ThermalScopePatch.cs           # 热成像判定 Harmony 补丁
+│   ├── ThermalScopeProbeService.cs    # 本地玩家 PWA 探针
+│   ├── ConfigMirror.cs                # 历史遗留（配置编辑链取消，不再启用）
+│   ├── SyncService.cs                 # 历史遗留（同上）
+│   └── ConfigurationManagerBridge.cs  # 历史遗留（同上）
 └── Helpers/
-    └── JsonUtils.cs          # JSON 读写封装（原子写 tmp+File.Replace）
+    └── JsonUtils.cs          # JSON 读写封装（原子写 tmp + File.Replace）
 ```
 
 ## 🔨 构建与输出
@@ -68,13 +83,11 @@ Build/BepInEx/plugins/MGModClient/MGModClient.dll
 构建需要仓库根 `Reference/` 目录（BepInEx/Managed 游戏 DLL）。该目录已加入 `.gitignore` 不入库，克隆仓库后需从本地 SPT 安装目录复制补齐：
 
 - `Reference/BepInEx/core|patchers|plugins/spt` ← **SPT 发布版**（`sp-tarkov/build` Releases 下载的 SPT 客户端压缩包，解压即得完整 SPT 客户端）根目录下 `BepInEx\` 对应子目录（BepInEx 5 核心、spt-prepatch、spt-common/core/custom/debugging/reflection/singleplayer + ConfigurationManager）
-- `Reference/Managed` ← **游戏本体目录**`\<游戏安装目录>\EscapeFromTarkov_Data\Managed\`（Assembly-CSharp、UnityEngine.*、Newtonsoft.Json、Sirenix.* 等）
+- `Reference/Managed` ← **游戏本体目录**`\<游戏安装目录>\EscapeFromTarkov_Data\Managed\`（Assembly-CSharp、UnityEngine.*、Unity.TextMeshPro、Newtonsoft.Json、Sirenix.* 等）
 
 复制命令与变量说明见根 README「⚠️ 注意事项 → Reference/ 目录不入库」一节。
 
-## 开发路径（里程碑）
+## 后续计划
 
-- M1 MVP：只读镜像（F12 展示 8 域配置 + EN/ZH 语言切换）
-- M2 写回同步（改值 → 原子写 config.json）
-- M3 服务端热重载（MGModServer 改造）
-- M4 完整闭环（客户端改 → 服务端生效）
+- **中英双语切换**：仅做配置界面描述的中/英切换（BepInEx `ConfigDescription` 在绑定后不可改，计划采用"启动期应用 + 切换后提示重启"；方案见 `docs/方案-MGModClient语言切换-中英双语-2026-11-15-2030.md`）。
+- **资源注入扩展**：Slots / Voices 注入目前仅预留，后续按需启用。

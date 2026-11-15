@@ -53,7 +53,7 @@ MGGTMod 项目（独立版，仅保留自定义商人框架）
 
 | 项目 | 要求 |
 |------|------|
-| 游戏服务端 | SPT **4.1.0+**（代码中 `SptVersion` 声明为 4.1.2） |
+| 游戏服务端 | SPT **4.1.6**（代码中 `SptVersion` 声明为 ~4.1.6） |
 | 运行时 | .NET 10.0（Windows x64） |
 | 仅改 JSON | 无需任何开发环境，直接改 `user/mods/MGGTMod/traders/` 即可 |
 | 自编译发布 | 需要 .NET 10 SDK（Visual Studio 2022 / Rider / dotnet CLI） |
@@ -1006,7 +1006,7 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 
 - **.NET 10 SDK**（`dotnet --list-sdks` 确认）；
 - IDE（Visual Studio 2022 / JetBrains Rider）或直接用命令行；
-- 首次构建需联网还原 NuGet 包：`SPTarkov.Common`、`SPTarkov.DI`、`SPTarkov.Server.Core`（版本 4.1.2）。
+- 首次构建需联网还原 NuGet 包：`SPTushonka.Common`、`SPTushonka.DI`、`SPTushonka.Server.Core`（版本 4.1.6）。
 
 ### 5.3 改名清单（防止与原版冲突）
 
@@ -1020,13 +1020,13 @@ FlanrecGents 未用任务，该文件为空 `{}`；MarecGents 有完整示例（
 | 1 | 项目文件夹名 / 解决方案 | `MGGTMod` / `MGModSeries-CSharp.slnx` | 你的 Mod 名 | 整合仓内项目目录名（不影响运行，但利于管理） |
 | 2 | `csproj` → 项目名（文件名） | `MGGTMod.csproj` | `MyTraderMod.csproj` | 决定 `AssemblyName`（dll 名） |
 | 3 | `csproj` → `<RootNamespace>` | `_MGGTMod` | `_MyTraderMod` | C# 根命名空间（源码文件实际用 `_MGGTmod.*`） |
-| 4 | `csproj` → `<Version>` | `0.5.0.040102` | `0.1.0`（你的版本） | 版本号（SemVer 前三位 + 构建号） |
+| 4 | `csproj` → `<Version>` | `0.5.4.040106` | `0.1.0`（你的版本） | 版本号（SemVer 前三位 + 构建号） |
 | 5 | 全部 `.cs` → `namespace` / `using` | `_MGGTmod` | `_MyTraderMod` | **全局替换**（`types/` 下所有文件 + 入口） |
 | 6 | `MGGTmod.cs` → 主类名 | `MGGTmod` | `MyTraderMod` | `[Injectable]` 注册的加载器类 |
 | 7 | `MGGTmod.cs` → `ModMetadata.ModGuid` | `com.marecgents.tarkovmod.mggtmod` | `com.你的域名.你的mod名` | 唯一 GUID，建议改 |
 | 8 | `MGGTmod.cs` → `ModMetadata.Name` | `MGGTMod` | `MyTraderMod` | Mod 显示名 |
 | 9 | `MGGTmod.cs` → `ModMetadata.Author` | `MarecGents` | 你的名字 | |
-| 10 | `MGGTmod.cs` → `ModMetadata.Version` | `0.5.0` | 你的版本 | |
+| 10 | `MGGTmod.cs` → `ModMetadata.Version` | `0.5.4` | 你的版本 | |
 | 11 | `MGGTmod.cs` → `ModMetadata.Url` / `License` | 作者信息 | 你的信息（可选） | |
 | 12 | `MGUtils.cs` → 日志前缀（可选） | `[MG通用商人框架]` | 你的框架名 | 纯显示用 |
 

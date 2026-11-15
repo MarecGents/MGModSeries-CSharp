@@ -8,6 +8,21 @@ Github链接：https://github.com/MarecGents/MG-GT-Mod/releases/latest
 夸克网盘链接：https://pan.quark.cn/s/47cd989d2a57?pwd=MzAt 提取码：MzAt
 123 网盘链接：https://1827650002.share.123pan.cn/123pan/txrKjv-Q6Gy3?pwd=MGYY# 提取码：MGYY
 
+
+# MG-GT-Mod v0.5.4.040106
+## 新增
+1. 【功能】[特色功能][独立商人]：新增商人独立物品插件配置，用于标注物品的需求特性，如“添加强制黑名单”，“ 瞄具物品允许热成像下使用”等。✅
+2. 【功能】[特色功能][独立商人]-[散落物资]：支持通过商人目录 `location/looseLoot.json` 向指定地图注入自定义散落物资刷新点（与 MG-Mod 同源实现）。✅
+## 修复
+1. 【修复】[独立商人]：修复商人加载时 `scope_allow_in_thermal` 为 null 导致 `AddRange` 抛 `ArgumentNullException`、整个商人加载中断的问题。✅
+## 变更
+1. 【版本】版本号更新至 v0.5.4.040106。✅
+2. 【适配】SPTushonka 包引用升级至 4.1.6（SPT 4.1.6 适配，API 无变动）。✅
+## 优化
+0. x
+## 移出
+0. x
+
 # MG-GT-Mod v0.5.3.040105
 ## 新增
 0. x

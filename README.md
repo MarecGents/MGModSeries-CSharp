@@ -3,9 +3,9 @@
 **MG Mod 系列 C# 整合仓库** — 四个 C# 项目的统一解决方案（MGModServer / MGGTMod / MGModEditor / MGModClient）
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
-[![SPT Version](https://img.shields.io/badge/SPT-4.1.3-blue)](https://dev.sp-tarkov.com/)
+[![SPT Version](https://img.shields.io/badge/SPT-4.1.6-blue)](https://dev.sp-tarkov.com/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey)](LICENSE)
-> **当前分支 `main`**：适配 SPT 4.1.5 服务端（SPTushonka，net10.0）｜MG-Mod v1.1.4.040105 ｜ MG-GT-Mod v0.5.3.040105 ｜ MGModClient v0.2.2.040105 ｜ MGModEditor v1.3.3.040105
+> **当前分支 `v4.1.x`**：适配 SPT 4.1.6 服务端（SPTushonka，net10.0）｜MG-Mod v1.1.5.040106 ｜ MG-GT-Mod v0.5.4.040106 ｜ MGModClient v0.2.3.040106 ｜ MGModEditor v1.3.3.0
 
 ---
 
@@ -18,7 +18,7 @@
 | **MGModServer** | `MGModServer/` | SPT 服务端 Mod（net10.0） | MG-Mod 服务端核心逻辑库，DI 深度集成 SPT |
 | **MGGTMod** | `MGGTMod/` | SPT 服务端 Mod（net10.0） | 通用自定义商人框架（独立发布版） |
 | **MGModEditor** | `MGModEditor/` | WPF 桌面 GUI（net10.0-windows） | MG-Mod 图形化配置编辑器（36 主题 / 5 语言） |
-| **MGModClient** | `MGModClient/` | BepInEx 客户端插件（netstandard2.1） | 游戏内配置编辑器（F12 菜单镜像 + 写回） |
+| **MGModClient** | `MGModClient/` | BepInEx 客户端插件（netstandard2.1） | 客户端功能插件（热成像白名单 / 中文名称 / 资源注入 / 服务端 mod 探测） |
 
 ---
 
@@ -93,7 +93,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **模块体系**：Server 层 8 个子系统（Bots / Configs / Globals / Hideout / Locales / Locations / Templates / Traders）+ Services 层 7 个服务（配置加载、商人服务等）
 - **ZDFW BotSystem**：AI 名字池、PMC 战术小队、地图难度、地图刷新、PMC 战吼（25 语言翻译）
 - **数据资源**：`db/` 游戏数据库覆盖、`res/botsystem/` AI 配置、`res/quest/` 任务数据（含 3X4 任务标记）、`traders/` 自定义商人
-- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.3
+- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.6
 
 📄 详细文档：[docs/MGModServer-README.md](docs/MGModServer-README.md)
 
@@ -104,7 +104,7 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 - **核心服务**：`CustomTraderServices`（商人加载）、`ConfigSettingServices`（配置）
 - **可热加载**：`traders/` 目录下的商人配置（内置 FlanrecGents 示例 + MarecGents 任务系统参考）
 - **Rig Layouts**：`bundles/` 含 FG 弹挂布局 bundle（供客户端注入）
-- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.3
+- **依赖**：SPTushonka.Common / DI / Server.Core 4.1.6
 
 📄 详细文档：[docs/MGGTMod-README.md](docs/MGGTMod-README.md) ｜ [商人制作教程](docs/MG通用商人制作教程.md)
 
@@ -112,20 +112,21 @@ powershell -ExecutionPolicy Bypass -File scripts/build-menu.ps1 -Run mgclient
 
 **MG-Mod 可视化配置编辑器**，C# WPF（.NET 10.0-windows）构建，让用户直观编辑 MG-Mod 全部配置文件，无需手动修改 JSON。**36 种主题配色**（18 色 × 亮/暗）、**5 种界面语言**（中/英/俄/法/日）。
 
-- **技术栈**：WPF + WPF-UI 4.3.0、MVVM（CommunityToolkit.Mvvm 8.4.0）、DI（Microsoft.Extensions.Hosting 10.0.1）
+- **技术栈**：WPF + WPF-UI 4.3.0、MVVM（CommunityToolkit.Mvvm 8.4.2）、DI（Microsoft.Extensions.Hosting 10.0.11）
 - **结构**：App 入口（IHost DI）/ Controls 自定义控件 / Services（MGConfig、AppSetting、CustomTheme、Translation）/ Theme 36 主题 / ViewModels + Views
 - **发布**：单文件发布（PublishSingleFile, win-x64），构建按钮即自动产出单文件 exe
 
 📄 详细文档：[docs/MGModEditor-README.md](docs/MGModEditor-README.md)
 
-### 4. MGModClient — 游戏内配置编辑器（BepInEx 客户端插件）
+### 4. MGModClient — 客户端功能插件（BepInEx 客户端插件）
 
-**MGModEditor 客户端版**，BepInEx 5 插件（netstandard2.1），目标是在游戏内（F12 ConfigurationManager 菜单）实时编辑服务端配置，实现"游戏内改配置 → 写回文件 → 服务端生效"闭环。
+**客户端功能插件**（BepInEx 5，netstandard2.1），承载必须在客户端侧生效的功能：热成像瞄具白名单补丁、中文名称支持、Rig Layout 资源注入、服务端 mod 探测。配置编辑由桌面版 **MGModEditor** 负责，客户端不再维护配置镜像/写回链路。
 
-- **设计原则**：不打游戏逻辑补丁，仅做"配置镜像编辑 + 文件写回"，版本脆弱性最低
-- **核心服务**：ModDetector（mod 存在性检测）、PathLocator（定位 config.json）、ConfigMirror（配置双向映射）、SyncService（原子写/防抖/防回环）、RigLayoutInjector（FG 弹挂布局注入）
-- **i18n**：EN/ZH 字典，Language 最先绑定，缺键回退
-- **里程碑**：M1 只读镜像 → M2 写回同步 → M3 服务端热重载 → M4 完整闭环
+- **Mod 识别**：`Framework/ModRegistry` 三层识别（已知目录 / 额外目录 / marker 打分），兼容 SPT 4.1.x 布局
+- **热成像白名单**：读取各 mod `res/plugins/scope_allow_in_thermal.json` + 手动列表，Harmony 补丁使指定瞄具在热成像下可用
+- **中文名称支持**：放开预设名/昵称的字符校验（BMP CJK），可选 UI 字体 fallback
+- **资源注入**：`ClientResourceLoader` 将 `bundles/resources/**/*.bundle` 注入游戏 Resources（当前支持 Rig Layout）
+- **i18n**：客户端侧文本仅中/英（配置界面描述本地化，后续版本实现）
 
 📄 详细文档：[docs/MGModClient-README.md](docs/MGModClient-README.md)
 
@@ -173,7 +174,7 @@ Reference/
 
   MGModClient.csproj 实际引用的 DLL：`BepInEx.dll`、`0Harmony.dll`（BepInEx\core）与 `UnityEngine.dll`、`UnityEngine.CoreModule.dll`、`UnityEngine.AssetBundleModule.dll`、`Assembly-CSharp.dll`、`Newtonsoft.Json.dll`、`Sirenix.Serialization.dll`、`Sirenix.Serialization.Config.dll`（Managed）。
 - 原仓库发布帖/更新日志等历史资料仍保留在原仓库（`MarecGents/*`），本仓库为新的开发主线。
-- MGGTMod 与 MGModServer 均引用 SPTushonka 4.1.3（4.1.x 命名空间仍为 SPTarkov.Server.Core.*，已对齐）。
+- MGGTMod 与 MGModServer 均引用 SPTushonka 4.1.6（4.1.x 命名空间仍为 SPTarkov.Server.Core.*，已对齐）。
 
 ## 📜 许可
 
