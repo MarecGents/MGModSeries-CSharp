@@ -1,38 +1,42 @@
 using System;
 using BepInEx.Configuration;
+using MGModClient.Framework;
 using MGModClient.Models;
 
 namespace MGModClient.Services;
 
 /// <summary>
-/// 写回服务：ConfigEntry 变更 → 原子写回 server 侧 config.json（落地方案 §3.3）。
+/// 写回服务：ConfigEntry 变更 → 原子写回服务端 config.json（落地方案 §3.3）。
 /// - 500ms 防抖（拖动滑块不频繁写盘）
 /// - 写前重读磁盘（防覆盖外部修改），saveTime 作版本戳
 /// - _suppress 防回环
+///
+/// 配置目标由 <see cref="ServerConfigLocator"/> 解析（多 mod 布局由 Framework 统一维护），
+/// 本类不再持有任何具体 mod 名 / 路径候选。
 /// </summary>
 public class SyncService
 {
     /// <summary>本插件自身的 BepInEx 配置分区名（非游戏 config.json 镜像项）。</summary>
-    private const string PluginSection = "MGModClient";
+    private static readonly string PluginSection = PluginInfo.NAME;
 
     private readonly ConfigMirror _mirror;
-    private readonly PathLocator _pathLocator;
+    private readonly ServerConfigLocator _configLocator;
     private bool _suppress;
     private string _lastSavedTime;
 
-    public SyncService(ConfigMirror mirror, PathLocator pathLocator)
+    public SyncService(ConfigMirror mirror, ServerConfigLocator configLocator)
     {
         _mirror = mirror;
-        _pathLocator = pathLocator;
+        _configLocator = configLocator;
     }
 
     public void OnEntryChanged(object sender, SettingChangedEventArgs e)
     {
         if (_suppress) return;
 
-        // 本插件自身的设置项（Language / Server Config Path / ThermalScope Mode 等）
+        // 本插件自身的设置项（Language / 路径 / 热成像等）
         // 不属于需要镜像到服务端 config.json 的数据，跳过写回，避免无谓刷新 saveTime 版本戳。
-        if (string.Equals(e.ChangedSetting.Definition.Section, PluginSection, StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(e?.ChangedSetting?.Definition?.Section, PluginSection, StringComparison.OrdinalIgnoreCase))
             return;
 
         _mirror.ApplyEntryToModel(e.ChangedSetting);
@@ -44,14 +48,15 @@ public class SyncService
     {
         try
         {
-            if (_pathLocator.ConfigPath == null) return;
+            var configPath = _configLocator?.ConfigPath;
+            if (configPath == null) return;
 
             // ① 重读磁盘现有文件（防覆盖桌面版/其他进程的修改）
-            var onDisk = JsonUtils.Read<MGConfig>(_pathLocator.ConfigPath);
+            var onDisk = JsonUtils.Read<MGConfig>(configPath);
             if (onDisk == null)
             {
                 // 文件缺失或损坏：不写回，避免用默认空模型覆盖 config.json
-                UnityEngine.Debug.LogWarning($"[MGModClient][SyncService] config.json 读取失败或损坏，跳过写回：{_pathLocator.ConfigPath}");
+                UnityEngine.Debug.LogWarning($"[{PluginInfo.NAME}][SyncService] config.json 读取失败或损坏，跳过写回：{configPath}");
                 return;
             }
             if (onDisk.saveTime != _lastSavedTime)
@@ -59,7 +64,7 @@ public class SyncService
 
             // ② 更新版本戳并原子写
             _mirror.Model.saveTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            JsonUtils.WriteAtomic(_pathLocator.ConfigPath, _mirror.Model);
+            JsonUtils.WriteAtomic(configPath, _mirror.Model);
             _lastSavedTime = _mirror.Model.saveTime;
 
             // ③ 防回环：把模型值同步回 ConfigEntry
@@ -70,7 +75,7 @@ public class SyncService
         catch (Exception ex)
         {
             // 写盘失败（文件锁/磁盘错误）不应波及 F12 操作，仅日志
-            UnityEngine.Debug.LogError($"[MGModClient][SyncService] 写回 config.json 失败: {ex.Message}");
+            UnityEngine.Debug.LogError($"[{PluginInfo.NAME}][SyncService] 写回 config.json 失败: {ex.Message}");
         }
     }
 }

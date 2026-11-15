@@ -111,6 +111,17 @@ public static class ThermalScopePatch
 
     private static void OnFindAimTransformsPostfix(ProceduralWeaponAnimation __instance)
     {
+        // 进战局 / 换镜时按文件时间戳热重载服务端白名单：
+        // 服务端改配置后无需重启游戏，下一把生效（无变化时仅几次 stat，开销可忽略）。
+        try
+        {
+            ThermalScopeAllowListProvider.ReloadIfFilesChanged();
+        }
+        catch (Exception e)
+        {
+            Warn("白名单热重载失败: " + e.GetType().Name + ": " + e.Message);
+        }
+
         ThermalScopeProbeService.Apply(__instance, "FindAimTransforms");
     }
 

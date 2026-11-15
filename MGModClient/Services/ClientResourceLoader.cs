@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using BepInEx.Logging;
+using MGModClient.Framework;
 using UnityEngine;
 
 namespace MGModClient.Services;
 
 /// <summary>
-/// 客户端资源加载器 —— 检索 MGMod 与 MGGTMod 的 `bundles/resources/` 下**全部 .bundle**（含子文件夹递归），
+/// 客户端资源加载器 —— 检索**所有已识别 mod** 的 `bundles/resources/` 下全部 .bundle（含子文件夹递归），
 /// 按资源类型分发到对应的注入器。
 ///
 /// 背景：SPT 的 bundle 链路（BundleManager/EasyBundlePatch）只服务「游戏本会请求的 AssetBundle key」
@@ -21,46 +23,53 @@ namespace MGModClient.Services;
 ///    `resources/voices/`（语音，预留）等；
 ///  - 本加载器递归遍历 `resources/` 下所有 .bundle（不限定子目录/文件名），新增类型无需改扫描逻辑，
 ///    只需在 <see cref="ProcessBundle"/> 里追加对应类型的处理分支。
+///
+/// mod 来源统一取自 <see cref="ModRegistry"/>，本类不再出现任何具体 mod 名。
 /// </summary>
 public static class ClientResourceLoader
 {
     /// <summary>客户端资源根目录名（{mod}/bundles/ 下，对应 Unity Resources 系统）。</summary>
-    public const string ResourcesDirName = "resources";
+    public const string ResourcesDirName = ModInstallation.ResourcesDirName;
 
-    /// <summary>尝试加载并注入全部客户端资源（MGMod + MGGTMod）。失败仅日志不崩溃。</summary>
+    /// <summary>尝试加载并注入全部客户端资源（遍历所有声称具备该能力的已装 mod）。失败仅日志不崩溃。</summary>
     public static bool LoadAll(ManualLogSource logger)
     {
         int totalLoaded = 0;
-        // 遍历两个服务端 mod 的 resources 目录（独立存在检测，各自可选）
-        var modDirs = new List<string>();
-        var mgModDir = ModDetector.GetInstalledMGModDir();
-        if (mgModDir != null) modDirs.Add(mgModDir);
-        var mgGtModDir = ModDetector.GetInstalledMGGTModDir();
-        if (mgGtModDir != null) modDirs.Add(mgGtModDir);
+        var mods = ModRegistry.With(ModCapabilities.ClientResources).ToList();
 
-        if (modDirs.Count == 0)
+        if (mods.Count == 0)
         {
-            logger.LogWarning("[ClientResourceLoader] 未检测到 MGMod/MGGTMod，跳过客户端资源加载");
+            logger.LogWarning("[ClientResourceLoader] 未识别到提供客户端资源的 mod，跳过资源加载");
             return false;
         }
 
-        foreach (var modDir in modDirs)
+        foreach (var mod in mods)
         {
-            var resourcesDir = ModDetector.GetModClientResourcesDir(modDir);
-            logger.LogInfo($"[ClientResourceLoader] 检索资源目录: {resourcesDir}");
+            var resourcesDir = mod.ClientResourcesDir;
             if (string.IsNullOrEmpty(resourcesDir) || !Directory.Exists(resourcesDir))
             {
-                logger.LogWarning($"[ClientResourceLoader] 资源目录不存在: {resourcesDir}");
+                logger.LogInfo($"[ClientResourceLoader] [{mod.Id}] 无资源目录，跳过: {resourcesDir}");
                 continue;
             }
 
+            logger.LogInfo($"[ClientResourceLoader] [{mod.Id}] 检索资源目录: {resourcesDir}");
+
             // 递归枚举 resources/ 下全部 .bundle（含子文件夹，按资源类型分子目录）
-            var bundleFiles = Directory.GetFiles(resourcesDir, "*.bundle", SearchOption.AllDirectories);
-            logger.LogInfo($"[ClientResourceLoader] {resourcesDir} 下找到 {bundleFiles.Length} 个 .bundle");
+            string[] bundleFiles;
+            try
+            {
+                bundleFiles = Directory.GetFiles(resourcesDir, "*.bundle", SearchOption.AllDirectories);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"[ClientResourceLoader] [{mod.Id}] 枚举资源目录失败: {ex.GetType().Name}: {ex.Message}");
+                continue;
+            }
+
+            logger.LogInfo($"[ClientResourceLoader] [{mod.Id}] 下找到 {bundleFiles.Length} 个 .bundle");
             foreach (var bundlePath in bundleFiles)
             {
-                var loaded = ProcessBundle(bundlePath, logger);
-                if (loaded) totalLoaded++;
+                if (ProcessBundle(bundlePath, logger)) totalLoaded++;
             }
         }
 

@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
     <AssemblyName>MGModClient</AssemblyName>
     <RootNamespace>MGModClient</RootNamespace>
-    <Version>0.2.2.040105</Version>
+    <Version>0.2.3.040106</Version>
     <PluginGuid>com.mgmod.client</PluginGuid>
     <PluginName>MGModClient</PluginName>
     <ReleaseOutputDir>$(MGModPluginsOutputDir)MGModClient\</ReleaseOutputDir>
@@ -52,6 +52,11 @@
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>..\Reference\Managed\Sirenix.Serialization.Config.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- 中文名称支持：ValidationInputField 基类 TMP_InputField + LocalizationManager 的字体 Fallback -->
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\Reference\Managed\Unity.TextMeshPro.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
