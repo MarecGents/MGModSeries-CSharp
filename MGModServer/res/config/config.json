@@ -466,7 +466,8 @@
         "Helmet": {
             "Filter": false,
             "NoBuff": false,
-            "NoWeight": false
+            "NoWeight": false,
+            "FaceCover": false
         },
         "EquipmentPlate": {
             "Durability": 1,

@@ -27,13 +27,17 @@ Github链接：https://github.com/MarecGents/MG-Mod/releases/latest
 14. 【功能】[特色功能][独立商人]-[麻瓜商人][自制物品]：【MG ELCAN Specter HCO 全息瞄具 星尘翡翠巨蟒】，一半星辰巨蟒，另一半翡翠巨蟒皮肤的HCO全息瞄具，支持在热成像下正常使用。✅
 15. 【功能】[特色功能][独立商人]-[麻瓜商人][自制物品]：【MG Walther MRS反射式瞄具 粉红DDPAT】，粉红DDPAT皮肤的MRS反射式瞄具，支持在热成像下正常使用。✅
 16. 【功能】[特色功能][独立商人]-[散落物资]：支持通过商人目录 `location/looseLoot.json` 向指定地图注入自定义散落物资刷新点（按 `template.Id` 合并、深拷贝隔离，支持动态/强制刷新点）。✅
+17. 【功能】[装备优化][头盔]-[面具视野无覆盖]：新增 `Templates.Helmet.FaceCover` 配置项；开启后移除头盔/面罩的 `FaceShieldComponent` 与 `FaceShieldMask`，消除面罩对第一人称视野的遮蔽。✅
 ## 修复
 1. 【修复】[独立商人]：修复商人加载时 `scope_allow_in_thermal` 为 null 导致 `AddRange` 抛 `ArgumentNullException`、整个商人加载中断的问题。✅
 2. 【修复】[独立商人]：修复独立物品无法投保——`templates/handbook.json` 缺少 4 个瞄具（`...0024`–`...0027`）条目，投保价值被计算为 0 而判定为无效物品。✅
 3. 【修复】[独立商人]：修复限量库存商品售罄后不刷新——`traderData/assort.json` 改为 `UnlimitedCount: true` + `StackObjectsCount: 9999999`。✅
+4. 【修复】[装备优化][头盔]-[面具视野无覆盖]：修正原逻辑只匹配 Headwear 父分类、导致独立面罩物品（Altyn、Maska-1SCh、Rys-T、独立防弹面罩等）不生效的问题；改为按 `FaceShieldComponent` 组件本身匹配，覆盖当前 SPT 数据中的全部 18 个面罩物品。✅
 ## 变更
 1. 【版本】版本号更新至 v1.1.5.040106。✅
 2. 【适配】SPTushonka 包引用升级至 4.1.6（SPT 4.1.6 适配，API 无变动）。✅
+3. 【配置】`config.json` / `defaultConfig.json` 的 `Templates.Helmet` 新增 `FaceCover`，默认 `false`。✅
+4. 【说明】开启 `FaceCover` 后除视觉遮罩外，也会移除面罩组件的防闪光、命中划痕等行为；面罩护甲仍由 `ArmorComponent` 正常结算。✅
 ## 优化
 0. x
 ## 移出

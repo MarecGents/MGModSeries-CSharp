@@ -6,12 +6,14 @@
 1. 【功能】[养成系统][仪式圈]：新增 HideoutSystem 配置页（奖励返回时间、奖励物品价值、魔法时间概率、魔法时间条件）。✅
 2. 【功能】[养成系统][任务系统]：新增任务要求数量、任务冷却时长、上交物品无需带勾、击杀无视区域限制、击杀无视 AI 种类配置项。✅
 3. 【功能】[通用]：新增 `EnableValueAny<T>` 配置类型（开关 + 任意值），用于仪式圈/任务系统等复合配置。✅
+4. 【功能】[装备优化][头盔]-[面具视野无覆盖]：新增 FaceCover 开关，绑定 `Templates.Helmet.FaceCover`。✅
 ## 修复
-0. x
+1. 【修复】[配置模型]：清理 `MGModConfig_Templates_Helmet` 中与基类重复的 `Filter/NoBuff/NoWeight` 隐藏属性，统一继承 `MGModConfig_Templates_ArmorHelmet`。✅
 ## 变更
 1. 【版本】版本号更新至 v1.3.3.0。✅
-2. 【适配】配置模型与 MG-Mod v1.1.5.040106 同步（新增 HideoutSystem、任务系统字段调整）。✅
+2. 【适配】配置模型与 MG-Mod v1.1.5.040106 同步（新增 HideoutSystem、任务系统字段及 `FaceCover`）。✅
 3. 【优化】`ConfigItems` / `Translations` 与 5 个语言包同步补全；`ComboxFrame` 与页面注册同步调整。✅
+4. 【i18n】新增 `Develop.Button.HelmetFaceCover`、`Develop.Desc.HelmetFaceCover`，5 个语言包同步补全；`Translations` 常量补全。✅
 ## 优化
 0. x
 ## 移出

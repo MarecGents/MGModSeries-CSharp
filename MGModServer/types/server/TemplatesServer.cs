@@ -631,6 +631,14 @@ public class TemplatesServer(
                 }
             }
 
+            // 头盔/面罩无视野遮蔽：面罩组件可能挂在 Headwear（头盔）或 ArmoredEquipment/FaceCover（独立面罩）上，
+            // 因此按组件本身判断，而不是只看某个父分类。
+            if (TemplatesSetting.Helmet.FaceCover && ItemProps.FaceShieldComponent == true)
+            {
+                // ItemProps.FaceShieldComponent = false;
+                ItemProps.FaceShieldMask = "NoMask";
+            }
+
             // 头盔修改 Helmet
             if (ItemParent == "5a341c4086f77401f2541505")
             {

@@ -167,6 +167,7 @@ public static class Translations
     public const string DevelopButtonHelmetHeadsetCompat = "Develop.Button.HelmetHeadsetCompat";
     public const string DevelopButtonHelmetNoDebuff = "Develop.Button.HelmetNoDebuff";
     public const string DevelopButtonHelmetNoWeight = "Develop.Button.HelmetNoWeight";
+    public const string DevelopButtonHelmetFaceCover = "Develop.Button.HelmetFaceCover";
     public const string DevelopButtonRigArmorCompat = "Develop.Button.RigArmorCompat";
     public const string DevelopButtonRigArmorNoDebuff = "Develop.Button.RigArmorNoDebuff";
     public const string DevelopButtonRigArmorNoWeight = "Develop.Button.RigArmorNoWeight";
@@ -217,6 +218,7 @@ public static class Translations
     public const string DevelopDescHelmetHeadsetCompat = "Develop.Desc.HelmetHeadsetCompat";
     public const string DevelopDescHelmetNoDebuff = "Develop.Desc.HelmetNoDebuff";
     public const string DevelopDescHelmetNoWeight = "Develop.Desc.HelmetNoWeight";
+    public const string DevelopDescHelmetFaceCover = "Develop.Desc.HelmetFaceCover";
     public const string DevelopDescRigArmorCompat = "Develop.Desc.RigArmorCompat";
     public const string DevelopDescRigArmorNoDebuff = "Develop.Desc.RigArmorNoDebuff";
     public const string DevelopDescRigArmorNoWeight = "Develop.Desc.RigArmorNoWeight";

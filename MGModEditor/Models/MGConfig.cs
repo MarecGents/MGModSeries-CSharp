@@ -196,7 +196,7 @@ public class MGModConfig_Templates
     public int MoneyStack { get; set; }
     public MGModConfig_Templates_Backpack Backpack { get; set; }
     public MGModConfig_Templates_ArmorHelmet Armor { get; set; }
-    public MGModConfig_Templates_ArmorHelmet Helmet { get; set; }
+    public MGModConfig_Templates_Helmet Helmet { get; set; }
     public MGModConfig_Templates_EquipmentPlate EquipmentPlate { get; set; }
     public bool KeysDurability { get; set; }
     public int MedcDurability { get; set; }
@@ -241,6 +241,11 @@ public class MGModConfig_Templates_ArmorHelmet
     // public int Durability { get; set; }
     public bool NoBuff { get; set; }
     public bool NoWeight { get; set; }
+}
+
+public class MGModConfig_Templates_Helmet : MGModConfig_Templates_ArmorHelmet
+{
+    public bool FaceCover { get; set; }
 }
 
 public class MGModConfig_Templates_EquipmentPlate

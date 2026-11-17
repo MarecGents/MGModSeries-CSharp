@@ -83,6 +83,10 @@
                     ButtonContent="{DynamicResource Develop.Button.HelmetNoWeight}"
                     Description="{DynamicResource Develop.Desc.HelmetNoWeight}"
                     IsChecked="{Binding ViewModel.ConfigJson.Templates.Helmet.NoWeight}"/>
+                <controls:CheckButtonFrame
+                    ButtonContent="{DynamicResource Develop.Button.HelmetFaceCover}"
+                    Description="{DynamicResource Develop.Desc.HelmetFaceCover}"
+                    IsChecked="{Binding ViewModel.ConfigJson.Templates.Helmet.FaceCover}"/>
 
             </StackPanel>
         </controls:FrameGroup>
