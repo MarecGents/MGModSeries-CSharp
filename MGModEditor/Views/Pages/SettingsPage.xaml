@@ -93,7 +93,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,1"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/92586">
+                            NavigateUri="https://sns.oddba.cn/users/3vwNpBsBNKv">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -167,7 +167,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/73531">
+                            NavigateUri="https://sns.oddba.cn/users/B0nyVL57mp3">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -196,7 +196,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/60139">
+                            NavigateUri="https://sns.oddba.cn/users/K0GdA3FAmD1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -225,7 +225,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/62787">
+                            NavigateUri="https://sns.oddba.cn/users/4Jy57zJHxfr">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -254,7 +254,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/25102">
+                            NavigateUri="https://sns.oddba.cn/users/ESOQjLypx5S">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -283,7 +283,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/4074">
+                            NavigateUri="https://sns.oddba.cn/users/7rr5qYB1zKd">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -312,7 +312,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/74063">
+                            NavigateUri="https://sns.oddba.cn/users/Ia0vpMyNeMO">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -341,7 +341,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/40234">
+                            NavigateUri="https://sns.oddba.cn/users/3VQvjtXWivS">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -370,7 +370,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/62866">
+                            NavigateUri="https://sns.oddba.cn/users/6nsOsvqfnic">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -399,7 +399,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/60602">
+                            NavigateUri="https://sns.oddba.cn/users/L40zeKIkPiF">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -428,7 +428,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/47080">
+                            NavigateUri="https://sns.oddba.cn/users/2AFUiaJqQkj">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -457,7 +457,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/3">
+                            NavigateUri="https://sns.oddba.cn/users/AbK4buHbHwa">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -486,7 +486,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/24954">
+                            NavigateUri="https://sns.oddba.cn/users/4Pw27dyu52t">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -515,7 +515,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/2308">
+                            NavigateUri="https://sns.oddba.cn/users/4Rucm4VICwq">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -544,7 +544,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/90063">
+                            NavigateUri="https://sns.oddba.cn/users/2k2ByQoNKQz">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -573,7 +573,7 @@
                             Background="Transparent"
                             BorderThickness="0,1,0,0"
                             CornerRadius="0"
-                            NavigateUri="https://sns.oddba.cn/author/53151">
+                            NavigateUri="https://sns.oddba.cn/users/JYNoQXgL9b8">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -591,6 +591,35 @@
                                     Grid.Column="1"
                                     VerticalAlignment="Center"
                                     Text="techml" />
+                                <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
+                            </Grid>
+                        </ui:Anchor>
+                        <ui:Anchor
+                            Margin="0"
+                            Padding="16"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0"
+                            NavigateUri="https://sns.oddba.cn/users/By71sBcFG8B">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0,0,12,0"
+                                    Stretch="UniformToFill"
+                                    Source="pack://application:,,,/Assets/thanks/Caicai.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="奶糖菜菜鸭" />
                                 <ui:SymbolIcon Grid.Column="2" Symbol="Link24" />
                             </Grid>
                         </ui:Anchor>
